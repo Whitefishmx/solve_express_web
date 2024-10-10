@@ -1,0 +1,122 @@
+:root {
+    --main-color: #5c65d1;
+    --main-color-transparent: rgba(92, 101, 209, 0.15);
+    --title-color: #f6f6f6;
+    --text-color: #171717;
+    --lighting-text-color: #FFFFFF;
+    --body-color: #edeef0;
+    --background-color: #FFFFFF;
+    --shadow-box: #75757587;
+}
+
+/*@media (prefers-color-scheme: dark) {*/
+/*    :root {*/
+/*        --main-color: #5c65d1;*/
+/*        --main-color-transparent: rgba(92, 101, 209, 0.15);*/
+/*        --title-color: #e8e6e3;*/
+/*        --text-color: #e8e6e3;*/
+/*        --lighting-text-color: #FFFFFF;*/
+/*        --body-color: #212425;*/
+/*        --background-color: #181a1b;*/
+/*        --shadow-box: rgba(88, 95, 99, 0.53);*/
+/*    }*/
+/*}*/
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('/./assets/font/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('/./assets/font/Poppins-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Poppins-ExtraLight';
+    src: url('/./assets/font/Poppins-ExtraLight.ttf') format('truetype');
+}
+
+body {
+    background-color: var(--body-color) !important;
+    color: var(--text-color) !important;
+    font-family: 'Poppins-Medium', sans-serif;
+}
+
+button {
+    background-color: var(--main-color) !important;
+    color: var(--text-color) !important;
+}
+
+.tabs .tab a {
+    color: var(--text-color) !important;
+}
+
+.tabs .tab a.active {
+    font-family: 'Poppins-Medium', sans-serif;
+    font-weight: bold;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background-color: var(--main-color-transparent);
+    outline: none;
+}
+
+.tabs .indicator {
+    background-color: var(--main-color);
+}
+
+main .container {
+    width: 80vw !important;
+    border-radius: 15px;
+    -webkit-box-shadow: 10px 10px 15px 5px var(--shadow-box);
+    -moz-box-shadow: 10px 10px 15px 5px var(--shadow-box);
+    box-shadow: 10px 10px 15px 5px var(--shadow-box);
+}
+
+.tabs {
+    border-radius: 15px 15px 0 0 !important;
+    background-color: var(--background-color);
+}
+
+.div-nav-text {
+    line-height: normal;
+    color: var(--text-color);
+}
+
+.nav-user {
+    border-radius: 50% !important;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+}
+
+nav .brand-logo a {
+    position: absolute;
+    font-size: 2.1rem;
+    padding: 0;
+    align-items: center;
+    display: flex;
+    -webkit-box-align: center;
+    height: 100%;
+    right: 50%;
+}
+
+.linkFooter {
+    color: var(--lighting-text-color) !important;
+}
+input{
+    color: var(--text-color);
+}
+input:focus{
+    box-shadow: 0 1px 0 0 var(--main-color) !important;
+}
+.input-field .prefix.active{
+    color: var(--main-color);
+}
+.input-field .prefix.active + label{
+    color: var(--main-color);
+}
+.input-field .prefix.active{
+    color: var(--main-color);
+}

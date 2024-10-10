@@ -11,8 +11,8 @@
 			if ( $this->validateSession () ) {
 				return redirect ( '/' );
 			}
-			$data = [ 'main' => view ( 'signin' ), 'session' => FALSE  ];
-			return view ( 'plantilla', $data );
+			$data = [ 'session' => FALSE ];
+			return view ( 'signin', $data );
 		}
 		public function signIn (): ResponseInterface|bool {
 			$this->input = $this->getRequestInput ( $this->request );

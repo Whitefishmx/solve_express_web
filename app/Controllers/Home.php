@@ -6,9 +6,11 @@
 	
 	class Home extends BaseController {
 		public function index (): string|RedirectResponse {
-			if ( $this->validateSession () ) {
-				return view ( 'header' ) . view ( 'main' ) . view ( 'footer' );
-			}
-			return redirect ( 'http://bluebull.local/signin' );
+//			die();
+//			if ( $this->validateSession () ) {
+			$data = [ 'main' => view ( 'main' ), 'session' => FALSE  ];
+			return view ( 'plantilla', $data );
+//			}
+//			return redirect ( 'signin' );
 		}
 	}
