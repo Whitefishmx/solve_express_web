@@ -120,3 +120,11 @@ input:focus{
 .input-field .prefix.active{
     color: var(--main-color);
 }
+
+table tr:hover td {
+    background: #92a8de !important;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2 !important;
+}
