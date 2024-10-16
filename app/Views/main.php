@@ -8,7 +8,27 @@
 			<li class="tab col s3"><a href="#test4">Notificaciones</a></li>
 		</ul>
 	</div>
-	<div id="test1" class="col s12">Home</div>
+	<div id="test1" class="col s12" style="padding: 20px">
+		<div class="">
+			<div class="row">
+				<h3 class="center-align">¿Cuánto dinero necesitas?</h3>
+			</div>
+			<div class="row">
+				<div class="col s1"></div>
+				<div class="col s5">
+					<div class="row center-align dashboard-alt ">Dias trabajados</div>
+					<div class="row center-align dashboard-title" id="DashDays"></div>
+				</div>
+				<div class="col s2"></div>
+				<div class="col s5" >
+					<div class="row center-align dashboard-alt">Monto disponible</div>
+					<div class="row center-align dashboard-title" id="DashAvailable"></div>
+				</div>
+				<div class="col s1"></div>
+			</div>
+		</div>
+		</div>
+	</div>
 	<div id="test2" class="col s12" style="padding: 20px">
 		<table class="striped highlight responsive-table">
 			<thead>
