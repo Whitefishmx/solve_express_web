@@ -28,8 +28,13 @@
 			</div>
 			<div class="row dashboard-card">
 				<div class="row center-align"><h5>Solicitar:</h5></div>
-				<div class="row center-align"><h3 id="reqAmount">$ 250.00</h3></div>
-				<div class="row center-align"></div>
+				<div class="row center-align"><output id="reqAmount">$ 250.00</output></div>
+				<div class="row center-align"><label for="overdraft">
+						<input
+								class="rangeInput"
+								type="range" id="overdraft" name="overdraft"
+								value="4000" min="4000" max="350000" step="1000" />
+					</label></div>
 			</div>
 		</div>
 		</div>
