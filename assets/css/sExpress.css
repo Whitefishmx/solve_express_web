@@ -154,7 +154,44 @@ tr:nth-child(even) {
     background-color: #f2f2f2 !important;
 }
 
-.dashboard-card{
+.dashboard-card {
     background-color: var(--background-card);
     border-radius: 15px;
+}
+
+
+.rangeInput {
+    margin-right: 15px  !important;
+    min-width: 200px  !important;
+    max-width: 640px  !important;
+    width: 80%  !important;
+    height: 23px  !important;
+    background-size: 0 1% !important;
+    border-radius: 15px  !important;
+    background: rgba(225, 217, 255, 0.73) linear-gradient(#78a6ff, #0658f6) no-repeat  !important;
+    padding: 0  !important;
+    border: 1px solid #0658f6  !important;;
+}
+
+.rangeInput::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 35px !important;
+    height: 35px !important;
+    border-radius: 50% !important;
+    background: radial-gradient(at top left, #0658f6 20%, #0658f6) !important;
+    cursor: pointer !important;
+}
+
+.rangeInput::-moz-range-thumb {
+    width: 35px !important;
+    height: 35px  !important;
+    border-radius: 50%  !important;
+    background: radial-gradient(at top left, #84afff 20%, #0658f6)  !important;
+    cursor: pointer  !important;
+    border: none  !important;
+}
+
+.rangeInput:hover {
+    opacity: 1;
 }

@@ -1,7 +1,17 @@
 $(document).ready(function () {
-	$(".tabs").tabs({swipeable: true});
+	$(".tabs").tabs({swipeable: false});
 	const toggleButton = document.getElementById("theme-toggle");
+	const cantidad = $("#requestAmount");
 	$("#Disposiciones").on("click", GetDisposiciones);
+	
+	cantidad.on("input", function () {
+		let rangeMin = $(this).attr("min");
+		let rangeMax = $(this).attr("max");
+		let value = this.value;
+		$("#outRequestAmount").val("$ " + Intl.NumberFormat("en-US").format(value));
+		const percentageFromValue = ((value - rangeMin) / (rangeMax - rangeMin)) * 100;
+		$(this).css("cssText", "background-size: " + percentageFromValue + "% 100% !important;");
+	});
 });
 
 function GetDisposiciones() {
