@@ -20,7 +20,7 @@
 					<div class="row center-align dashboard-title" id="DashDays"></div>
 				</div>
 				<div class="col s2"></div>
-				<div class="col s4 dashboard-card" >
+				<div class="col s4 dashboard-card">
 					<div class="row center-align dashboard-alt">Monto disponible</div>
 					<div class="row center-align dashboard-title" id="DashAvailable"></div>
 				</div>
@@ -28,36 +28,43 @@
 			</div>
 			<div class="row dashboard-card">
 				<div class="row center-align"><h5>Solicitar:</h5></div>
-				<div class="row center-align"><output id="reqAmount">$ 250.00</output></div>
-				<div class="row center-align"><label for="overdraft">
-						<input
-								class="rangeInput"
-								type="range" id="overdraft" name="overdraft"
-								value="4000" min="4000" max="350000" step="1000" />
-					</label></div>
+				<div class="row center-align">
+					<output id="outRequestAmount">$ 250.00</output>
+				</div>
+				<div class="row center-align">
+					<div class="col s1"></div>
+					<div class="col s10 center-align">
+						<label for="requestAmount">
+							<input
+									class="rangeInput"
+									type="range" id="requestAmount" name="requestAmount"
+									value="300" min="250" max="4000" step="50" />
+						</label>
+					</div>
+					<div class="col s1"></div>
+				</div>
 			</div>
 		</div>
-		</div>
 	</div>
-	<div id="test2" class="col s12" style="padding: 20px">
-		<table class="striped highlight responsive-table">
-			<thead>
-			<tr>
-				<th>Plan</th>
-				<th>Periodo</th>
-				<th>Monto pedido</th>
-				<th>Monto restante</th>
-				<th>Folio</th>
-				<th>Num. Referencia</th>
-				<th>Cuenta</th>
-				<th>Banco</th>
-				<th>Fecha de Solicitud</th>
-				<th>Fecha de Pago</th>
-			</tr>
-			</thead>
-			<tbody id="resDisposition"></tbody>
-		</table>
-	</div>
-	<div id="test3" class="col s12">No se encontraron pagos realizados</div>
-	<div id="test4" class="col s12" style="color: rgba(0,0,0,0.53)">Vacío</div>
 </div>
+<div id="test2" class="col s12" style="padding: 20px">
+	<table class="striped highlight responsive-table">
+		<thead>
+		<tr>
+			<th>Plan</th>
+			<th>Periodo</th>
+			<th>Monto pedido</th>
+			<th>Monto restante</th>
+			<th>Folio</th>
+			<th>Num. Referencia</th>
+			<th>Cuenta</th>
+			<th>Banco</th>
+			<th>Fecha de Solicitud</th>
+			<th>Fecha de Pago</th>
+		</tr>
+		</thead>
+		<tbody id="resDisposition"></tbody>
+	</table>
+</div>
+<div id="test3" class="col s12">No se encontraron pagos realizados</div>
+<div id="test4" class="col s12" style="color: rgba(0,0,0,0.53)">Vacío</div>
