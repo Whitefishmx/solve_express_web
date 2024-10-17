@@ -7,6 +7,7 @@
     --body-color: #edeef0;
     --background-color: #FFFFFF;
     --shadow-box: #75757587;
+    --background-card: #FFFFFF;
 }
 
 /*@media (prefers-color-scheme: dark) {*/
@@ -151,4 +152,9 @@ tbody tr {
 
 tr:nth-child(even) {
     background-color: #f2f2f2 !important;
+}
+
+.dashboard-card{
+    background-color: var(--background-card);
+    border-radius: 15px;
 }

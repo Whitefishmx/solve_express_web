@@ -15,16 +15,21 @@
 			</div>
 			<div class="row">
 				<div class="col s1"></div>
-				<div class="col s5">
+				<div class="col s4 dashboard-card">
 					<div class="row center-align dashboard-alt ">Dias trabajados</div>
 					<div class="row center-align dashboard-title" id="DashDays"></div>
 				</div>
 				<div class="col s2"></div>
-				<div class="col s5" >
+				<div class="col s4 dashboard-card" >
 					<div class="row center-align dashboard-alt">Monto disponible</div>
 					<div class="row center-align dashboard-title" id="DashAvailable"></div>
 				</div>
 				<div class="col s1"></div>
+			</div>
+			<div class="row dashboard-card">
+				<div class="row center-align"><h5>Solicitar:</h5></div>
+				<div class="row center-align"><h3 id="reqAmount">$ 250.00</h3></div>
+				<div class="row center-align"></div>
 			</div>
 		</div>
 		</div>
