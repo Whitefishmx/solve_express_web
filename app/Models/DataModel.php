@@ -41,6 +41,14 @@
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
 		}
+		public function requestPay ( int $user, $amount, string $token ) {
+			$endPoint = 'sExpressRequest';
+			$data = [
+				'user' =>$user,
+				"amount"=> $amount,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
+		}
 		private function SendRequest ( string $endpoint, array $data, ?string $method, ?string $dataType, string $token = NULL ): mixed {
 			$method = !empty( $method ) ? strtoupper ( $method ) : 'POST';
 			$resp = [ 'error' => 500, 'error_description' => 'OpenPayTransport' ];

@@ -8,27 +8,29 @@
 	
 	class SignInController extends BaseController {
 		public function index (): string|RedirectResponse {
-			//			if ( $this->validateSession () ) {
-			//				return redirect ( '/' );
-			//			}
-			//			$data = [ 'session' => FALSE ];
+			if ( $this->validateSession () ) {
+				return redirect ( '/' );
+			}
+			$data = [ 'session' => FALSE ];
 			return view ( 'signIn' );
 		}
 		public function signIn (): ResponseInterface|bool {
 			
 			$this->input = $this->getRequestInput ( $this->request );
 			if ( $data = $this->verifyRules ( 'POST', $this->request, NULL ) ) {
-//				$this->logResponse ( 1 );
+				//				$this->logResponse ( 1 );
 				return $this->getResponse ( $this->responseBody, $this->errCode );
 			}
 			$user = new DataModel();
 			$res = json_decode ( $user->signIn ( $this->input[ 'curp' ], $this->input[ 'password' ] ), TRUE );
+//			var_dump ($res );
+//			die();
 			if ( $res[ 'error' ] != 0 ) {
 				$this->errDataSuplied ( 'Las credenciales ingresadas son incorrectas' );
-//				$this->logResponse ( 1 );
+				//				$this->logResponse ( 1 );
 				return $this->getResponse ( $this->responseBody, $this->errCode );
 			}
-//			die( var_dump ( $res ) );
+			//			die( var_dump ( $res ) );
 			$session = session ();
 			$session->set ( 'logged_in', TRUE );
 			$session->set ( 'user', $res[ 'user' ] );

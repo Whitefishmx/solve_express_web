@@ -215,7 +215,9 @@
 			$login = $session->get ( 'logged_in' ) !== NULL ? $session->get ( 'logged_in' ) : FALSE;
 			$session->set ( 'logged_in', $login );
 			if ( $login ) {
-				$this->user = $session->get ( 'user' );
+//				var_dump ( $session->get ( 'user' ) );
+//				die ();
+				$this->user = $session->get ( 'user' )['data'][ 'id' ];
 			} else {
 				$this->errCode = 500;
 			}

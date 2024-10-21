@@ -57,7 +57,7 @@
 				<a
 						href="<?= base_url (); ?>" class="brand-logo valign-wrapper" style="display: flex; align-items:
 				center; height: 100%">
-					<img src="/./assets/img/logo.png" style="height: 45px; max-height: 50px; margin: 5px 0;">
+					<img src="/./assets/img/logo.png" style="height: 45px; max-height: 50px; margin: 5px 0;" alt="">
 				</a>
 			</div>
 			<a
@@ -140,7 +140,7 @@
     }
 </style>
 <div id="Loader"></div>
-<main class="" style="padding: 20px 0 20px 0;">
+<main class="" style="padding: 20px 0 20px 0;" id="mainContainer">
 	<?= $main ?? '' ?>
 </main>
 <footer class="page-footer " style="background-color: var(--main-color)">

@@ -22,7 +22,7 @@ class App extends BaseConfig
 		if ( ENVIRONMENT === 'development' ) {
 			$this->baseURL = 'https://solveexpress.local/';
 		} else if ( ENVIRONMENT === 'production' ) {
-			$this->baseURL = 'https://solveexpress.local/';
+			$this->baseURL = 'http://express.solvegcm.mx/';
 		} else {
 			$this->baseURL = 'https://solveexpress.local/';
 		}
