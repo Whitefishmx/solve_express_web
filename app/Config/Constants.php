@@ -86,4 +86,3 @@
 	 */
 	define ( 'EVENT_PRIORITY_HIGH', 10 );
 	define ( 'BASEPATH', '*' );
-	define("ENVIRONMENT","development");
