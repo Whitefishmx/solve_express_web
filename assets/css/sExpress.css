@@ -11,18 +11,18 @@
     --progressW: 50%;
 }
 
-/*@media (prefers-color-scheme: dark) {*/
-/*    :root {*/
-/*        --main-color: #5c65d1;*/
-/*        --main-color-transparent: rgba(92, 101, 209, 0.15);*/
-/*        --title-color: #e8e6e3;*/
-/*        --text-color: #e8e6e3;*/
-/*        --lighting-text-color: #FFFFFF;*/
-/*        --body-color: #212425;*/
-/*        --background-color: #181a1b;*/
-/*        --shadow-box: rgba(88, 95, 99, 0.53);*/
-/*    }*/
-/*}*/
+/*@media (prefers-color-scheme: dark) {
+    :root {
+        --main-color: #5c65d1;
+        --main-color-transparent: rgba(92, 101, 209, 0.15);
+        --title-color: #e8e6e3;
+        --text-color: #e8e6e3;
+        --lighting-text-color: #FFFFFF;
+        --body-color: #212425;
+        --background-color: #181a1b;
+        --shadow-box: rgba(88, 95, 99, 0.53);
+    }
+}*/
 
 @font-face {
     font-family: 'Poppins-Regular';
@@ -71,8 +71,8 @@ button {
 main .container {
     width: 80vw !important;
     border-radius: 15px;
-    -webkit-box-shadow: 10px 10px 15px 5px var(--shadow-box);
-    -moz-box-shadow: 10px 10px 15px 5px var(--shadow-box);
+    /*-webkit-box-shadow: 10px 10px 15px 5px var(--shadow-box);*/
+    /*-moz-box-shadow: 10px 10px 15px 5px var(--shadow-box);*/
     box-shadow: 10px 10px 15px 5px var(--shadow-box);
 }
 
@@ -159,6 +159,7 @@ tr:nth-child(even) {
     background-color: var(--background-card);
     border-radius: 15px;
 }
+
 input[type="range"] {
     -webkit-appearance: none;
     width: 100%;
