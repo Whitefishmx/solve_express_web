@@ -64,48 +64,73 @@
     .container {
         margin: 0 auto !important;
     }
+	.header{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.header div{
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 20px;
+	}
+	@media screen and (max-width: 770px){
+		.header div{
+			width: 100%;
+		}
+	}
+	.alerta{
+		position: absolute;
+		display: block;
+		left: calc(50% - 200px);
+		top: 50%;
+	}
 </style>
 <div id="Loader"></div>
 <main class="py-4">
-	<div class="container text-center" style="margin: auto; width: 75vw">
-		<div class="row mb-0">
-			<img class="float-left" src="/./assets/img/logo.png" alt="logo" style="height: 80px">
+	<div class="container text-center" style="margin: auto; width: 75vw; height: 90vh;">
+		<div class="header">
+			<div class="d-md-block"><img src="/./assets/img/logo.png" alt="logo" style="height: 80px"></div>
 		</div>
 		<div class="row">
-			<div class="col-md-6 d-none d-md-block" style="background-color: var(--main-color); border-radius: 25px; color: var(--title-color)">
-				<h4 class="font-weight-bold">¡Tu nómina al instante!</h4>
-				<h5>Sin deudas y sin intereses</h5>
-				<img src="/./assets/img/women1.png" alt="ok" style="width: 24vw; display: block; margin: auto">
+			<div class="col-md-1 d-none d-md-block"></div>
+			<div class="col-md-5 d-none d-md-block" style="background-color: var(--main-color); border-radius: 25px; color: var(--title-color); height: 90%;">
+				<h4 class="font-weight-bold" style="margin-top: 1rem; margin-bottom: 0;">¡Tu nómina al instante!</h4>
+				<h5 style="font-weight: 100;">Sin deudas y sin intereses</h5>
+				<img src="/./assets/img/women1.png" alt="ok" style="height: 24vw; display: block; margin: auto">
 			</div>
-			<div class="col-md-6" style="padding: 5rem; min-width: 50%; width: auto">
-				<h4>Inicio de sesión</h4>
+			<div class="col-md-6 d-md-block" style="padding: 1rem 5rem; min-width: 50%; width: auto">
+				<h4 style="margin-bottom: 2rem">Inicio de sesión</h4>
 				<form id="signinForm" name="signinForm" method="POST">
 					<div class="form-group">
-						<label for="curp">CURP *</label>
+						<label for="curp" style="display: block; width: 100%; padding-left: 50px; margin-bottom: 0; text-align: left;">CURP *</label>
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="material-icons">account_circle</i></span>
 							</div>
-							<input id="curp" name="curp" type="text" class="form-control" required>
+							<input id="curp" name="curp" type="text" class="form-control" placeholder="18 caracteres" required>
 						</div>
 						<span class="invalid-feedback">formato erróneo</span>
 					</div>
 					<div class="form-group">
-						<label for="password">Contraseña</label>
+						<label for="password" style="display: block; width: 100%; padding-left: 50px; margin-bottom: 0; text-align: left;">Contraseña</label>
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="material-icons">lock</i></span>
 							</div>
-							<input id="password" name="password" type="password" class="form-control" minlength="8" required>
+							<input id="password" name="password" type="password" class="form-control" minlength="8" placeholder="minimo 8 caracteres" required>
 						</div>
 						<span class="invalid-feedback">longitud minima de 8 caracteres (mayúsculas, minúsculas, números)</span>
 					</div>
-					<div class="d-grid">
+					<div class="form-group">
+						<div class="input-group">
 						<button
 								id="btnSend" name="btnSend" type="submit" class="btn btn-primary btn-block"
-								style="width: 80%; color: var(--title-color) !important; font-weight: bold; border-radius: 15px; font-size: 1.4rem; height: 8vh">
+								style="width: 100%; color: var(--title-color) !important; font-size: 1.2rem; height: 8vh; margin-top: 1.5rem; letter-spacing: 0.1rem;">
 							Iniciar sesión
 						</button>
+						</div>
 					</div>
 				</form>
 			</div>
@@ -150,12 +175,15 @@
 					const errors = data.responseJSON.reason;
 					if ((typeof errors) === "object") {
 						$.each(errors, function (index, value) {
-							toastHTML = "<div class='alert alert-danger' role='alert'>" + value + "</div>";
+							toastHTML = "<div class='alert alert-danger alerta' role='alert'>" + value + "</div>";
 							$("body").append(toastHTML);
 						});
 					} else {
-						toastHTML = "<div class='alert alert-danger' role='alert'>" + errors + "</div>";
+						toastHTML = "<div class='alert alert-danger alerta' role='alert'>" + errors + "</div>";
 						$("body").append(toastHTML);
+						setTimeout(function() { 
+							$('.alerta').fadeOut('fast'); 
+						}, 1000)
 					}
 				},
 				complete: function () {
@@ -166,6 +194,8 @@
 			});
 		});
 	});
+
+	
 </script>
 </body>
 </html>

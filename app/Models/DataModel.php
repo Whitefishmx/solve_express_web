@@ -10,11 +10,11 @@
 		public function __construct () {
 			parent::__construct ();
 			if ( ENVIRONMENT === 'development' ) {
-				$this->url = 'https://api-solve.local/';
+				$this->url = 'https://apisandbox.solve.com.mx/public/';
 			} else if ( ENVIRONMENT === 'production' ) {
-				$this->url = 'https://api-solve.local/';
+				$this->url = 'https://apisandbox.solve.com.mx/public/';
 			} else {
-				$this->url = 'https://api-solve.local/';
+				$this->url = 'https://apisandbox.solve.com.mx/public/';
 			}
 		}
 		public function signIn ( string $curp, string $password ) {
