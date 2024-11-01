@@ -17,21 +17,32 @@
 	}, '' );
 	$title = isset( $title ) ? ' | '.$title : '';
 ?>
+
+<?php
+	$iniciales = $iniciales ?? "JH";
+	$name = $name ?? "James Hook";
+	$company = $company ?? "WhiteFish";
+?>
+
 <head>
 	<link rel="manifest" href="/./manifest.json">
 	
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="/./assets/css/materialize.css" />
-	<link type="text/css" rel="stylesheet" href="/./assets/css/materialize.min.css" />
+
+	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/CompanyExpress.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/_tables.scss" rel="stylesheet" type="text/css" />
+
 	<link type="text/css" rel="stylesheet" href="/./assets/css/sExpress.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>SOLVE<?= $title ?></title>
 </head>
-<body class="">
+<body class="" onload="GetDashboard()">
 <script type="text/javascript" src="/./assets/js/jquery-3.7.1.js"></script>
 <script type="text/javascript" src="/./assets/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="/./assets/js/materialize.js"></script>
-<script type="text/javascript" src="/./assets/js/materialize.min.js"></script>
+
 <script>
 	if ("serviceWorker" in navigator) {
 		navigator.serviceWorker.register("/assets/js/sw.js").then(function (registration) {
@@ -41,7 +52,78 @@
 		});
 	}
 </script>
-<header>
+
+<div class="topbar d-print-none" style="background-color: white">
+	<div class="container-xxl">
+		<nav class="topbar-custom d-flex justify-content-between" id="topbar-custom">
+			<ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0" style="margin-left: 2rem;">
+				<li>
+					<a class="navbar-brand" href="#">
+						<img src="assets/img/logo.png" width="135" alt="" class="me-2">
+					</a>
+				</li>
+				<li class="mx-3 welcome-text">
+				</li>
+			</ul>
+			<ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">
+				<!--<li class="topbar-item">
+					<a class="nav-link nav-icon" href="javascript:void(0);" id="light-dark-mode">
+						<i class="icofont-sun dark-mode"></i>
+						<i class="icofont-moon light-mode"></i>
+					</a>
+				</li>
+				<li class="dropdown topbar-item">
+					<a
+							class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
+							aria-haspopup="false" aria-expanded="false">
+						<i class="icofont-bell-alt"></i>
+						<span class="alert-badge"></span>
+					</a>
+					<div class="dropdown-menu stop dropdown-menu-end dropdown-lg py-0">
+						<h5 class="dropdown-item-text m-0 py-3 d-flex justify-content-between align-items-center">
+							Notifications <a href="#" class="badge text-body-tertiary badge-pill">
+								<i class="iconoir-plus-circle fs-4"></i>
+							</a>
+						</h5>
+						
+						<a href="pages-notifications.php" class="dropdown-item text-center text-dark fs-13 py-2">
+							View All <i class="fi-arrow-right"></i>
+						</a>
+					</div>
+				</li> -->
+				<li class="dropdown topbar-item">
+					<a
+							class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
+							aria-haspopup="false" aria-expanded="false">
+						<span
+								class="thumb-lg justify-content-center d-flex align-items-center bg-purple-subtle text-purple rounded-circle
+						me-2"><?= $iniciales; ?></span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-end py-0">
+						<div class="d-flex align-items-center dropdown-item py-2 bg-secondary-subtle">
+							<div class="flex-shrink-0">
+								<span
+										class="thumb-lg justify-content-center d-flex align-items-center bg-purple-subtle text-purple rounded-circle
+						me-2"><?= $iniciales; ?></span>
+							</div>
+							<div class="flex-grow-1 ms-2 text-truncate align-self-center">
+								<h6 class="my-0 fw-medium text-dark fs-13"><?=$name;?></h6>
+								<small class="text-muted mb-0"><?=$company;?></small>
+							</div><!--end media-body-->
+						</div>
+						<div class="dropdown-divider mt-0"></div>
+						<small class="text-muted px-2 pb-1 d-block">Cuenta</small>
+						<a class="dropdown-item" href="pages-profile.php"><i class="las la-user fs-18 me-1 align-text-bottom"></i> Cuenta</a>
+						
+						<div class="dropdown-divider mb-0"></div>
+						<a class="dropdown-item text-danger" href="auth-login.php"><i class="las la-power-off fs-18 me-1 align-text-bottom"></i> Salir</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+<!--<header>
 	<nav
 			class="nav-extended center"
 			style="background-color: var(--background-color); border-bottom: var(--main-color) solid 15px; height:90px">
@@ -89,7 +171,7 @@
 	<!--			<a href="#!" class="secondary-content"><i class="material-icons">-->
 	<!--		</li>-->
 	<!--	</ul>-->
-</header>
+<!--</header>-->
 <style>
     html {
         height: 100%;
@@ -140,9 +222,13 @@
     }
 </style>
 <div id="Loader"></div>
-<main class="" style="padding: 20px 0 20px 0;" id="mainContainer">
-	<?= $main ?? '' ?>
-</main>
+<div class="page-wrapper">
+	<div class="page-content" style="width: 100%; margin-left: 0">
+		<div class="container-xxl" style="margin-top: 15px;" id="mainContainer">
+			<?= $main ?? '' ?>
+		</div>
+	</div>
+</div>
 <footer class="page-footer " style="background-color: var(--main-color)">
 	<div class="row" style="margin: 15px 80px 15px 80px;">
 		<div class="col s3">
@@ -170,5 +256,9 @@
 		</div>
 	</div>
 </footer>
+<script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="/assets/js/app.js"></script>
+<script src="/assets/js/datatable.init.js"></script>
 </body>
 </html>
