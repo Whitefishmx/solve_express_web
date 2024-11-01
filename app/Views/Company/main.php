@@ -6,14 +6,19 @@
 	<title><?php echo $title ?> | Rizz - Admin & Dashboard Template</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-	<meta content="" name="author" />
+	<meta content="" name="drakoz" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	
 	<link rel="shortcut icon" href="/favicon.ico">
+	
+	<link href="/assets/libs/simple-datatables/style.css" rel="stylesheet" type="text/css" />
+	
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+	
 	<link href="/assets/css/CompanyExpress.css" rel="stylesheet" type="text/css" />
-	<link href="/assets/css/_tables.scss" rel="stylesheet" type="text/css" />
+	
 </head>
 <body>
 <?php
@@ -235,8 +240,8 @@
 						me-2"><?= $iniciales; ?></span>
 							</div>
 							<div class="flex-grow-1 ms-2 text-truncate align-self-center">
-								<h6 class="my-0 fw-medium text-dark fs-13"><?=$name;?></h6>
-								<small class="text-muted mb-0"><?=$company;?></small>
+								<h6 class="my-0 fw-medium text-dark fs-13"><?= $name; ?></h6>
+								<small class="text-muted mb-0"><?= $company; ?></small>
 							</div><!--end media-body-->
 						</div>
 						<div class="dropdown-divider mt-0"></div>
@@ -260,159 +265,180 @@
 <div class="page-wrapper">
 	<div class="page-content" style="width: 100%; margin-left: 0">
 		<div class="container-xxl" style="margin-top: 15px;">
-			
 			<div class="col-md-12 col-lg-126">
 				<div class="card">
 					<div class="card-body pt-0" style="margin-top: 15px">
 						<!-- Nav tabs -->
 						<ul class="nav nav-pills nav-justified" role="tablist">
 							<li class="nav-item waves-effect waves-light" role="presentation">
-								<a class="nav-link active" data-bs-toggle="tab" href="#home-1" role="tab" aria-selected="true">Inicio</a>
+								<a class="nav-link active" data-bs-toggle="tab" href="#home-1" role="tab" aria-selected="true">Empleados</a>
 							</li>
 							<li class="nav-item waves-effect waves-light" role="presentation">
-								<a class="nav-link" data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="false" tabindex="-1">Graficas</a>
+								<a class="nav-link" data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="false" tabindex="-1">Análisis</a>
 							</li>
 						</ul>
-						
 						<!-- Tab panes -->
 						<div class="tab-content">
 							<div class="tab-pane p-3 active show" id="home-1" role="tabpanel">
-								<div class="table-responsive">
-									<div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-										<div class="datatable-top">
-											<div class="datatable-dropdown">
-												<label>
-													<select class="datatable-selector" name="per-page">
-														<option value="5">5</option>
-														<option value="10" selected="">10</option>
-														<option value="15">15</option>
-														<option value="20">20</option>
-														<option value="25">25</option>
-													</select> entries per page
-												</label>
-											</div>
-											<div class="datatable-search">
-												<input
-														class="datatable-input" placeholder="Search..." type="search" name="search" title="Search within table"
-														aria-controls="datatable_1">
-											</div>
-										</div>
-										<div class="datatable-container">
-											<table class="table datatable datatable-table" id="datatable_1">
-												<thead>
-												<tr>
-													<th data-sortable="true" style="width: 25.49019607843137%;">
-														<button class="datatable-sorter">Name</button>
-													</th>
-													<th data-sortable="true" style="width: 10.51693404634581%;">
-														<button class="datatable-sorter">Ext.</button>
-													</th>
-													<th data-sortable="true" style="width: 25.935828877005346%;">
-														<button class="datatable-sorter">City</button>
-													</th>
-													<th data-format="DD/MM/YYYY" data-sortable="true" data-type="date" style="width: 18.983957219251337%;">
-														<button class="datatable-sorter">Start Date</button>
-													</th>
-													<th data-sortable="true" style="width: 19.073083778966133%;">
-														<button class="datatable-sorter">Completion</button>
-													</th>
-												</tr>
-												</thead>
-												<tbody>
-												<tr data-index="0">
-													<td>Unity Pugh</td>
-													<td>9958</td>
-													<td>Curicó</td>
-													<td>2005/02/11</td>
-													<td>37%</td>
-												</tr>
-												<tr data-index="1">
-													<td>Theodore Duran</td>
-													<td>8971</td>
-													<td>Dhanbad</td>
-													<td>1999/04/07</td>
-													<td>97%</td>
-												</tr>
-												<tr data-index="2">
-													<td>Kylie Bishop</td>
-													<td>3147</td>
-													<td>Norman</td>
-													<td>2005/09/08</td>
-													<td>63%</td>
-												</tr>
-												<tr data-index="3">
-													<td>Willow Gilliam</td>
-													<td>3497</td>
-													<td>Amqui</td>
-													<td>2009/29/11</td>
-													<td>30%</td>
-												</tr>
-												<tr data-index="4">
-													<td>Blossom Dickerson</td>
-													<td>5018</td>
-													<td>Kempten</td>
-													<td>2006/11/09</td>
-													<td>17%</td>
-												</tr>
-												<tr data-index="5">
-													<td>Elliott Snyder</td>
-													<td>3925</td>
-													<td>Enines</td>
-													<td>2006/03/08</td>
-													<td>57%</td>
-												</tr>
-												<tr data-index="6">
-													<td>Castor Pugh</td>
-													<td>9488</td>
-													<td>Neath</td>
-													<td>2014/23/12</td>
-													<td>93%</td>
-												</tr>
-												<tr data-index="7">
-													<td>Pearl Carlson</td>
-													<td>6231</td>
-													<td>Cobourg</td>
-													<td>2014/31/08</td>
-													<td>100%</td>
-												</tr>
-												<tr data-index="8">
-													<td>Deirdre Bridges</td>
-													<td>1579</td>
-													<td>Eberswalde-Finow</td>
-													<td>2014/26/08</td>
-													<td>44%</td>
-												</tr>
-												<tr data-index="9">
-													<td>Daniel Baldwin</td>
-													<td>6095</td>
-													<td>Moircy</td>
-													<td>2000/11/01</td>
-													<td>33%</td>
-												</tr>
-												</tbody>
-											</table>
-										</div>
-										<div class="datatable-bottom">
-											<div class="datatable-info">Showing 1 to 10 of 11 entries</div>
-											<nav class="datatable-pagination">
-												<ul class="datatable-pagination-list">
-													<li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
-														<button data-page="1" class="datatable-pagination-list-item-link" aria-label="Page 1">‹</button>
-													</li>
-													<li class="datatable-pagination-list-item datatable-active">
-														<button data-page="1" class="datatable-pagination-list-item-link" aria-label="Page 1">1</button>
-													</li>
-													<li class="datatable-pagination-list-item">
-														<button data-page="2" class="datatable-pagination-list-item-link" aria-label="Page 2">2</button>
-													</li>
-													<li class="datatable-pagination-list-item">
-														<button data-page="2" class="datatable-pagination-list-item-link" aria-label="Page 2">›</button>
-													</li>
-												</ul>
-											</nav>
-										</div>
-									</div>
-								</div>
+								<div class="row justify-content-center">
+						
+								
+												<div class="table-responsive">
+													<table class="table datatable" id="datatable_1">
+														<thead class="table-light">
+														<tr>
+															<th style="width: 16px;">
+																<div class="form-check mb-0 ms-n1">
+																	<input type="checkbox" class="form-check-input" name="select-all" id="select-all">
+																</div>
+															</th>
+															<th>Name</th>
+															<th>Ext.</th>
+															<th>City</th>
+															<th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
+															<th>Completion</th>
+														</tr>
+														</thead>
+														<tbody>
+														<tr>
+															<td style="width: 16px;">
+																<div class="form-check">
+																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+																</div>
+															</td>
+															<td>Unity Pugh</td>
+															<td>9958</td>
+															<td>Curicó</td>
+															<td>2005/02/11</td>
+															<td>37%</td>
+														</tr>
+														<tr>
+															<td style="width: 16px;">
+																<div class="form-check">
+																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+																</div>
+															</td>
+															<td>Theodore Duran</td>
+															<td>8971</td>
+															<td>Dhanbad</td>
+															<td>1999/04/07</td>
+															<td>97%</td>
+														</tr>
+														<tr>
+															<td style="width: 16px;">
+																<div class="form-check">
+																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+																</div>
+															</td>
+															<td>Kylie Bishop</td>
+															<td>3147</td>
+															<td>Norman</td>
+															<td>2005/09/08</td>
+															<td>63%</td>
+														</tr>
+														<tr>
+															<td style="width: 16px;">
+																<div class="form-check">
+																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+																</div>
+															</td>
+															<td>Willow Gilliam</td>
+															<td>3497</td>
+															<td>Amqui</td>
+															<td>2009/29/11</td>
+															<td>30%</td>
+														</tr>
+														<tr>
+															<td style="width: 16px;">
+																<div class="form-check">
+																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+																</div>
+															</td>
+															<td>Blossom Dickerson</td>
+															<td>5018</td>
+															<td>Kempten</td>
+															<td>2006/11/09</td>
+															<td>17%</td>
+														</tr>
+														<tr>
+															<td style="width: 16px;">
+																<div class="form-check">
+																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+																</div>
+															</td>
+															<td>Elliott Snyder</td>
+															<td>3925</td>
+															<td>Enines</td>
+															<td>2006/03/08</td>
+															<td>57%</td>
+														</tr>
+														<tr>
+															<td style="width: 16px;">
+																<div class="form-check">
+																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+																</div>
+															</td>
+															<td>Castor Pugh</td>
+															<td>9488</td>
+															<td>Neath</td>
+															<td>2014/23/12</td>
+															<td>93%</td>
+														</tr>
+														<tr>
+															<td style="width: 16px;">
+																<div class="form-check">
+																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+																</div>
+															</td>
+															<td>Pearl Carlson</td>
+															<td>6231</td>
+															<td>Cobourg</td>
+															<td>2014/31/08</td>
+															<td>100%</td>
+														</tr>
+														<tr>
+															<td style="width: 16px;">
+																<div class="form-check">
+																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+																</div>
+															</td>
+															<td>Deirdre Bridges</td>
+															<td>1579</td>
+															<td>Eberswalde-Finow</td>
+															<td>2014/26/08</td>
+															<td>44%</td>
+														</tr>
+														<tr>
+															<td style="width: 16px;">
+																<div class="form-check">
+																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+																</div>
+															</td>
+															<td>Daniel Baldwin</td>
+															<td>6095</td>
+															<td>Moircy</td>
+															<td>2000/11/01</td>
+															<td>33%</td>
+														</tr>
+														<tr>
+															<td style="width: 16px;">
+																<div class="form-check">
+																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+																</div>
+															</td>
+															<td>Pearl Carlson</td>
+															<td>6231</td>
+															<td>Cobourg</td>
+															<td>2014/31/08</td>
+															<td>100%</td>
+														</tr>
+														</tbody>
+													</table>
+												</div>
+					
+							
+			
+								</div><!--end row-->
 							</div>
 							<div class="tab-pane p-3" id="profile-1" role="tabpanel">
 								<p class="text-muted mb-0">
@@ -433,9 +459,10 @@
 <!-- Javascript  -->
 <!-- vendor js -->
 <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="/assets/libs/simplebar/simplebar.min.css"></script>
+<script src="/assets/libs/simple-datatables/umd/simple-datatables.js"></script>
+<script src="/assets/js/pages/datatable.init.js"></script>
 <script src="/assets/js/app.js"></script>
-<script src="/assets/js/datatable.init.js"
 </body>
 <!--end body-->
 </html>
