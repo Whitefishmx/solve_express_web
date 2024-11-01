@@ -10,9 +10,9 @@
 		public function __construct () {
 			parent::__construct ();
 			if ( ENVIRONMENT === 'development' ) {
-				$this->url = 'https://apisandbox.solve.com.mx/public/';
+				$this->url = 'https://api-solve.local/';
 			} else if ( ENVIRONMENT === 'production' ) {
-				$this->url = 'https://apisandbox.solve.com.mx/public/';
+				$this->url = 'https://api-solve.local/';
 			} else {
 				$this->url = 'https://apisandbox.solve.com.mx/public/';
 			}
@@ -22,7 +22,7 @@
 			$data = [
 				'email'    => $curp,
 				'password' => $password,
-				'platform' => 5,
+				'platform' => 6,
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
 		}
@@ -37,15 +37,22 @@
 		public function getReport ( int $user, string $token ) {
 			$endPoint = 'sExpressReport';
 			$data = [
-				'user' =>$user,
+				'user' => $user,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
+		}
+		public function getPeriods ( int $company, string $token ) {
+			$endPoint = 'sExpressPeriods';
+			$data = [
+				'company' => $company,
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
 		}
 		public function requestPay ( int $user, $amount, string $token ) {
 			$endPoint = 'sExpressRequest';
 			$data = [
-				'user' =>$user,
-				"amount"=> $amount,
+				'user'   => $user,
+				"amount" => $amount,
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
 		}
@@ -73,7 +80,7 @@
 				}
 				curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
 				curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
-								curl_setopt ( $ch, CURLINFO_HEADER_OUT, TRUE );
+				curl_setopt ( $ch, CURLINFO_HEADER_OUT, TRUE );
 				curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, FALSE );
 				curl_setopt ( $ch, CURLOPT_SSL_VERIFYHOST, FALSE );
 				curl_setopt ( $ch, CURLOPT_SSL_VERIFYSTATUS, FALSE );
@@ -86,11 +93,11 @@
 					$response = json_encode ( $resp );
 				}
 				curl_close ( $ch );
-//								var_dump ( $headers );
-//								var_dump ( "$this->url$endpoint/" );
-//								var_dump ( curl_getinfo ( $ch, CURLINFO_HEADER_OUT ) );
-//								var_dump ( json_encode ( $data ) );
-//								var_dump ( $response );
+				//								var_dump ( $headers );
+				//								var_dump ( "$this->url$endpoint/" );
+				//								var_dump ( curl_getinfo ( $ch, CURLINFO_HEADER_OUT ) );
+				//								var_dump ( json_encode ( $data ) );
+				//								var_dump ( $response );
 				return $response;
 			} else {
 				$resp[ 'reason' ] = 'No se pudo inicializar cURL';
