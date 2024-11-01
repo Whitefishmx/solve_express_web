@@ -22,7 +22,7 @@
 			$data = [
 				'email'    => $curp,
 				'password' => $password,
-				'platform' => 5,
+				'platform' => 6,
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
 		}
