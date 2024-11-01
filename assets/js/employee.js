@@ -56,10 +56,10 @@ function GetDisposiciones() {
 			} else {
 				let tableRes = "";
 				$.each(response.response, function (index, value) {
-					let url = "https://api-solve.local/";
+					let url = "https://apisandbox.solve.com.mx/public/";
 					let cep = "No disponible";
 					if (value["cep"] != null) {
-						cep = "<a href='' target='_blank' ><i class=\"material-icons prefix\">download</i>Descargar</a>";
+						cep = "<a href='' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
 					}
 					let plan = "Quincenal";
 					if (value.plan === "q") {
@@ -124,15 +124,15 @@ function GetDashboard() {
 		success: function (response) {
 			const cantidad = $("#requestAmount");
 			const rangeInput = document.querySelector("input[type=\"range\"]");
-			$("#DashDays").html(response.response.worked_days);
-			$("#DashAvailable").html(response.response.amount_available);
+			$("#DashDays").html('<h2 class="text-center" style="font-weight: bold"><img src="assets/img/calendar.png" style="height: 1.7rem"> ' + response.response.worked_days + '</h2>');
+			$("#DashAvailable").html('<h2 class="text-center" style="font-weight: bold">$ ' + Intl.NumberFormat("en-US").format(response.response.amount_available) + '</h2>');
 			cantidad.attr("min", response.response.min_available);
 			cantidad.attr("max", response.response.amount_available);
 			const valorMedio = (parseFloat(response.response.min_available) + parseFloat(response.response.amount_available)) / 2;
-			rangeInput.value = Math.round(valorMedio);
-			$("#outRequestAmount").val(Math.round(valorMedio));
+			rangeInput.value = Math.round(valorMedio);	
+			$("#outRequestAmount").val('$ ' + Intl.NumberFormat("en-US").format(Math.round(valorMedio)));
 			const value = (rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min) * 100;
-			rangeInput.style.background = `linear-gradient(to right, var(--main-color) ${value}%, #ddd ${value}%)`;
+			rangeInput.style.background = `linear-gradient(to right, #f4c27d ${value}%, #ddd ${value}%)`;
 		},
 		complete: function () {
 			$("#Loader").css({
