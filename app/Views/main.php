@@ -102,65 +102,71 @@
                 <h6 class="modal-title m-0" id="exampleModalScrollableTitle">Terminos y Condiciones</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #2b2d3c !important; color: #FFF !important;"></button>
             </div><!--end modal-header-->
-			<div>
-				
+        <div>
 			</div>
-            <div class="modal-body">
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p> 
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
-                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </p>
-            </div><!--end modal-body-->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" style="color: #FFF !important; border-color: #333333 !important; background-color: #333333 !important">Cerrar</button>
-                <button type="button" class="btn btn-primary btn-sm" style="border-color: #FF9400 !important; background-color: #FF9400 !important">Acepto</button>
-            </div><!--end modal-footer-->
-        </div><!--end modal-content-->
-    </div><!--end modal-dialog-->
+      <div class="card cardback bordercard" style="height: 120px">
+							<div class="card-body pt-1" style="padding-left: 10rem">
+								<p class="text-left"><img src="assets/img/solicitud.png" style="height: 1.5rem"> Tu solicitud: <span style="color: #26b719">$4,000</span></p>
+								<p class="text-left"><img src="assets/img/commission.png" style="height: 1.5rem"> Comisión: <span style="color: #26b719">$60</span></p>
+								<p class="text-left"><img src="assets/img/deposit.png" style="height: 1.5rem"> Te depositamos: <span style="color: #26b719">$3,940</span></p>
+							</div>
+						</div>   
+      <div class="modal-body">
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p>
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p> 
+          <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          </p>
+      </div><!--end modal-body-->
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" style="color: #FFF !important; border-color: #333333 !important; background-color: #333333 !important">Cerrar</button>
+          <button type="button" class="btn btn-primary btn-sm" style="border-color: #FF9400 !important; background-color: #FF9400 !important" onclick="RequestPay()" data-bs-dismiss="modal">Acepto</button>
+      </div><!--end modal-footer-->
+    </div><!--end modal-content-->
+  </div><!--end modal-dialog-->
 </div>
 
 <style>
