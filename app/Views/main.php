@@ -21,7 +21,7 @@
                     <div class="col-md-4">
 						<div class="card cardback bordercard" style="height: 120px">
 							<div class="card-body pt-1">
-								<div class="card-header cardback">
+								<div class="card-header cardback" style="padding-bottom: 0.5rem;">
 									<h3 class="card-title text-center">Dias trabajados</h3>
 								</div>
 								<div class="card-body pt-0" id="DashDays">
@@ -34,10 +34,10 @@
 					<div class="col-md-4">
 						<div class="card cardback bordercard" style="height: 120px">
 							<div class="card-body pt-1">
-								<div class="card-header cardback">
+								<div class="card-header cardback" style="padding-bottom: 0.5rem;">
 									<h3 class="card-title text-center">Monto disponible</h3>
 								</div>
-								<div class="card-body pt-0" id="DashAvailable">
+								<div class="card-body pt-0" id="DashAvailable" style="padding-top: 0;">
 									<h2 class="text-center" style="font-weight: bold">$ 2,500.00</h2>
 								</div>
 							</div>
@@ -47,19 +47,19 @@
 
 				<div class="row justify-content-center">
 					<div class="col-md-8 card cardback bordercard">
-						<h3 class="text-center" style="font-size: 2rem; margin-top: 1.5rem">Solicitar:</h3>
+						<h3 class="text-center" style="font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0;">Solicitar</h3>
 						<div class="col-md-12">
-							<div class="card-body text-center">
+							<div class="card-body text-center" style="padding-top: 0">
 								<div class="row justify-content-center">
 									<div class="col-md-8" style="font-size: 2.5rem">
-										<output id="outRequestAmount" class="dinero">$ 4,000</output>
+										<output id="outRequestAmount" class="dinero" style="font-weight: bold">$ 4,000</output>
 									</div>
 									<div class="col-md-8">
 										<input id="requestAmount" name="requestAmount" type="range" value="300" min="250" max="4000"  step="50" oninput="outRequestAmount.value= '$ ' + Intl.NumberFormat('en-US').format(value); this.style.cssText = '';"/>
 									</div>
 								</div>
 							</div>
-							<button id="reqPay" name="reqPay" type="submit" class="btn" style="width: 100%; color: var(--title-color) !important; font-size: 1rem; height: 2.5rem; letter-spacing: 0.1rem; margin-bottom: 1.5rem; background-color: #FF9400 !important;">Solicitar adelanto</button>
+							<button id="reqPay" name="reqPay" type="submit" class="btn" onclick="document.getElementById('exampleModalScrollable').style.display='block'" style="width: 100%; color: var(--title-color) !important; font-size: 1rem; height: 2.5rem; letter-spacing: 0.1rem; margin-bottom: 1.5rem; background-color: #FF9400 !important;" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Solicitar adelanto</button>
 						</div>
 					</div>
 				</div>
@@ -94,6 +94,75 @@
         </div>
 	</div>
 </div>
+<!--modal-->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" style="display: none;" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title m-0" id="exampleModalScrollableTitle">Terminos y Condiciones</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #2b2d3c !important; color: #FFF !important;"></button>
+            </div><!--end modal-header-->
+			<div>
+				
+			</div>
+            <div class="modal-body">
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+				</p>
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p> 
+                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
+                    egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                </p>
+            </div><!--end modal-body-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" style="color: #FFF !important; border-color: #333333 !important; background-color: #333333 !important">Cerrar</button>
+                <button type="button" class="btn btn-primary btn-sm" style="border-color: #FF9400 !important; background-color: #FF9400 !important">Acepto</button>
+            </div><!--end modal-footer-->
+        </div><!--end modal-content-->
+    </div><!--end modal-dialog-->
+</div>
+
 <style>
 :root {
   --base: #FF9400;
