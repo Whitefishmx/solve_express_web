@@ -7,7 +7,7 @@ function getPeriods(){
 		type: "POST",
 		processData: false,
 		contentType: false,
-		beforeSend: function () {
+		beforeSend() {
 			const obj = $("#mainContainer");
 			const left = obj.offset().left;
 			const top = obj.offset().top;

@@ -56,13 +56,25 @@
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
 		}
+		public function getLaws ( string $type ) {
+			$endPoint = 'getLawsText';
+			$data = [
+				'type'    => $type,
+				'platform' => 6,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'GET', NULL );
+		}
 		private function SendRequest ( string $endpoint, array $data, ?string $method, ?string $dataType, string $token = NULL ): mixed {
 			$method = !empty( $method ) ? strtoupper ( $method ) : 'POST';
-			$resp = [ 'error' => 500, 'error_description' => 'OpenPayTransport' ];
-			$data = json_encode ( $data );
+			$resp = [ 'error' => 500, 'error_description' => 'SolveAPITransport' ];
 			$headers = [];
-			if ( strtoupper ( $dataType ) === 'JSON' ) {
+			if ( strtoupper ( $dataType ) === 'JSON' && $method != 'GET' ) {
+				$data = json_encode ( $data );
 				$headers[] = 'Content-Type: application/json';
+			} else if ( $method === 'GET' ) {
+				$query = http_build_query ( $data );
+				$endpoint .= '?'.$query;
+				$data = NULL; // No enviamos cuerpo en GET
 			}
 			if ( $token !== NULL ) {
 				$headers[] = 'Authorization: Bearer '.trim ( $token );
@@ -73,12 +85,17 @@
 				curl_setopt ( $ch, CURLOPT_TIMEOUT, 200 );
 				curl_setopt ( $ch, CURLOPT_FOLLOWLOCATION, TRUE );
 				curl_setopt ( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
-				if ( $method == 'POST' ) {
-					curl_setopt ( $ch, CURLOPT_POST, TRUE );
+				if ($method === 'POST') {
+					curl_setopt($ch, CURLOPT_POST, TRUE);
+					curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+				} else if ($method === 'GET') {
+					curl_setopt($ch, CURLOPT_HTTPGET, TRUE);
 				} else {
-					curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, $method );
+					curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+					if ($data) {
+						curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+					}
 				}
-				curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
 				curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
 				curl_setopt ( $ch, CURLINFO_HEADER_OUT, TRUE );
 				curl_setopt ( $ch, CURLOPT_SSL_VERIFYPEER, FALSE );
@@ -89,7 +106,7 @@
 				if ( $response === FALSE ) {
 					$error = 500;
 					curl_close ( $ch );
-					$resp = [ 'error' => 500, 'error_description' => 'SAPLocalTransport' ];
+					$resp = [ 'error' => $error, 'error_description' => 'SAPLocalTransport' ];
 					$response = json_encode ( $resp );
 				}
 				curl_close ( $ch );
