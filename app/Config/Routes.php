@@ -20,6 +20,7 @@
 	$routes->add ( 'signIn', 'SignInController::index' /**@uses \App\Controllers\SignInController::index * */ );
 	//====================================||   GET   ||====================================
 	$routes->add ( '/', 'Home::index' /**@uses \App\Controllers\Home::index * */ );
+	$routes->add ( 'getLaws', 'Home::getLaws' /**@uses \App\Controllers\Home::getLaws * */ );
 	//====================================||   POST  ||====================================
 	$routes->add ( 'toSignIn', 'SignInController::signIn' /**@uses \App\Controllers\SignInController::signIn * */ );
 	$routes->add ( 'disposiciones', 'EmployeeController::disposiciones' /**@uses \App\Controllers\EmployeeController::disposiciones * */ );
