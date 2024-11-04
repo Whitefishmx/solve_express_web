@@ -97,18 +97,18 @@
 							aria-haspopup="false" aria-expanded="false">
 						<span
 								class="thumb-lg justify-content-center d-flex align-items-center bg-purple-subtle text-purple rounded-circle
-						me-2"><?= $iniciales; ?></span>
+						me-2 iniciales"></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-end py-0">
 						<div class="d-flex align-items-center dropdown-item py-2 bg-secondary-subtle">
 							<div class="flex-shrink-0">
 								<span
 										class="thumb-lg justify-content-center d-flex align-items-center bg-purple-subtle text-purple rounded-circle
-						me-2"><?= $iniciales; ?></span>
+						me-2 iniciales"></span>
 							</div>
 							<div class="flex-grow-1 ms-2 text-truncate align-self-center">
-								<h6 class="my-0 fw-medium text-dark fs-13"><?=$name;?></h6>
-								<small class="text-muted mb-0"><?=$company;?></small>
+								<h6 class="my-0 fw-medium text-dark fs-13" id="nombreuser"></h6>
+								<small class="text-muted mb-0" id="company"></small>
 							</div><!--end media-body-->
 						</div>
 						<div class="dropdown-divider mt-0"></div>

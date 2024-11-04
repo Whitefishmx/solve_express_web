@@ -53,9 +53,10 @@
 								<div class="row justify-content-center">
 									<div class="col-md-8" style="font-size: 2.5rem">
 										<output id="outRequestAmount" class="dinero" style="font-weight: bold">$ 4,000</output>
+                    <input type="hidden" id="MontoReal" value="">
 									</div>
 									<div class="col-md-8">
-										<input id="requestAmount" name="requestAmount" type="range" value="300" min="250" max="4000"  step="50" oninput="outRequestAmount.value= '$ ' + Intl.NumberFormat('en-US').format(value); this.style.cssText = '';"/>
+										<input id="requestAmount" name="requestAmount" type="range" value="" min="" max=""  step="50" oninput="document.getElementById('MontoReal').value = this.value; outRequestAmount.value= '$ ' + Intl.NumberFormat('en-US').format(value); this.style.cssText = '';"/>
 									</div>
 								</div>
 							</div>
@@ -93,7 +94,10 @@
             </div>
         </div>
 	</div>
+  <!-- toast -->
+  <div id="toast_proceso" style="position: absolute; bottom: 10rem; left: 50%; transform: translateX(-180px);" class="toast d-flex align-items-center mb-2 fade" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-body" id="toast-body"></div><button style="background-color: #fff !important;" type="button" class="btn-close ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button></div>
 </div>
+
 <!--modal-->
 <div class="modal fade" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" style="display: none;" aria-modal="true" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -106,9 +110,9 @@
 			</div>
       <div class="card cardback bordercard" style="height: 120px">
 							<div class="card-body pt-1" style="padding-left: 10rem">
-								<p class="text-left"><img src="assets/img/solicitud.png" style="height: 1.5rem"> Tu solicitud: <span style="color: #26b719">$4,000</span></p>
-								<p class="text-left"><img src="assets/img/commission.png" style="height: 1.5rem"> Comisión: <span style="color: #26b719">$60</span></p>
-								<p class="text-left"><img src="assets/img/deposit.png" style="height: 1.5rem"> Te depositamos: <span style="color: #26b719">$3,940</span></p>
+								<p class="text-left"><img src="assets/img/solicitud.png" style="height: 1.5rem"> Tu solicitud: <span style="color: #26b719" id="solicitado"></span></p>
+								<p class="text-left"><img src="assets/img/commission.png" style="height: 1.5rem"> Comisión: <span style="color: #26b719" id="comision"></span></p>
+								<p class="text-left"><img src="assets/img/deposit.png" style="height: 1.5rem"> Te depositamos: <span style="color: #26b719" id="depositamos"></span></p>
 							</div>
 						</div>   
       <div class="modal-body">
@@ -168,6 +172,8 @@
     </div><!--end modal-content-->
   </div><!--end modal-dialog-->
 </div>
+
+
 
 <style>
 :root {
