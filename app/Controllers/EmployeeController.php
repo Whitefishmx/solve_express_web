@@ -66,10 +66,9 @@
 			$token = $session->get ( 'token' );
 			$res = json_decode ( $data->requestPay ( intval ($user['data']['id']), $this->input['amount'],$token ), TRUE );
 			if ( $res[ 'error' ] != 200 ) {
-				$this->errCode = $res[ 'error' ];
-				$this->responseBody=['description'=>$res[ 'description' ], 'reason'=>$res[ 'reason' ]];
+				$this->serverError ($res[ 'description' ], $res[ 'reason' ]) ;
 				//				$this->logResponse ( 1 );
-				return $this->getResponse ( $this->responseBody, $this->errCode );
+				return $this->getResponse ( $this->responseBody, $this->errCode );
 			}
 			$this->errCode = 200;
 			$this->responseBody = [

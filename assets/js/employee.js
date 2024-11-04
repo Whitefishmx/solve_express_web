@@ -124,15 +124,46 @@ function GetDashboard() {
 		success: function (response) {
 			const cantidad = $("#requestAmount");
 			const rangeInput = document.querySelector("input[type=\"range\"]");
+			var valorAlto;
+			
+			$('#nombreuser').html(response.response.name + ' ' + response.response.last_name);
+			$('.iniciales').html(response.response.name.charAt(0) + response.response.last_name.charAt(0));
+			$('#company').html(response.response.short_name);
+
 			$("#DashDays").html('<h2 class="text-center" style="font-weight: bold"><img src="assets/img/calendar.png" style="height: 1.7rem"> ' + response.response.worked_days + '</h2>');
-			$("#DashAvailable").html('<h2 class="text-center" style="font-weight: bold">$ ' + Intl.NumberFormat("en-US").format(response.response.amount_available) + '</h2>');
-			cantidad.attr("min", response.response.min_available);
-			cantidad.attr("max", response.response.amount_available);
-			const valorMedio = (parseFloat(response.response.min_available) + parseFloat(response.response.amount_available)) / 2;
+			$("#DashAvailable").html('<h2 class="text-center" style="font-weight: bold">$ ' + Intl.NumberFormat("en-US").format(response.response.amount_available ) + '</h2>');
+			
+			cantidad.attr("min", response.response.min_amount);
+			if(parseFloat(response.response.amount_available) <= parseFloat(response.response.max_amount)) {
+				cantidad.attr("max", response.response.amount_available);
+				valorAlto = response.response.amount_available;
+			} else {
+				cantidad.attr("max", (response.response.max_amount));
+				valorAlto = response.response.max_amount;
+			}
+			const valorMedio = (parseFloat(response.response.min_amount) + parseFloat(valorAlto)) / 2;
 			rangeInput.value = Math.round(valorMedio);	
 			$("#outRequestAmount").val('$ ' + Intl.NumberFormat("en-US").format(Math.round(valorMedio)));
+			$("#MontoReal").val(valorMedio);
 			const value = (rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min) * 100;
 			rangeInput.style.background = `linear-gradient(to right, #f4c27d ${value}%, #ddd ${value}%)`;
+
+			let montoReal = parseFloat($('#MontoReal').val()); // Actualiza montoReal en tiempo real
+			let commission = parseFloat(response.response.commission);
+			$('#solicitado').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(montoReal)));
+			$('#comision').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(commission)));
+			const depositado = montoReal - commission;
+			$('#depositamos').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(depositado)));
+			
+			$('#requestAmount').on('input', function() {
+				let montoReal = parseFloat($('#MontoReal').val()); // Actualiza montoReal en tiempo real
+				let commission = parseFloat(response.response.commission);
+				$('#solicitado').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(montoReal)));
+				$('#comision').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(commission)));
+				const depositado = montoReal - commission;
+				$('#depositamos').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(depositado)));
+			});
+			
 		},
 		complete: function () {
 			$("#Loader").css({
@@ -147,7 +178,9 @@ function GetDashboard() {
 }
 
 function RequestPay() {
-	let amount = $("#outRequestAmount").val();
+	let amount = $("#MontoReal").val();
+	let resContainer = $("#mainContainer");
+	console.log(amount);
 	$.ajax({
 		url: "/requestPay",
 		data: {
@@ -174,11 +207,19 @@ function RequestPay() {
 		},
 		success: function (response) {
 			console.log(response);
-			M.Toast.dismissAll();
-			toastHTML = "<span>" + response.response + "</span>" +
-				"<button onclick='M.Toast.dismissAll()' class='btn-flat toast-action'>" +
-				"<span class='material-icons' style='display: block; color: white;'>cancel</span></button>";
-			M.toast({html: toastHTML, displayLength: 20000, duration: 20000});
+			if (response.error == 200)
+			{
+				$('#toast-body').html(response.response);
+			} else {
+				$('#toast-body').html(response.reason);
+			}
+			//M.Toast.dismissAll();
+			//toastHTML = "<span>" + response.response + "</span>" +
+			//	"<button onclick='M.Toast.dismissAll()' class='btn-flat toast-action'>" +
+			//	"<span class='material-icons' style='display: block; color: white;'>cancel</span></button>";
+			//M.toast({html: toastHTML, displayLength: 20000, duration: 20000});
+			//$('#toast-body').html('Tu solicitud esta en proceso, en breve un ejecutivo se comunicara contigo, gracias por usar solve express');
+			
 		},
 		complete: function () {
 			$("#Loader").css({
@@ -190,4 +231,6 @@ function RequestPay() {
 			console.error("Error en la solicitud:", status);
 		}
 	});
+
+	$('#toast_proceso').addClass("show");
 }
