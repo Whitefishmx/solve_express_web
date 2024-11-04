@@ -114,9 +114,8 @@
 						<div class="dropdown-divider mt-0"></div>
 						<small class="text-muted px-2 pb-1 d-block">Cuenta</small>
 						<a class="dropdown-item" href="pages-profile.php"><i class="las la-user fs-18 me-1 align-text-bottom"></i> Cuenta</a>
-						
 						<div class="dropdown-divider mb-0"></div>
-						<a class="dropdown-item text-danger" href="signout"><i class="las la-power-off fs-18 me-1 align-text-bottom"></i> Salir</a>
+						<a class="dropdown-item text-danger" href="/signout"><i class="las la-power-off fs-18 me-1 align-text-bottom"></i> Salir</a>
 					</div>
 				</li>
 			</ul>
