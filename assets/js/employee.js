@@ -180,6 +180,7 @@ function GetDashboard() {
 function RequestPay() {
 	let amount = $("#MontoReal").val();
 	let resContainer = $("#mainContainer");
+	var texto;
 	console.log(amount);
 	$.ajax({
 		url: "/requestPay",
@@ -207,20 +208,17 @@ function RequestPay() {
 		},
 		success: function (response) {
 			console.log(response);
+			
 			if (response.error == 200)
 			{
-				$('#toast-body').html(response.response);
+				texto = '<div class="alert alert-info mb-0 border-2" role="alert"><h4 class="alert-heading font-18">' + response.description + '</h4><p>' + response.response + '</p></div>';
 			} else {
-				$('#toast-body').html(response.reason);
+				texto = '<div class="alert alert-danger alert-dismissible fade show shadow-sm border-theme-white-2 mb-0" role="alert"><div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1"><i class="fas fa-xmark align-self-center mb-0 text-white "></i></div><strong>' + response.description + '</strong> ' + response.reason + '</div>';
+				
 			}
-			//M.Toast.dismissAll();
-			//toastHTML = "<span>" + response.response + "</span>" +
-			//	"<button onclick='M.Toast.dismissAll()' class='btn-flat toast-action'>" +
-			//	"<span class='material-icons' style='display: block; color: white;'>cancel</span></button>";
-			//M.toast({html: toastHTML, displayLength: 20000, duration: 20000});
-			//$('#toast-body').html('Tu solicitud esta en proceso, en breve un ejecutivo se comunicara contigo, gracias por usar solve express');
-			
-		},
+			console.log(texto);
+			$('#texto_modal').html(texto);
+		},	
 		complete: function () {
 			$("#Loader").css({
 				display: "none"
@@ -229,8 +227,13 @@ function RequestPay() {
 		error: function (status) {
 			// Maneja los errores de la solicitud
 			console.error("Error en la solicitud:", status);
+			console.log(status.responseJSON.reason);
+
+			texto = '<div class="alert alert-danger alert-dismissible fade show shadow-sm border-theme-white-2 mb-0" role="alert"><div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1"><i class="fas fa-xmark align-self-center mb-0 text-white "></i></div><h4 class="alert-heading font-18">' + status.responseJSON.description + '</h4><p>' + status.responseJSON.reason + '</p></div>';
+				
+			$('#texto_modal').html(texto);
 		}
 	});
 
-	$('#toast_proceso').addClass("show");
+	
 }

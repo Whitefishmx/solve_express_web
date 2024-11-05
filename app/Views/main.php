@@ -63,6 +63,7 @@
 							<button id="reqPay" name="reqPay" type="submit" class="btn" onclick="document.getElementById('exampleModalScrollable').style.display='block'" style="width: 100%; color: var(--title-color) !important; font-size: 1rem; height: 2.5rem; letter-spacing: 0.1rem; margin-bottom: 1.5rem; background-color: #FF9400 !important;" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Solicitar adelanto</button>
 						</div>
 					</div>
+          
 				</div>
             </div>
             <div class="tab-pane p-3" id="test2" role="tabpanel">
@@ -94,8 +95,6 @@
             </div>
         </div>
 	</div>
-  <!-- toast -->
-  <div id="toast_proceso" style="position: absolute; bottom: 10rem; left: 50%; transform: translateX(-180px);" class="toast d-flex align-items-center mb-2 fade" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-body" id="toast-body"></div><button style="background-color: #fff !important;" type="button" class="btn-close ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button></div>
 </div>
 
 <!--modal-->
@@ -115,7 +114,7 @@
 								<p class="text-left"><img src="assets/img/deposit.png" style="height: 1.5rem"> Te depositamos: <span style="color: #26b719" id="depositamos"></span></p>
 							</div>
 						</div>   
-      <div class="modal-body">
+      <div class="modal-body" id="texto_modal">
           <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
               egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
           </p> 
@@ -164,10 +163,11 @@
           <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
               egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
           </p>
+          
       </div><!--end modal-body-->
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" style="color: #FFF !important; border-color: #333333 !important; background-color: #333333 !important">Cerrar</button>
-          <button type="button" class="btn btn-primary btn-sm" style="border-color: #FF9400 !important; background-color: #FF9400 !important" onclick="RequestPay()" data-bs-dismiss="modal">Acepto</button>
+          <button type="button" class="btn btn-primary btn-sm" style="border-color: #FF9400 !important; background-color: #FF9400 !important; color: #fff;" onclick="RequestPay(); this.style.display = 'none'">Acepto</button>
       </div><!--end modal-footer-->
     </div><!--end modal-content-->
   </div><!--end modal-dialog-->
