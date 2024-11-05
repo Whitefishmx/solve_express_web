@@ -154,6 +154,7 @@ function GetDashboard() {
 			$('#comision').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(commission)));
 			const depositado = montoReal - commission;
 			$('#depositamos').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(depositado)));
+			$('#cclabe').html(response.response.clabe);
 			
 			$('#requestAmount').on('input', function() {
 				let montoReal = parseFloat($('#MontoReal').val()); // Actualiza montoReal en tiempo real
