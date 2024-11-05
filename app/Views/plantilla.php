@@ -59,6 +59,7 @@
 			<ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0" style="margin-left: 2rem;">
 				<li>
 					<a class="navbar-brand" href="#">
+						<!--<img src="assets/img/arbol-de-navidad.png" height="50" class="me-2" style="margin-right:0 !important;">-->
 						<img src="assets/img/logo.png" width="135" alt="" class="me-2">
 					</a>
 				</li>

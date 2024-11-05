@@ -110,10 +110,10 @@
       <div class="card cardback bordercard" style="height: 200px; margin-bottom: 0;">
 				<div class="card-body pt-1">
           <h4 style="display: block; width: 100%; text-align: center; margin-top: 10px; margin-bottom: 20px !important;">Detalles de tu adelanto</h4>
-					<p class="text-left">Tu solicitud: <span style="color: #26b719" id="solicitado"></span></p>
-					<p class="text-left">Comisión: <span style="color: #26b719" id="comision"></span></p>
-					<p class="text-left">Te depositamos: <span style="color: #26b719" id="depositamos"></span></p>
-					<p class="text-left">CLABE: <span style="color: #26b719" id="cclabe"></span></p>
+					<p class="text-left" style="margin-bottom: 0.7rem !important; font-size: 0.9rem !important;">Tu solicitud: <span style="color: #26b719" id="solicitado"></span></p>
+					<p class="text-left" style="margin-bottom: 0.7rem !important; font-size: 0.9rem !important;">Comisión: <span style="color: #26b719" id="comision"></span></p>
+					<p class="text-left" style="margin-bottom: 0.7rem !important; font-size: 0.9rem !important;">Te depositamos: <span style="color: #26b719" id="depositamos"></span></p>
+					<p class="text-left" style="margin-bottom: 0.7rem !important; font-size: 0.9rem !important;">CLABE: <span style="color: #26b719" id="cclabe"></span></p>
 				</div>
 			</div>  
       <div class="modal-body" id="texto_modal">
