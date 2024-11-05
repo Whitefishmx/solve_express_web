@@ -53,15 +53,17 @@
 								<div class="row justify-content-center">
 									<div class="col-md-8" style="font-size: 2.5rem">
 										<output id="outRequestAmount" class="dinero" style="font-weight: bold">$ 4,000</output>
+                    <input type="hidden" id="MontoReal" value="">
 									</div>
 									<div class="col-md-8">
-										<input id="requestAmount" name="requestAmount" type="range" value="300" min="250" max="4000"  step="50" oninput="outRequestAmount.value= '$ ' + Intl.NumberFormat('en-US').format(value); this.style.cssText = '';"/>
+										<input id="requestAmount" name="requestAmount" type="range" value="" min="" max=""  step="50" oninput="document.getElementById('MontoReal').value = this.value; outRequestAmount.value= '$ ' + Intl.NumberFormat('en-US').format(value); this.style.cssText = '';"/>
 									</div>
 								</div>
 							</div>
 							<button id="reqPay" name="reqPay" type="submit" class="btn" onclick="document.getElementById('exampleModalScrollable').style.display='block'" style="width: 100%; color: var(--title-color) !important; font-size: 1rem; height: 2.5rem; letter-spacing: 0.1rem; margin-bottom: 1.5rem; background-color: #FF9400 !important;" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Solicitar adelanto</button>
 						</div>
 					</div>
+          
 				</div>
             </div>
             <div class="tab-pane p-3" id="test2" role="tabpanel">
@@ -94,6 +96,7 @@
         </div>
 	</div>
 </div>
+
 <!--modal-->
 <div class="modal fade" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" style="display: none;" aria-modal="true" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -106,12 +109,12 @@
 			</div>
       <div class="card cardback bordercard" style="height: 120px">
 							<div class="card-body pt-1" style="padding-left: 10rem">
-								<p class="text-left"><img src="assets/img/solicitud.png" style="height: 1.5rem"> Tu solicitud: <span style="color: #26b719">$4,000</span></p>
-								<p class="text-left"><img src="assets/img/commission.png" style="height: 1.5rem"> Comisión: <span style="color: #26b719">$60</span></p>
-								<p class="text-left"><img src="assets/img/deposit.png" style="height: 1.5rem"> Te depositamos: <span style="color: #26b719">$3,940</span></p>
+								<p class="text-left"><img src="assets/img/solicitud.png" style="height: 1.5rem"> Tu solicitud: <span style="color: #26b719" id="solicitado"></span></p>
+								<p class="text-left"><img src="assets/img/commission.png" style="height: 1.5rem"> Comisión: <span style="color: #26b719" id="comision"></span></p>
+								<p class="text-left"><img src="assets/img/deposit.png" style="height: 1.5rem"> Te depositamos: <span style="color: #26b719" id="depositamos"></span></p>
 							</div>
 						</div>   
-      <div class="modal-body">
+      <div class="modal-body" id="texto_modal">
           <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
               egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
           </p> 
@@ -160,14 +163,17 @@
           <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, 
               egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
           </p>
+          
       </div><!--end modal-body-->
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" style="color: #FFF !important; border-color: #333333 !important; background-color: #333333 !important">Cerrar</button>
-          <button type="button" class="btn btn-primary btn-sm" style="border-color: #FF9400 !important; background-color: #FF9400 !important" onclick="RequestPay()" data-bs-dismiss="modal">Acepto</button>
+          <button type="button" class="btn btn-primary btn-sm" style="border-color: #FF9400 !important; background-color: #FF9400 !important; color: #fff;" onclick="RequestPay(); this.style.display = 'none'">Acepto</button>
       </div><!--end modal-footer-->
     </div><!--end modal-content-->
   </div><!--end modal-dialog-->
 </div>
+
+
 
 <style>
 :root {
