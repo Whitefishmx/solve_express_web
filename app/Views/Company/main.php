@@ -115,12 +115,27 @@
 							<div class="card-body pt-0">
 							<div class="text-center">
 								<form class="align-items-center" style="margin-top: 15px">
-									<div class="row">
+									<div class="row align-items-center flex-wrap c-flex">
 										<div class="col-auto"><label for="initDante" class="col-form-label">Fecha de Inicio</label></div>
 										<div class="col-auto"><input type="date" class="form-control" id="initDante" placeholder="Enter Email"></div>
 										<div class="col-auto"><label for="EndDate" class="col-form-label">Fecha Fin</label></div>
 										<div class="col-auto"><input type="date" class="form-control" id="EndDate" placeholder="Enter Email"></div>
-							
+										<div class="col-auto"><label for="rfc" class="col-form-label">RFC</label></div>
+										<div class="col-auto"><input type="text" class="form-control" id="rfc" placeholder="MUGH142563R23"></div>
+										<div class="col-auto"><label for="name" class="col-form-label">Nombre</label></div>
+										<div class="col-auto"><input type="text" class="form-control" id="name" placeholder="Juan Perez"></div>
+									</div>
+									<div class="row align-items-center">
+										<div class="col-md-5 ">
+											<div class="input-group">
+												<button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">Cargar Nomina</button>
+												<input type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
+												       aria-label="Upload">
+											</div>
+										</div>
+										<div class="col-md-3 float-md-end">
+											<button type="button" class="btn btn-lg btn-primary">Descargar reporte</button>
+										</div>
 									</div>
 								</form>
 							</div>
