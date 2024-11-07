@@ -1,14 +1,15 @@
 $(document).ready(function () {
-
+	getPeriods();
 });
-function getPeriods(){
+
+function getPeriods() {
 	$.ajax({
 		url: "/getPeriods",
 		type: "POST",
 		processData: false,
 		contentType: false,
 		beforeSend() {
-			const obj = $("#mainContainer");
+			let obj = $("#mainContainer");
 			const left = obj.offset().left;
 			const top = obj.offset().top;
 			const width = obj.width();
@@ -25,17 +26,12 @@ function getPeriods(){
 			}).focus();
 		},
 		success: function (response) {
-			const cantidad = $("#requestAmount");
-			const rangeInput = document.querySelector("input[type=\"range\"]");
-			$("#DashDays").html(response.response.worked_days);
-			$("#DashAvailable").html(response.response.amount_available);
-			cantidad.attr("min", response.response.min_available);
-			cantidad.attr("max", response.response.amount_available);
-			const valorMedio = (parseFloat(response.response.min_available) + parseFloat(response.response.amount_available)) / 2;
-			rangeInput.value = Math.round(valorMedio);
-			$("#outRequestAmount").val(Math.round(valorMedio));
-			const value = (rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min) * 100;
-			rangeInput.style.background = `linear-gradient(to right, var(--main-color) ${value}%, #ddd ${value}%)`;
+			let select = $("#period");
+			select.empty();
+			select.append("<option value=\"\">Todos</option>");
+			$.each(response.response, function (index, value) {
+                select.append("<option value=\"" + value + "\">" + value + "</option>");
+            });
 		},
 		complete: function () {
 			$("#Loader").css({

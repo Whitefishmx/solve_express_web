@@ -10,11 +10,11 @@
 		public function __construct () {
 			parent::__construct ();
 			if ( ENVIRONMENT === 'development' ) {
-				$this->url = 'https://apisandbox.solve.com.mx/public/';
+				$this->url = 'https://api-solve.local/';
 			} else if ( ENVIRONMENT === 'production' ) {
-				$this->url = 'https://apisandbox.solve.com.mx/public/';
+				$this->url = 'https://api-solve.local/';
 			} else {
-				$this->url = 'https://apisandbox.solve.com.mx/public/';
+				$this->url = 'https://api-solve.local/';
 			}
 		}
 		public function signIn ( string $curp, string $password ) {
@@ -121,5 +121,7 @@
 				$response = json_encode ( $resp );
 			}
 			return $response;
+		}
+		public function getReportCompany ( mixed $company_id, $token ) {
 		}
 	}

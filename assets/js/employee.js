@@ -55,6 +55,7 @@ function GetDisposiciones() {
 				resContainer.append("<tr><td  colspan=\"10\" style=\"text-align: center\">No hay peticiones aun<tr></tr></tr>");
 			} else {
 				let tableRes = "";
+				
 				$.each(response.response, function (index, value) {
 					let url = "https://apisandbox.solve.com.mx/public/";
 					let cep = "No disponible";

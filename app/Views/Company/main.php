@@ -6,6 +6,8 @@
 		$iniciales = $iniciales ?? "JH";
 		$name = $name ?? "James Hook";
 		$company = $company ?? "WhiteFish";
+		$colors = [ 'success', 'blue', 'pink', 'purple', 'waring', 'info', 'dark' ];
+		$color = $colors[ rand ( 0, count ( $colors ) ) ];
 	?>
 	<meta charset="utf-8" />
 	<title><?php echo $title ?></title>
@@ -17,7 +19,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 	
 	<link href="/assets/libs/simple-datatables/style.css" rel="stylesheet" type="text/css" />
-	
+	<link href="/assets/libs/simplebar/simplebar.min.css" rel="stylesheet" type="text/css">
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
@@ -47,7 +49,7 @@
 			<ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">
 				<li>
 					<a class="navbar-brand" href="#">
-						<img src="assets/img/logo.png" width="135" alt="" class="me-2">
+						<img src="/assets/img/logo.png" alt="" class="me-2" style="width: 135px;">
 					</a>
 				</li>
 				<li class="mx-3 welcome-text">
@@ -64,16 +66,15 @@
 					<a
 							class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
 							aria-haspopup="false" aria-expanded="false">
-						<span
-								class="thumb-lg justify-content-center d-flex align-items-center bg-purple-subtle text-purple rounded-circle
-						me-2"><?= $iniciales; ?></span>
+						<span class="thumb-lg justify-content-center d-flex align-items-center bg-<?= $color ?>-subtle text-<?= $color ?> rounded-circle me-2">
+							<?= $iniciales; ?></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-end py-0">
 						<div class="d-flex align-items-center dropdown-item py-2 bg-secondary-subtle">
 							<div class="flex-shrink-0">
 								<span
-										class="thumb-lg justify-content-center d-flex align-items-center bg-purple-subtle text-purple rounded-circle
-						me-2"><?= $iniciales; ?></span>
+										class="thumb-lg justify-content-center d-flex align-items-center bg-<?= $color ?>-subtle text-<?= $color ?> rounded-circle me-2">
+									<?= $iniciales; ?></span>
 							</div>
 							<div class="flex-grow-1 ms-2 text-truncate align-self-center">
 								<h6 class="my-0 fw-medium text-dark fs-13"><?= $name; ?></h6>
@@ -111,118 +112,137 @@
 						<!-- Panes-->
 						<div class="tab-content">
 							<!-- Table Employee -->
-								<!-- Filters -->
+							<!-- Filters -->
 							<div class="card-body pt-0">
-							<div class="text-center">
-								<form class="align-items-center" style="margin-top: 15px">
-									<div class="row align-items-center flex-wrap c-flex">
-										<div class="col-auto"><label for="initDante" class="col-form-label">Fecha de Inicio</label></div>
-										<div class="col-auto"><input type="date" class="form-control" id="initDante" placeholder="Enter Email"></div>
-										<div class="col-auto"><label for="EndDate" class="col-form-label">Fecha Fin</label></div>
-										<div class="col-auto"><input type="date" class="form-control" id="EndDate" placeholder="Enter Email"></div>
-										<div class="col-auto"><label for="rfc" class="col-form-label">RFC</label></div>
-										<div class="col-auto"><input type="text" class="form-control" id="rfc" placeholder="MUGH142563R23"></div>
-										<div class="col-auto"><label for="name" class="col-form-label">Nombre</label></div>
-										<div class="col-auto"><input type="text" class="form-control" id="name" placeholder="Juan Perez"></div>
-									</div>
-									<div class="row align-items-center">
-										<div class="col-md-5 ">
-											<div class="input-group">
-												<button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">Cargar Nomina</button>
-												<input type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
-												       aria-label="Upload">
-											</div>
+								<div class="text-center">
+									<form class="align-items-center" style="margin-top: 5px">
+										<div class="row align-items-center flex-wrap c-flex">
+											<div class="col-sm-2">
+												<label for="initDante" class="col-form-label">Fecha de Inicio</label>
+												<input
+														type="date" class="form-control" id="initDante" value="2018-07-22" min="2024-11-01"
+														max="<?= date ( 'Y-m-d', strtotime ( 'now' ) ) ?>"></div>
+											<div class="col-sm-2">
+												<label for="EndDate" class="col-form-label">Fecha de Fin</label>
+												<input
+														type="date" class="form-control" id="EndDate" value="2018-07-22" min="2018-01-01"
+														max="<?= date ( 'Y-m-d', strtotime ( 'now' ) ) ?>"></div>
+											<div class="col-sm-2">
+												<label for="rfc" class="col-form-label">RFC</label>
+												<input type="text" class="form-control" id="rfc" placeholder="MUGH142563R23"></div>
+											<div class="col-sm-2">
+												<label for="CURP" class="col-form-label">CURP</label>
+												<input type="text" class="form-control" id="curp" placeholder="MUGH142563HFYRHD84"></div>
+											<div class="col-sm-2">
+												<label for="name" class="col-form-label">Nombre</label>
+												<input type="text" class="form-control" id="name" placeholder="Juan Perez"></div>
+											<div class="col-sm-2">
+												<label for="period" class="col-form-label">Periodo</label>
+												<select id="period" class="form-select">
+													<option value="">Todos</option>
+												</select></div>
 										</div>
-										<div class="col-md-3 float-md-end">
-											<button type="button" class="btn btn-lg btn-primary">Descargar reporte</button>
+								</div>
+								<div class="row align-items-center" style="margin-top: 10px">
+									<div class="col-md-5 ">
+										<div class="input-group">
+											<button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">Cargar Nomina</button>
+											<input
+													type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
+													aria-label="Upload">
 										</div>
 									</div>
+									<div class="col-md-4"></div>
+									<div class="col-md-3 float-md-end">
+										<button type="button" class="btn btn-lg btn-primary">Descargar reporte</button>
+									</div>
+								</div>
 								</form>
 							</div>
-							</div>
-								<!-- End Filters -->
-							
-							<div class="tab-pane p-3 active show" id="home-1" role="tabpanel">
-								<div class="row justify-content-center">
-									<div class="table-responsive">
-										
-										<table class="table datatable" id="datatable_1">
-											<thead class="table-light">
-											<tr>
-												<!--															<th style="width: 16px;">-->
-												<!--																<div class="form-check mb-0 ms-n1">-->
-												<!--																	<input type="checkbox" class="form-check-input" name="select-all" id="select-all">-->
-												<!--																</div>-->
-												<!--															</th>-->
-												<th>#Empleado</th>
-												<th>Nombre</th>
-												<th>RFC</th>
-												<!--															<th data-type="date" data-format="YYYY/DD/MM">Start Date</th>-->
-												<th>Salario Neto</th>
-												<th>Monto adelantado</th>
-												<th>Monto restante</th>
-												<th>Periodo</th>
-											</tr>
-											</thead>
-											<tbody>
-											<tr>
-												<!--															<td style="width: 16px;">-->
-												<!--																<div class="form-check">-->
-												<!--																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">-->
-												<!--																</div>-->
-												<!--															</td>-->
-												<td>2</td>
-												<td>Juan Carlos Carreño</td>
-												<td>CAFJ741213H56</td>
-												<td>$12000</td>
-												<td>$436.02</td>
-												<td>$11563.98</td>
-												<td>2ª quincena de Octubre 2024</td>
-											</tr>
-											<tr>
-												<!--															<td style="width: 16px;">-->
-												<!--																<div class="form-check">-->
-												<!--																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">-->
-												<!--																</div>-->
-												<!--															</td>-->
-												<td>7</td>
-												<td>Uriel Magallon Lugo</td>
-												<td>MALU970621T16</td>
-												<td>$12000</td>
-												<td>$1435.01</td>
-												<td>$10564.99</td>
-												<td>2ª quincena de Octubre 2024</td>
-											</tr>
-											</tbody>
-										</table>
-									</div>
-								</div><!--end row-->
-							</div>
-							<!-- Table Employee -->
-							<!-- Analytics -->
-							<div class="tab-pane p-3" id="profile-1" role="tabpanel">
-								<p class="text-muted mb-0">
-									Food truck fixie locavore, accusamus mcsweeney's
-									single-origin coffee squid.
-								</p>
-							</div>
-							<!-- End Analytics -->
 						</div>
-						<!-- End Panes -->
+						<!-- End Filters -->
+						<div class="tab-pane p-3 active show" id="home-1" role="tabpanel">
+							<div class="row justify-content-center">
+								<div class="table-responsive">
+									
+									<table class="table datatable" id="datatable_1">
+										<thead class="table-light">
+										<tr>
+											<!--															<th style="width: 16px;">-->
+											<!--																<div class="form-check mb-0 ms-n1">-->
+											<!--																	<input type="checkbox" class="form-check-input" name="select-all" id="select-all">-->
+											<!--																</div>-->
+											<!--															</th>-->
+											<th>#Empleado</th>
+											<th>Nombre</th>
+											<th>RFC</th>
+											<!--															<th data-type="date" data-format="YYYY/DD/MM">Start Date</th>-->
+											<th>Salario Neto</th>
+											<th>Monto adelantado</th>
+											<th>Monto restante</th>
+											<th>Periodo</th>
+										</tr>
+										</thead>
+										<tbody>
+										<tr>
+											<!--															<td style="width: 16px;">-->
+											<!--																<div class="form-check">-->
+											<!--																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">-->
+											<!--																</div>-->
+											<!--															</td>-->
+											<td>2</td>
+											<td>Juan Carlos Carreño</td>
+											<td>CAFJ741213H56</td>
+											<td>$12000</td>
+											<td>$436.02</td>
+											<td>$11563.98</td>
+											<td>2ª quincena de Octubre 2024</td>
+										</tr>
+										<tr>
+											<!--															<td style="width: 16px;">-->
+											<!--																<div class="form-check">-->
+											<!--																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">-->
+											<!--																</div>-->
+											<!--															</td>-->
+											<td>7</td>
+											<td>Uriel Magallon Lugo</td>
+											<td>MALU970621T16</td>
+											<td>$12000</td>
+											<td>$1435.01</td>
+											<td>$10564.99</td>
+											<td>2ª quincena de Octubre 2024</td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+							</div><!--end row-->
+						</div>
+						<!-- Table Employee -->
+						<!-- Analytics -->
+						<div class="tab-pane p-3" id="profile-1" role="tabpanel">
+							<p class="text-muted mb-0">
+								Food truck fixie locavore, accusamus mcsweeney's
+								single-origin coffee squid.
+							</p>
+						</div>
+						<!-- End Analytics -->
 					</div>
+					<!-- End Panes -->
 				</div>
 			</div>
-		
 		</div>
+	
 	</div>
+</div>
 </div>
 <!-- Javascript  -->
 <!-- vendor js -->
 <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/libs/simplebar/simplebar.min.css"></script>
 <script src="/assets/libs/simple-datatables/umd/simple-datatables.js"></script>
 <script src="/assets/js/pages/datatable.init.js"></script>
 <script src="/assets/js/app.js"></script>
+<script src="/assets/js/jquery-3.7.1.min.js"></script>
+<script src="/assets/js/company.js"></script>
 </body>
 <!--end body-->
 </html>
