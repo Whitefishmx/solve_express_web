@@ -21,6 +21,8 @@
 	//====================================||   GET   ||====================================
 	$routes->add ( '/', 'Home::index' /**@uses \App\Controllers\Home::index * */ );
 	$routes->add ( 'getLaws', 'Home::getLaws' /**@uses \App\Controllers\Home::getLaws * */ );
+	$routes->add ( 'validarCURP', 'SignInController::validarCURP' /**@uses \App\Controllers\SignInController::validarCURP * */ );
+	$routes->add ( 'validateIdentity', 'SignInController::validateIdentity' /**@uses \App\Controllers\SignInController::validateIdentity * */ );
 	//====================================||   POST  ||====================================
 	$routes->add ( 'toSignIn', 'SignInController::signIn' /**@uses \App\Controllers\SignInController::signIn * */ );
 	$routes->add ( 'disposiciones', 'EmployeeController::disposiciones' /**@uses \App\Controllers\EmployeeController::disposiciones * */ );
@@ -28,6 +30,7 @@
 	$routes->add ( 'requestPay', 'EmployeeController::requestPay' /**@uses \App\Controllers\EmployeeController::requestPay * */ );
 	$routes->add ( 'getPeriods', 'CompanyController::getPeriods' /**@uses \App\Controllers\CompanyController::getPeriods * */ );
 	$routes->add ( 'reportCompany', 'CompanyController::reportCompany' /**@uses \App\Controllers\CompanyController::reportCompany * */ );
+	$routes->add ( 'toValidarCurp', 'EmployeeController::validarCurp' /**@uses \App\Controllers\EmployeeController::validarCurp * */ );
 	//====================================||   PUT   ||====================================
 	//====================================||  PATCH  ||====================================
 	//====================================|| DELETE  ||====================================

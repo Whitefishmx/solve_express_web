@@ -23,8 +23,8 @@
 			}
 			$user = new DataModel();
 			$res = json_decode ( $user->signIn ( $this->input[ 'curp' ], $this->input[ 'password' ] ), TRUE );
-//			var_dump ($res );
-//			die();
+			//			var_dump ($res );
+			//			die();
 			if ( $res[ 'error' ] != 0 ) {
 				$this->errDataSuplied ( 'Las credenciales ingresadas son incorrectas' );
 				//				$this->logResponse ( 1 );
@@ -41,5 +41,11 @@
 				'description' => 'Datos de petición correcto',
 				'reason'      => 'Inicio de sesión exitoso' ];
 			return $this->getResponse ( $this->responseBody );
+		}
+		public function validarCurp () {
+			return view ( 'validateEmployee' );
+		}
+		public function validateIdentity () {
+			return view ( 'validateIdentity' );
 		}
 	}

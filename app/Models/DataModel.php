@@ -48,6 +48,14 @@
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
 		}
+		public function validateCurp ( string $curp, string $fingerprint ) {
+			$endPoint = 'sExpressVerifyCurp';
+			$data = [
+				'curp' => $curp,
+				'fingerprint' => $fingerprint,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
+		}
 		public function requestPay ( int $user, $amount, string $token ) {
 			$endPoint = 'sExpressRequest';
 			$data = [

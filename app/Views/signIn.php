@@ -116,10 +116,14 @@
 						</div>
 					</div>
 					<div class="d-grid">
-						<button id="btnSend" name="btnSend" type="submit" class="btn" style="width:
+						<button
+								id="btnSend" name="btnSend" type="submit" class="btn" style="width:
 						80%; color: var(--title-color) !important;font-weight: bold; border-radius: 15px;
 						font-size: 1.4rem; height: 8vh">Iniciar sesión
 						</button>
+					</div>
+					<div class="d-grid">
+						<a href="/validarCURP" target="_self">Registrarse</a>
 					</div>
 				</form>
 			</div>

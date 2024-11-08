@@ -132,6 +132,12 @@
 						</button>
 						</div>
 					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<a href="/validarCURP" target="_self">Registrarse</a>
+							</button>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>
