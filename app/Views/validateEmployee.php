@@ -10,8 +10,8 @@
 	
 	<link rel="shortcut icon" href="/favicon.ico">
 	
-	<link href="/assets/libs/simple-datatables/style.css" rel="stylesheet" type="text/css" />
-	<link href="/assets/libs/simplebar/simplebar.min.css" rel="stylesheet" type="text/css">
+	<link href="/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+	<link href="/assets/libs/animate.css/animate.min.css" rel="stylesheet" type="text/css">
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
@@ -25,7 +25,7 @@
         background-image: url('/assets/img/loader.gif') !important;
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 80%;
+        background-size: 200px;
         top: 0;
         z-index: 999;
         transition: opacity 5s ease, visibility 5s ease;
@@ -62,7 +62,7 @@
 							<div class="card-body p-0 bg-blue auth-header-box rounded-top">
 								<div class="text-center p-3">
 									<a href="/" class="logo logo-admin">
-										<img src="/assets/img/logo.png" height="50" alt="logo" class="auth-logo">
+										<img src="/assets/img/logo.png" alt="logo" class="auth-logo" style="height: 50px">
 									</a>
 									<h4 class="mt-3 mb-1 fw-semibold text-white fs-18" id="TitleCard">Validar CURP</h4>
 									<p class="text-bg-blue fw-medium mb-0" id="InstructionsCard">Introduce tu CURP para validar que estes registrado con tu
@@ -132,9 +132,11 @@
 	</div><!--end row-->
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
+<!--suppress JSUnresolvedReference -->
 <script>
 	let visitorId = "";
 	let curp = "";
+	let user = ";";
 	const metamapButton = document.querySelector("metamap-button");
 	FingerprintJS.load().then(fp => {
 		fp.get().then(result => {
@@ -155,12 +157,13 @@
 			e.preventDefault();
 			validateCurp();
 		});
+		
 		$("#form-validation-2").on("submit", function (e) {
 			e.preventDefault();
-            const password = $("#password").val();
-            const password2 = $("#password2").val();
-			
-		})
+			const password = $("#password").val();
+			const password2 = $("#password2").val();
+			changePassword(password, password2, user);
+		});
 		metamapButton.addEventListener("metamap:userFinishedSdk", ({detail}) => {
 			console.log("finished payload", detail);
 			wait4Validation();
@@ -200,11 +203,11 @@
 			},
 			success: function (data, textStatus, xhr) {
 				if (xhr.status === 201) {
-					$('metamap-button').attr("metadata", JSON.stringify({curp: curp}));
+					$("metamap-button").attr("metadata", JSON.stringify({curp: curp}));
 					$("#cardForm").css("display", "none");
 					$("#cardMeta").css("display", "block");
 					$("#cardInValidation").css("display", "none");
-					$('#cardPassword').css("display", "none");
+					$("#cardPassword").css("display", "none");
 					$("#TitleCard").html("Validar identidad");
 					$("#InstructionsCard").html("De click en el botón para comenzar la verificación de identidad");
 				}
@@ -212,16 +215,18 @@
 					wait4Validation();
 				}
 				if (xhr.status === 200) {
+					user = data["response"]["id"];
+					console.log(user);
 					$("#cardForm").css("display", "none");
 					$("#cardMeta").css("display", "none");
 					$("#cardInValidation").css("display", "none");
-					$('#cardPassword').css("display", "block");
+					$("#cardPassword").css("display", "block");
 					$("#TitleCard").html("Ingrese una nueva contraseña");
 					$("#InstructionsCard").html("La contraseña debe tener al menos 8 caracteres entre mayúsculas, minúsculas, números y carácter especial");
 				}
 			},
-			error: function (data) {
-				console.log(data);
+			error: function (error) {
+				return void Swal.fire({icon: "error", title: "Oops...", text: error['responseJSON']['reason']});
 				
 			},
 			complete: function () {
@@ -236,13 +241,58 @@
 		$("#cardForm").css("display", "none");
 		$("#cardMeta").css("display", "none");
 		$("#cardInValidation").css("display", "block");
-		$('#cardPassword').css("display", "none");
+		$("#cardPassword").css("display", "none");
 		$("#TitleCard").html("Validando identidad");
 		$("#InstructionsCard").html("");
+	}
+	
+	function changePassword(password, password2, user) {
+		$.ajax({
+			url: "/setPassword",
+			data: JSON.stringify({
+				password: password,
+				password2: password2,
+				user: user,
+			}),
+			dataType: "JSON",
+			contentType: "application/json; charset=utf-8",
+			method: "POST",
+			beforeSend: function () {
+				const obj = $("#curpValidator");
+				$("#Loader").delay(50000).css({
+					display: "block",
+					opacity: 1,
+					visibility: "visible",
+					left: obj.offset().left,
+					top: obj.offset().top,
+					width: obj.width(),
+					height: obj.height(),
+					zIndex: 999999
+				}).focus();
+			},
+			success: function (data, textStatus, xhr) {
+				if (xhr.status === 200) {
+					void Swal.fire({icon: "success", title: "Se guardo su contraseña, ya puede iniciar sesión", timer: 1500});
+					setTimeout(function() {
+						window.location.href = "/";
+					}, 2500);
+				}
+			},
+			error: function () {
+				return void Swal.fire({icon: "error", title: "Oops...", text: "No se pudo actualizar la contraseña, intente nuevamente o contacte a soporte " +
+						"técnico"});
+			},
+			complete: function () {
+				$("#Loader").css({
+					display: "none"
+				});
+			},
+		});
 	}
 </script>
 <!-- Javascript  -->
 <!-- vendor js -->
+<script src="/assets/libs/sweetalert2/sweetalert2.min.js"></script>
 <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/app.js"></script>
 </body>

@@ -51,7 +51,7 @@
 		public function validateCurp ( string $curp, string $fingerprint ) {
 			$endPoint = 'sExpressVerifyCurp';
 			$data = [
-				'curp' => $curp,
+				'curp'        => $curp,
 				'fingerprint' => $fingerprint,
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
@@ -67,10 +67,19 @@
 		public function getLaws ( string $type ) {
 			$endPoint = 'getLawsText';
 			$data = [
-				'type'    => $type,
+				'type'     => $type,
 				'platform' => 6,
 			];
 			return $this->SendRequest ( $endPoint, $data, 'GET', NULL );
+		}
+		public function setPassword ( string $password, string $password2, $user ) {
+			$endPoint = 'changePassword';
+			$data = [
+				'user'        => $user,
+				'contraseña'  => $password,
+				'contraseña2' => $password2,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'PATCH', 'JSON' );
 		}
 		private function SendRequest ( string $endpoint, array $data, ?string $method, ?string $dataType, string $token = NULL ): mixed {
 			$method = !empty( $method ) ? strtoupper ( $method ) : 'POST';
@@ -93,15 +102,15 @@
 				curl_setopt ( $ch, CURLOPT_TIMEOUT, 200 );
 				curl_setopt ( $ch, CURLOPT_FOLLOWLOCATION, TRUE );
 				curl_setopt ( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
-				if ($method === 'POST') {
-					curl_setopt($ch, CURLOPT_POST, TRUE);
-					curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-				} else if ($method === 'GET') {
-					curl_setopt($ch, CURLOPT_HTTPGET, TRUE);
+				if ( $method === 'POST' ) {
+					curl_setopt ( $ch, CURLOPT_POST, TRUE );
+					curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
+				} else if ( $method === 'GET' ) {
+					curl_setopt ( $ch, CURLOPT_HTTPGET, TRUE );
 				} else {
-					curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-					if ($data) {
-						curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+					curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, $method );
+					if ( $data ) {
+						curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
 					}
 				}
 				curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
