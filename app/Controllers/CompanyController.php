@@ -3,6 +3,7 @@
 	namespace App\Controllers;
 	
 	use App\Models\DataModel;
+	use CodeIgniter\HTTP\ResponseInterface;
 	
 	class CompanyController extends BaseController {
 		public function getPeriods () {
@@ -15,7 +16,7 @@
 			$session = session ();
 			$company = $session->get ( 'user' );
 			$token = $session->get ( 'token' );
-//			var_dump ( $company);die ();
+			//			var_dump ( $company);die ();
 			$res = json_decode ( $user->getPeriods ( $company[ 'data' ][ 'company_id' ], $token ), TRUE );
 			if ( $res[ 'error' ] != 200 ) {
 				$this->errCode = $res[ 'error' ];
@@ -40,8 +41,8 @@
 			$session = session ();
 			$company = $session->get ( 'user' );
 			$token = $session->get ( 'token' );
-			
-			$res = json_decode ( $data->getReportCompany ( $company[ 'data' ][ 'company_id' ], $token ), TRUE );
+			$res = json_decode ( $data->getReportCompany ( $this->input, $company[ 'data' ][ 'company_id' ], $token ), TRUE );
+			//			var_dump ($res);die();
 			if ( $res[ 'error' ] != 200 ) {
 				$this->errCode = $res[ 'error' ];
 				$this->responseBody = [ 'description' => $res[ 'description' ], 'reason' => $res[ 'reason' ] ];
@@ -54,5 +55,17 @@
 				'description' => 'Reporte generado correctamente',
 				'response'    => $res[ 'response' ] ];
 			return $this->getResponse ( $this->responseBody );
+		}
+		public function getInfo (): ResponseInterface {
+			$this->input = $this->getRequestInput ( $this->request );
+			if ( $data = $this->verifyRules ( 'POST', $this->request, NULL ) ) {
+				//				$this->logResponse ( 1 );
+				return $this->getResponse ( $this->responseBody, $this->errCode );
+			}
+			$data = new DataModel();
+			$session = session ();
+			$company = $session->get ( 'user' );
+			$token = $session->get ( 'token' );
+			return $this->getResponse ( [ "u" => $company[ 'data' ][ 'id' ], "c" => $company[ 'data' ][ 'company_id' ], "t" => $token ], 200 );
 		}
 	}

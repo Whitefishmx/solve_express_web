@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/./assets/js/employee.js"></script>
+
 
 <div class="card">
 	<div class="card-body pt-0">
@@ -56,7 +56,7 @@
                     <input type="hidden" id="MontoReal" value="">
 									</div>
 									<div class="col-md-8">
-										<input id="requestAmount" name="requestAmount" type="range" value="" min="" max=""  step="50" oninput="document.getElementById('MontoReal').value = this.value; outRequestAmount.value= '$ ' + Intl.NumberFormat('en-US').format(value); this.style.cssText = '';"/>
+										<input id="requestAmount" name="requestAmount" type="range" value="" min="" max=""  step="10" oninput="document.getElementById('MontoReal').value = this.value; outRequestAmount.value= '$ ' + Intl.NumberFormat('en-US').format(value); this.style.cssText = '';"/>
 									</div>
 								</div>
 							</div>

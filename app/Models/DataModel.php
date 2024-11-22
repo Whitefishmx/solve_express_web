@@ -12,9 +12,9 @@
 			if ( ENVIRONMENT === 'development' ) {
 				$this->url = 'https://api-solve.local/';
 			} else if ( ENVIRONMENT === 'production' ) {
-				$this->url = 'https://api-solve.local/';
+				$this->url = 'https://apisandbox.solve.com.mx/public/';
 			} else {
-				$this->url = 'https://api-solve.local/';
+				$this->url = 'https://apisandbox.solve.com.mx/public/';
 			}
 		}
 		public function signIn ( string $curp, string $password ) {
@@ -139,6 +139,17 @@
 			}
 			return $response;
 		}
-		public function getReportCompany ( mixed $company_id, $token ) {
+		public function getReportCompany ( array $args, $company, $token ) {
+			$endPoint = 'sExpressReportCompany';
+			$data = [
+				'company'  => $company,
+				'initDate' => $args[ 'date1' ],
+				'endDate'  => $args[ 'date2' ],
+				'period'   => $args[ 'period' ],
+				'rfc'      => $args[ 'rfc' ],
+				'curp'     => $args[ 'curp' ],
+				'name'     => $args[ 'name' ],
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
 		}
 	}

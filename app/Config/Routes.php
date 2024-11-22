@@ -32,6 +32,7 @@
 	$routes->add ( 'reportCompany', 'CompanyController::reportCompany' /**@uses \App\Controllers\CompanyController::reportCompany * */ );
 	$routes->add ( 'toValidarCurp', 'EmployeeController::validarCurp' /**@uses \App\Controllers\EmployeeController::validarCurp * */ );
 	$routes->add ( 'setPassword', 'EmployeeController::setPassword' /**@uses \App\Controllers\EmployeeController::setPassword * */ );
+	$routes->add ( 'data4req', 'CompanyController::getInfo' /**@uses \App\Controllers\CompanyController::getInfo * */ );
 	//====================================||   PUT   ||====================================
 	//====================================||  PATCH  ||====================================
 	//====================================|| DELETE  ||====================================

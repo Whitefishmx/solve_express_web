@@ -62,6 +62,9 @@
 				return $this->getResponse ( $this->responseBody, $this->errCode );
 			}
 			$data = new DataModel();
+			$session = session ();
+			$user = $session->get ( 'user' );
+			$token = $session->get ( 'token' );
 			$res = json_decode ( $data->requestPay ( intval ( $user[ 'data' ][ 'id' ] ), $this->input[ 'amount' ], $token ), TRUE );
 			if ( $res[ 'error' ] != 200 ) {
 				$this->serverError ( $res[ 'description' ], $res[ 'reason' ] );

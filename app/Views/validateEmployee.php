@@ -52,87 +52,98 @@
 		<!-- end navbar-->
 	</div>
 </div>
-<div class="container-xxl">
-	<div class="row vh-100 d-flex justify-content-center">
-		<div class="col-12 align-self-center">
-			<div class="card-body" id="curpValidator">
-				<div class="row">
-					<div class="col-lg-4 mx-auto">
-						<div class="card">
-							<div class="card-body p-0 bg-blue auth-header-box rounded-top">
-								<div class="text-center p-3">
-									<a href="/" class="logo logo-admin">
-										<img src="/assets/img/logo.png" alt="logo" class="auth-logo" style="height: 50px">
-									</a>
-									<h4 class="mt-3 mb-1 fw-semibold text-white fs-18" id="TitleCard">Validar CURP</h4>
-									<p class="text-bg-blue fw-medium mb-0" id="InstructionsCard">Introduce tu CURP para validar que estes registrado con tu
-									                                                             empresa.</p>
-								</div>
-							</div>
-							<div class="card-body pt-0" id="cardForm" style="display: block;">
-								<form class="my-4" id="formCurpValidator">
-									<div class="form-group mb-2">
-										<label for="curp" class="form-label">CURP</label>
-										<input id="curp" name="curp" type="text" class="form-control" placeholder="JDHY587536HFTEHR73">
-									</div><!--end form-group-->
-									<div class="form-group mb-0 row">
-										<div class="col-12">
-											<div class="d-grid mt-3">
-												<button class="btn btn-primary" type="button" id="validateCurp">
-													Validar <i class="fas fa-sign-in-alt ms-1"></i>
-												</button>
-											</div>
-										</div><!--end col-->
-									</div> <!--end form-group-->
-								</form><!--end form-->
-							</div><!--end card-body-->
-							<div class="card-body pt-0" id="cardMeta" style="display: none; text-align: center">
-								<script src="https://web-button.metamap.com/button.js"></script>
-								<metamap-button
-										clientid="63d42dbd0be362001ceb58d1" flowId="6706ca27cf0821001cc65f18" style="margin: 25px
-								auto auto auto;"></metamap-button>
-							</div>
-							<div class="card-body pt-0" id="cardInValidation" style="display: none;">
-								<div class="alert alert-info mb-0 border-2" role="alert">
-									<h4 class="alert-heading font-18">Validación de identidad en proceso.</h4>
-									<p>Se cargo su información biométrica y documentos oficiales con exito.</p>
-									<p class="mb-0">El proceso de validación puede tardar hasta 5 minutos en completarse, </p>
-								</div>
-								<a href="/validarCURP" target="_self">Regrear a validar CURP</a>
-							</div>
-							<div class="card-body pt-0" id="cardPassword" style="display: none;">
-								<form class="form" id="form-validation-2">
-									<div class="mb-3">
-										<label for="password" class="form-label">Contraseña</label>
-										<input
-												id="password" name="password" type="password" class="form-control" placeholder="C0ntraseña!" required
-												minlength="8" maxlength="128">
+<div class="page-wrapper" id="mainContainer">
+	<div class="container-xxl">
+		<div class="row vh-100 d-flex justify-content-center">
+			<div class="col-12 align-self-center">
+				<div class="card-body" id="curpValidator">
+					<div class="row">
+						<div class="col-lg-4 mx-auto">
+							<div class="card" style="
+									-webkit-box-shadow: 5px 13px 20px -2px rgba(0,0,0,0.75);
+									-moz-box-shadow: 5px 13px 20px -2px rgba(0,0,0,0.75);
+									box-shadow: 5px 13px 20px -2px rgba(0,0,0,0.75);">
+								<div class="card-body p-0 auth-header-box rounded-top">
+									<div class="text-center p-3">
+										<a href="/" class="logo logo-admin">
+											<img src="/assets/img/logo.png" alt="logo" class="auth-logo" style="height: 50px">
+										</a>
+										<h4 class="card-title" id="TitleCard" style="margin-top: 20px">Validar CURP</h4>
+										<div >
+											<p class="card-subtitle fs-14 mb-2" id="InstructionsCard">Introduce tu CURP para validar que estes registrado con tu
+										                                                                  empresa.</p>
+										</div>
 									</div>
-									<div class="mb-3">
-										<label for="password2" class="form-label">Repetir contraseña</label>
-										<input
-												id="password2" name="password2" type="password" class="form-control" placeholder="Repita C0ntraseña!"
-												required minlength="8" maxlength="128">
-									</div><!--end form-group-->
-									<div class="form-group mb-0 row">
-										<div class="col-12">
-											<div class="d-grid mt-3">
-												<button type="submit" id="savePassword" class="btn btn-primary">Guardar contraseña <i
-															class="fas fa-sign-in-alt ms-1"></i></button>
-											</div>
-										</div><!--end col-->
-									</div> <!--end form-group-->
-								</form><!--end form-->
-							</div><!--end card-body-->
-						</div><!--end card-->
-					</div><!--end col-->
-				</div><!--end row-->
-			</div><!--end card-body-->
-		</div><!--end col-->
-	</div><!--end row-->
+								</div>
+								<div class="card-body pt-0" id="cardForm" style="display: block;">
+									<form class="my-4" id="formCurpValidator">
+										<div class="form-group mb-2">
+											<label for="curp" class="form-label">CURP</label>
+											<input id="curp" name="curp" type="text" class="form-control" placeholder="JDHY587536HFTEHR73">
+										</div><!--end form-group-->
+										<div class="form-group mb-0 row">
+											<div class="col-12">
+												<div class="d-grid mt-3">
+													<button class="btn btn-primary" type="button" id="validateCurp">
+														Validar <i class="fas fa-sign-in-alt ms-1"></i>
+													</button>
+												</div>
+											</div><!--end col-->
+										</div> <!--end form-group-->
+									</form><!--end form-->
+								</div><!--end card-body-->
+								<div class="card-body pt-0" id="cardMeta" style="display: none; text-align: center">
+									<script src="https://web-button.metamap.com/button.js"></script>
+									<metamap-button
+											clientid="63d42dbd0be362001ceb58d1" flowId="6706ca27cf0821001cc65f18" style="margin: 25px
+								auto auto auto;"></metamap-button>
+								</div>
+								<div class="card-body pt-0" id="cardInValidation" style="display: none;">
+									<div class="alert alert-info mb-0 border-2" role="alert">
+										<h4 class="alert-heading font-18">Validación de identidad en proceso.</h4>
+										<p>Se cargo su información biométrica y documentos oficiales con exito.</p>
+										<p class="mb-0">El proceso de validación puede tardar hasta 5 minutos en completarse, </p>
+									</div>
+									<a href="/validarCURP" target="_self">Regrear a validar CURP</a>
+								</div>
+								<div class="card-body pt-0" id="cardPassword" style="display: none;">
+									<form class="form" id="form-validation-2">
+										<div class="mb-3">
+											<label for="password" class="form-label">Contraseña</label>
+											<input
+													id="password" name="password" type="password" class="form-control" placeholder="C0ntraseña!" required
+													minlength="8" maxlength="128">
+										</div>
+										<div class="mb-3">
+											<label for="password2" class="form-label">Repetir contraseña</label>
+											<input
+													id="password2" name="password2" type="password" class="form-control" placeholder="Repita C0ntraseña!"
+													required minlength="8" maxlength="128">
+										</div><!--end form-group-->
+										<div class="form-group mb-0 row">
+											<div class="col-12">
+												<div class="d-grid mt-3">
+													<button type="submit" id="savePassword" class="btn btn-primary">Guardar contraseña <i
+																class="fas fa-sign-in-alt ms-1"></i></button>
+												</div>
+											</div><!--end col-->
+										</div> <!--end form-group-->
+									</form><!--end form-->
+								</div><!--end card-body-->
+							</div><!--end card-->
+						</div><!--end col-->
+					</div><!--end row-->
+				</div><!--end card-body-->
+			</div><!--end col-->
+		</div><!--end row-->
+	</div>
 </div>
+
+<!-- Javascript  -->
 <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
-<!--suppress JSUnresolvedReference -->
+<script src="/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+<script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/app.js"></script>
 <script>
 	let visitorId = "";
 	let curp = "";
@@ -226,7 +237,7 @@
 				}
 			},
 			error: function (error) {
-				return void Swal.fire({icon: "error", title: "Oops...", text: error['responseJSON']['reason']});
+				return void Swal.fire({icon: "error", title: "Oops...", text: error["responseJSON"]["reason"]});
 				
 			},
 			complete: function () {
@@ -273,14 +284,16 @@
 			success: function (data, textStatus, xhr) {
 				if (xhr.status === 200) {
 					void Swal.fire({icon: "success", title: "Se guardo su contraseña, ya puede iniciar sesión", timer: 1500});
-					setTimeout(function() {
+					setTimeout(function () {
 						window.location.href = "/";
 					}, 2500);
 				}
 			},
 			error: function () {
-				return void Swal.fire({icon: "error", title: "Oops...", text: "No se pudo actualizar la contraseña, intente nuevamente o contacte a soporte " +
-						"técnico"});
+				return void Swal.fire({
+					icon: "error", title: "Oops...", text: "No se pudo actualizar la contraseña, intente nuevamente o contacte a soporte " +
+						"técnico"
+				});
 			},
 			complete: function () {
 				$("#Loader").css({
@@ -290,11 +303,6 @@
 		});
 	}
 </script>
-<!-- Javascript  -->
-<!-- vendor js -->
-<script src="/assets/libs/sweetalert2/sweetalert2.min.js"></script>
-<script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/js/app.js"></script>
 </body>
 <!--end body-->
 </html>

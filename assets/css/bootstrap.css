@@ -104,7 +104,7 @@ Author: Mannatthemes
   --bs-secondary-bg-rgb: 255, 255, 255;
   --bs-tertiary-color: rgba(43, 45, 59, 0.5);
   --bs-tertiary-color-rgb: 43, 45, 59;
-  --bs-tertiary-bg: #f4f6f9;
+  --bs-tertiary-bg: rgba(34, 113, 184, 0.57);
   --bs-tertiary-bg-rgb: 244, 246, 249;
   --bs-heading-color: inherit;
   --bs-link-color: #156dbb;

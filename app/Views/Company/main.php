@@ -7,17 +7,18 @@
 		$name = $name ?? "James Hook";
 		$company = $company ?? "WhiteFish";
 		$colors = [ 'success', 'blue', 'pink', 'purple', 'waring', 'info', 'dark' ];
-		$color = $colors[ rand ( 0, count ( $colors ) ) ];
+		$color = $colors[ rand ( 0, count ( $colors ) - 1 ) ];
 	?>
 	<meta charset="utf-8" />
 	<title><?php echo $title ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-	<meta content="" name="drakoz" />
+	<meta content="" name="Drakoz" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	
 	<link rel="shortcut icon" href="/favicon.ico">
-	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="/assets/libs/mobius1-selectr/selectr.min.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/libs/simple-datatables/style.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/libs/simplebar/simplebar.min.css" rel="stylesheet" type="text/css">
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -36,10 +37,20 @@
         background-image: url('/assets/img/loader.gif') !important;
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 80%;
+        background-size: 250px;
         top: 0;
         z-index: 999;
         transition: opacity 5s ease, visibility 5s ease;
+    }
+
+    #uploadNomina {
+        background-color: var(--bs-primary) !important;
+        color: var(--bs-btn-hover-color) !important;
+    }
+
+    #uploadNomina:hover, button:hover {
+        background-color: var(--bs-tertiarybg) !important;
+        color: var(--bs-btn-hover-color) !important;
     }
 </style>
 <div id="Loader"></div>
@@ -49,7 +60,8 @@
 			<ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">
 				<li>
 					<a class="navbar-brand" href="#">
-						<img src="/assets/img/logo.png" alt="" class="me-2" style="width: 135px;">
+						<img src="/assets/img/logo.png" alt="" class="me-2 logo-dark" style="width: 135px;">
+						<img src="/assets/img/dark_logo.png" alt="" class="me-2 logo-light" style="width: 135px;">
 					</a>
 				</li>
 				<li class="mx-3 welcome-text">
@@ -101,145 +113,193 @@
 					<div class="card-body pt-0" style="margin-top: 15px">
 						<!-- Init Tabs -->
 						<ul class="nav nav-pills nav-justified" role="tablist">
-							<li class="nav-item waves-effect waves-light" role="presentation">
-								<a class="nav-link active" data-bs-toggle="tab" href="#home-1" role="tab" aria-selected="true">Empleados</a>
+							<li class="nav-item waves-effect waves-light">
+								<a
+										class="nav-link active" data-bs-toggle="tab" href="#employeeTable" role="tab" aria-selected="true"
+										id="tabEmployee">Empleados</a>
 							</li>
-							<li class="nav-item waves-effect waves-light" role="presentation">
-								<a class="nav-link" data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="false" tabindex="-1">Análisis</a>
+							<li class="nav-item waves-effect waves-light">
+								<a
+										class="nav-link" data-bs-toggle="tab" href="#invoiceTable" role="tab" aria-selected="false"
+										id="tabInvoices">Facturas</a>
 							</li>
-						</ul>
-						<!-- End Tabs -->
-						<!-- Panes-->
+						</ul><!-- End Tabs -->
 						<div class="tab-content">
-							<!-- Table Employee -->
-							<!-- Filters -->
-							<div class="card-body pt-0">
-								<div class="text-center">
-									<form class="align-items-center" style="margin-top: 5px">
-										<div class="row align-items-center flex-wrap c-flex">
-											<div class="col-sm-2">
-												<label for="initDante" class="col-form-label">Fecha de Inicio</label>
-												<input
-														type="date" class="form-control" id="initDante" value="2018-07-22" min="2024-11-01"
-														max="<?= date ( 'Y-m-d', strtotime ( 'now' ) ) ?>"></div>
-											<div class="col-sm-2">
-												<label for="EndDate" class="col-form-label">Fecha de Fin</label>
-												<input
-														type="date" class="form-control" id="EndDate" value="2018-07-22" min="2018-01-01"
-														max="<?= date ( 'Y-m-d', strtotime ( 'now' ) ) ?>"></div>
-											<div class="col-sm-2">
-												<label for="rfc" class="col-form-label">RFC</label>
-												<input type="text" class="form-control" id="rfc" placeholder="MUGH142563R23"></div>
-											<div class="col-sm-2">
-												<label for="CURP" class="col-form-label">CURP</label>
-												<input type="text" class="form-control" id="curp" placeholder="MUGH142563HFYRHD84"></div>
-											<div class="col-sm-2">
-												<label for="name" class="col-form-label">Nombre</label>
-												<input type="text" class="form-control" id="name" placeholder="Juan Perez"></div>
-											<div class="col-sm-2">
-												<label for="period" class="col-form-label">Periodo</label>
-												<select id="period" class="form-select">
-													<option value="">Todos</option>
-												</select></div>
+							<!--Tabla de empleados-->
+							<div class="tab-pane p-3 active" id="employeeTable" role="tabpanel">
+								<div class="tab-content">
+									<div class="card-body pt-0">
+										<div class="text-center">
+											<form class="align-items-center" style="margin-top: 5px">
+												<div class="row align-items-center flex-wrap c-flex">
+													<div class="col-sm-2">
+														<label for="initDate" class="col-form-label bg-light">Fecha de Inicio</label>
+														<input
+																type="date" class="form-control bg-light" id="initDate" value="2024-08-01" min=min="2024-08-01"
+																max="<?= date ( 'Y-m-d', strtotime ( 'now' ) ) ?>"></div>
+													<div class="col-sm-2">
+														<label for="endDate" class="col-form-label">Fecha de Fin</label>
+														<input
+																type="date" class="form-control bg-light" id="endDate"
+																value="<?= date ( 'Y-m-d', strtotime ( 'now' ) ) ?>"
+																min="2024-08-01"
+																max="<?= date ( 'Y-m-d', strtotime ( 'now' ) ) ?>"></div>
+													<div class="col-sm-2">
+														<label for="rfc" class="col-form-label">RFC</label>
+														<input type="text" class="form-control bg-light" id="rfc" placeholder="MUGH142563R23"></div>
+													<div class="col-sm-2">
+														<label for="curp" class="col-form-label">CURP</label>
+														<input type="text" class="form-control bg-light" id="curp" placeholder="MUGH142563HFYRHD84"></div>
+													<div class="col-sm-2">
+														<label for="name" class="col-form-label">Nombre</label>
+														<input type="text" class="form-control bg-light" id="name" placeholder="Juan Perez"></div>
+													<div class="col-sm-2">
+														<label for="period" class="col-form-label ">Periodo</label>
+														<select id="period" class="form-select bg-light">
+															<option value="">Todos</option>
+														</select></div>
+												</div>
 										</div>
-								</div>
-								<div class="row align-items-center" style="margin-top: 10px">
-									<div class="col-md-5 ">
-										<div class="input-group">
-											<button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">Cargar Nomina</button>
-											<input
-													type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
-													aria-label="Upload">
+										<div class="row align-items-center" style="margin-top: 10px">
+											<div class="col-md-5 ">
+												<div class="input-group">
+													<form id="formNomina">
+														<input
+																type="file" class="form-control bg-light" id="nominaFile" aria-describedby="nominaFile"
+																aria-label="Cargar"
+																accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+														<button class="btn btn-outline-secondary" type="button" id="uploadNomina">Cargar Nomina</button>
+													</form>
+												</div>
+											</div>
+											<div class="col-md-1 text-end"><label for="columns" class="col-form-label">
+													Seleccionar columnas <i class="fas fa-info-circle" title="Solo para la descarga del reporte"></i></label>
+											</div>
+											<div class="col-md-2">
+												<select id="columns" class="form-select" multiple>
+													<option value="" selected id="all">Todos</option>
+													<option value="noEmpleado">No. De empleado</option>
+													<option value="name">Nombre</option>
+													<option value="lastName">Apellido Paterno</option>
+													<option value="sureName">Apellido Materno</option>
+													<option value="rfc">RFC</option>
+													<option value="curp">CURP</option>
+													<option value="plan">Esquema de pago</option>
+													<option value="netSalary">Salario neto</option>
+													<option value="period">Periodo</option>
+												</select>
+											</div>
+											<div class="col-md-2 float-md-end" style="text-align: left">
+												<button type="button" class="btn btn-lg btn-primary" id="download">Descargar <i class="fas fa-download "></i>
+												</button>
+											</div>
+											<div class="col-md-2 float-md-end" style="text-align: end">
+												<button type="button" class="btn btn-lg btn-primary" id="searchReport">Buscar <i class="fas fa-search "></i>
+												</button>
+											</div>
 										</div>
 									</div>
-									<div class="col-md-4"></div>
-									<div class="col-md-3 float-md-end">
-										<button type="button" class="btn btn-lg btn-primary">Descargar reporte</button>
+								</div>
+								<div class="row justify-content-center">
+									<div class="table-responsive">
+										<table class="table datatable" id="datatable_1">
+											<thead class="table-light">
+											<tr>
+												<th>#Empleado</th>
+												<th>Nombre</th>
+												<th>RFC</th>
+												<th>Salario Neto</th>
+												<th>Monto adelantado</th>
+												<th>Monto restante</th>
+												<th>Periodo</th>
+											</tr>
+											</thead>
+											<tbody id="companyResults">
+											</tbody>
+										</table>
 									</div>
 								</div>
-								</form>
+							</div>
+							<!--Tabla de facturas-->
+							<div class="tab-pane p-3" id="invoiceTable" role="tabpanel">
+								<div class="row justify-content-center">
+									<div class="table-responsive">
+										<table class="table datatable" id="tableInvoice">
+											<thead class="table-light">
+											<tr>
+												<th>Monto a pagar</th>
+												<th>Beneficiario</th>
+												<th>Cuenta clabe</th>
+												<th>Numero de referencia</th>
+												<th>Concepto</th>
+												<th>Estatus</th>
+												<th>CEP</th>
+												<th>Fecha limite de pago</th>
+											</tr>
+											</thead>
+											<tbody id="companyResults">
+											<tr>
+												<td>$ 436.04</td>
+												<td>WHITEFISH SOLVE TECH</td>
+												<td>646180376610900003</td>
+												<td>7514328</td>
+												<td>7514328</td>
+												<td><span class="badge rounded-pill bg-primary"><strong>Liquidado</strong></span></td>
+												<td><a
+															href="https://api-solve.local/cepDownloader/1731522215_8090024.pdf" target="_blank"
+															style="color: #FF9400"><i class="material-icons prefix">download</i>Descargar</a></td>
+												<td>20/Octubre/2024</td>
+											</tr>
+											<tr>
+												<td>$ 500.00</td>
+												<td>WHITEFISH SOLVE TECH</td>
+												<td>646180376610900003</td>
+												<td>5546217</td>
+												<td>5546217</td>
+												<td><span class="badge rounded-pill bg-primary"><strong>Liquidado</strong></span></td>
+												<td><a
+															href="https://api-solve.local/cepDownloader/1731522215_8090024.pdf" target="_blank"
+															style="color: #FF9400"><i class="material-icons prefix">download</i>Descargar</a></td>
+												<td>05/Noviembre/2024</td>
+											</tr>
+											<tr>
+												<td>$ 1,250.00</td>
+												<td>WHITEFISH SOLVE TECH</td>
+												<td>646180376610900003</td>
+												<td>9642177</td>
+												<td>9642177</td>
+												<td><span class="badge rounded-pill bg-primary"><strong>Liquidado</strong></span></td>
+												<td><a
+															href="https://api-solve.local/cepDownloader/1731522215_8090024.pdf" target="_blank"
+															style="color: #FF9400"><i class="material-icons prefix">download</i>Descargar</a></td>
+												<td>20/Noviembre/2024</td>
+											</tr>
+											<tr>
+												<td>$ 875.50</td>
+												<td>WHITEFISH SOLVE TECH</td>
+												<td>646180376610900003</td>
+												<td>9642177</td>
+												<td>9642177</td>
+												<td><span class="badge rounded-pill bg-danger"><strong>Pendiente</strong></span></td>
+												<td>No disponible</td>
+												<td>05/Diciembre/2024</td>
+											</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
 							</div>
 						</div>
-						<!-- End Filters -->
-						<div class="tab-pane p-3 active show" id="home-1" role="tabpanel">
-							<div class="row justify-content-center">
-								<div class="table-responsive">
-									
-									<table class="table datatable" id="datatable_1">
-										<thead class="table-light">
-										<tr>
-											<!--															<th style="width: 16px;">-->
-											<!--																<div class="form-check mb-0 ms-n1">-->
-											<!--																	<input type="checkbox" class="form-check-input" name="select-all" id="select-all">-->
-											<!--																</div>-->
-											<!--															</th>-->
-											<th>#Empleado</th>
-											<th>Nombre</th>
-											<th>RFC</th>
-											<!--															<th data-type="date" data-format="YYYY/DD/MM">Start Date</th>-->
-											<th>Salario Neto</th>
-											<th>Monto adelantado</th>
-											<th>Monto restante</th>
-											<th>Periodo</th>
-										</tr>
-										</thead>
-										<tbody>
-										<tr>
-											<!--															<td style="width: 16px;">-->
-											<!--																<div class="form-check">-->
-											<!--																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">-->
-											<!--																</div>-->
-											<!--															</td>-->
-											<td>2</td>
-											<td>Juan Carlos Carreño</td>
-											<td>CAFJ741213H56</td>
-											<td>$12000</td>
-											<td>$436.02</td>
-											<td>$11563.98</td>
-											<td>2ª quincena de Octubre 2024</td>
-										</tr>
-										<tr>
-											<!--															<td style="width: 16px;">-->
-											<!--																<div class="form-check">-->
-											<!--																	<input type="checkbox" class="form-check-input" name="check" id="customCheck1">-->
-											<!--																</div>-->
-											<!--															</td>-->
-											<td>7</td>
-											<td>Uriel Magallon Lugo</td>
-											<td>MALU970621T16</td>
-											<td>$12000</td>
-											<td>$1435.01</td>
-											<td>$10564.99</td>
-											<td>2ª quincena de Octubre 2024</td>
-										</tr>
-										</tbody>
-									</table>
-								</div>
-							</div><!--end row-->
-						</div>
-						<!-- Table Employee -->
-						<!-- Analytics -->
-						<div class="tab-pane p-3" id="profile-1" role="tabpanel">
-							<p class="text-muted mb-0">
-								Food truck fixie locavore, accusamus mcsweeney's
-								single-origin coffee squid.
-							</p>
-						</div>
-						<!-- End Analytics -->
-					</div>
-					<!-- End Panes -->
+					</div><!-- End Panes -->
 				</div>
 			</div>
 		</div>
-	
 	</div>
 </div>
-</div>
-<!-- Javascript  -->
-<!-- vendor js -->
 <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/libs/simplebar/simplebar.min.js"></script>
 <script src="/assets/libs/simple-datatables/umd/simple-datatables.js"></script>
-<script src="/assets/js/pages/datatable.init.js"></script>
+<script src="/assets/libs/mobius1-selectr/selectr.min.js"></script>
 <script src="/assets/js/app.js"></script>
 <script src="/assets/js/jquery-3.7.1.min.js"></script>
 <script src="/assets/js/company.js"></script>

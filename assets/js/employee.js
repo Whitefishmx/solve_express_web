@@ -1,6 +1,5 @@
 $(document).ready(function () {
 	GetDashboard();
-	$(".tabs").tabs({swipeable: false});
 	const toggleButton = document.getElementById("theme-toggle");
 	const cantidad = $("#requestAmount");
 	const rangeOutput = document.getElementById("outRequestAmount");
@@ -57,10 +56,10 @@ function GetDisposiciones() {
 				let tableRes = "";
 				
 				$.each(response.response, function (index, value) {
-					let url = "https://apisandbox.solve.com.mx/public/";
+					let url = "https://api-solve.local/cepDownloader/";
 					let cep = "No disponible";
 					if (value["cep"] != null) {
-						cep = "<a href='' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
+						cep = "<a href='"+url+value["cep"]+"' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
 					}
 					let plan = "Quincenal";
 					if (value.plan === "q") {
