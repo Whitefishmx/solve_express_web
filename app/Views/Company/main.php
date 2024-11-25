@@ -121,7 +121,7 @@
 							<li class="nav-item waves-effect waves-light">
 								<a
 										class="nav-link" data-bs-toggle="tab" href="#invoiceTable" role="tab" aria-selected="false"
-										id="tabInvoices">Facturas</a>
+										id="tabInvoices">Pagos</a>
 							</li>
 						</ul><!-- End Tabs -->
 						<div class="tab-content">
