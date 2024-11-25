@@ -161,41 +161,60 @@
 												</div>
 										</div>
 										<div class="row align-items-center" style="margin-top: 10px">
-											<div class="col-md-5 ">
-												<div class="input-group">
-													<form id="formNomina">
-														<input
-																type="file" class="form-control bg-light" id="nominaFile" aria-describedby="nominaFile"
-																aria-label="Cargar"
-																accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-														<button class="btn btn-outline-secondary" type="button" id="uploadNomina">Cargar Nomina</button>
+											<div class="row align-items-center flex-wrap c-flex">
+												<div class="col-sm-5 text-center">
+													<label for="download" class="col-form-label">
+														Cargar archivo excel de nomina
+													</label>
+													<form id="formNomina" class="input-group">
+														<div class="input-group">
+															<input
+																	type="file" class="form-control bg-light" id="nominaFile" aria-describedby="nominaFile"
+																	aria-label="Cargar"
+																	accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+															<button class="btn btn-outline-secondary" type="button" id="uploadNomina">Cargar Nomina</button>
+														</div>
 													</form>
 												</div>
-											</div>
-											<div class="col-md-1 text-end"><label for="columns" class="col-form-label">
-													Seleccionar columnas <i class="fas fa-info-circle" title="Solo para la descarga del reporte"></i></label>
-											</div>
-											<div class="col-md-2">
-												<select id="columns" class="form-select" multiple>
-													<option value="" selected id="all">Todos</option>
-													<option value="noEmpleado">No. De empleado</option>
-													<option value="name">Nombre</option>
-													<option value="lastName">Apellido Paterno</option>
-													<option value="sureName">Apellido Materno</option>
-													<option value="rfc">RFC</option>
-													<option value="curp">CURP</option>
-													<option value="plan">Esquema de pago</option>
-													<option value="netSalary">Salario neto</option>
-													<option value="period">Periodo</option>
-												</select>
-											</div>
-											<div class="col-md-2 float-md-end" style="text-align: left">
-												<button type="button" class="btn btn-lg btn-primary" id="download">Descargar <i class="fas fa-download "></i>
-												</button>
-											</div>
-											<div class="col-md-2 float-md-end" style="text-align: end">
-												<button type="button" class="btn btn-lg btn-primary" id="searchReport">Buscar <i class="fas fa-search "></i>
-												</button>
+												<div class="col-md-1 text-end">
+													<label class="col-form-label">
+														Descargar layout de nomina
+														<a href="" target="_blank" style="color: #FF9400"><i class="fas fa-download "></i></a>
+													</label>
+												</div>
+												<div class="col-sm-2 text-center">
+													<label for="columns" class="col-form-label">
+														Seleccionar columnas <i class="fas fa-info-circle" title="Solo para la descarga del reporte"></i>
+													</label>
+													<select id="columns" class="form-select" multiple>
+														<option value="" selected id="all">Todos</option>
+														<option value="noEmpleado">No. De empleado</option>
+														<option value="name">Nombre</option>
+														<option value="lastName">Apellido Paterno</option>
+														<option value="sureName">Apellido Materno</option>
+														<option value="rfc">RFC</option>
+														<option value="curp">CURP</option>
+														<option value="plan">Esquema de pago</option>
+														<option value="netSalary">Salario neto</option>
+														<option value="period">Periodo</option>
+													</select>
+												</div>
+												<div class="col-sm-2 text-center">
+													<label for="download" class="col-form-label">
+														Descargar reporte
+													</label>
+													<button type="button" class="btn btn-lg btn-primary" id="download">
+														Descargar <i class="fas fa-download"></i>
+													</button>
+												</div>
+												<div class="col-sm-2 text-center">
+													<label for="searchReport" class="col-form-label">
+														Realizar búsqueda
+													</label>
+													<button type="button" class="btn btn-lg btn-primary" id="searchReport">
+														Buscar <i class="fas fa-search "></i>
+													</button>
+												</div>
 											</div>
 										</div>
 									</div>
