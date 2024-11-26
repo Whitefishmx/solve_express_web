@@ -179,7 +179,7 @@
 												<div class="col-md-1 text-end">
 													<label class="col-form-label">
 														Descargar layout de nomina
-														<a href="" target="_blank" style="color: #FF9400"><i class="fas fa-download "></i></a>
+														<a href="https://apisandbox.solve.com.mx/public/layoutDownloader/express_nomina.xlsx" target="_blank" style="color: #FF9400"><i class="fas fa-download "></i></a>
 													</label>
 												</div>
 												<div class="col-sm-2 text-center">
