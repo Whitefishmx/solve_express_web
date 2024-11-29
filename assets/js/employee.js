@@ -59,7 +59,7 @@ function GetDisposiciones() {
 					let url = "https://api-solve.local/cepDownloader/";
 					let cep = "No disponible";
 					if (value["cep"] != null) {
-						cep = "<a href='"+url+value["cep"]+"' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
+						cep = "<a href='" + url + value["cep"] + "' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
 					}
 					let plan = "Quincenal";
 					if (value.plan === "q") {
@@ -125,16 +125,19 @@ function GetDashboard() {
 			const cantidad = $("#requestAmount");
 			const rangeInput = document.querySelector("input[type=\"range\"]");
 			var valorAlto;
+			$('#dXD').html('Día: '+response['response']['req_day']+' / '+response['response']['limit_day']);
+			$('#dXQ').html('Quincena: '+response['response']['req_biweekly']+' / '+response['response']['limit_biweekly']);
+			$('#dXM').html('Mes: '+response['response']['req_month']+' / '+response['response']['limit_month']);
 			
-			$('#nombreuser').html(response.response.name + ' ' + response.response.last_name);
-			$('.iniciales').html(response.response.name.charAt(0) + response.response.last_name.charAt(0));
-			$('#company').html(response.response.short_name);
-
-			$("#DashDays").html('<h2 class="text-center" style="font-weight: bold"><img src="assets/img/calendar.png" style="height: 1.7rem"> ' + response.response.worked_days + '</h2>');
-			$("#DashAvailable").html('<h2 class="text-center" style="font-weight: bold">$ ' + Intl.NumberFormat("en-US").format(response.response.amount_available ) + '</h2>');
+			$("#nombreuser").html(response.response.name + " " + response.response.last_name);
+			$(".iniciales").html(response.response.name.charAt(0) + response.response.last_name.charAt(0));
+			$("#company").html(response.response.short_name);
+			
+			$("#DashDays").html("<h2 class=\"text-center\" style=\"font-weight: bold\"><img src=\"assets/img/calendar.png\" style=\"height: 1.7rem\"> " + response.response.worked_days + "</h2>");
+			$("#DashAvailable").html("<h2 class=\"text-center\" style=\"font-weight: bold\">$ " + Intl.NumberFormat("en-US").format(response.response.amount_available) + "</h2>");
 			
 			cantidad.attr("min", response.response.min_amount);
-			if(parseFloat(response.response.amount_available) <= parseFloat(response.response.max_amount)) {
+			if (parseFloat(response.response.amount_available) <= parseFloat(response.response.max_amount)) {
 				cantidad.attr("max", response.response.amount_available);
 				valorAlto = response.response.amount_available;
 			} else {
@@ -142,27 +145,27 @@ function GetDashboard() {
 				valorAlto = response.response.max_amount;
 			}
 			const valorMedio = (parseFloat(response.response.min_amount) + parseFloat(valorAlto)) / 2;
-			rangeInput.value = Math.round(valorMedio);	
-			$("#outRequestAmount").val('$ ' + Intl.NumberFormat("en-US").format(Math.round(valorMedio)));
+			rangeInput.value = Math.round(valorMedio);
+			$("#outRequestAmount").val("$ " + Intl.NumberFormat("en-US").format(Math.round(valorMedio)));
 			$("#MontoReal").val(valorMedio);
 			const value = (rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min) * 100;
 			rangeInput.style.background = `linear-gradient(to right, #f4c27d ${value}%, #ddd ${value}%)`;
-
-			let montoReal = parseFloat($('#MontoReal').val()); // Actualiza montoReal en tiempo real
-			let commission = parseFloat(response.response.commission);
-			$('#solicitado').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(montoReal)));
-			$('#comision').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(commission)));
-			const depositado = montoReal - commission;
-			$('#depositamos').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(depositado)));
-			$('#cclabe').html(response.response.clabe);
 			
-			$('#requestAmount').on('input', function() {
-				let montoReal = parseFloat($('#MontoReal').val()); // Actualiza montoReal en tiempo real
+			let montoReal = parseFloat($("#MontoReal").val()); // Actualiza montoReal en tiempo real
+			let commission = parseFloat(response.response.commission);
+			$("#solicitado").html("$ " + Intl.NumberFormat("en-US").format(Math.round(montoReal)));
+			$("#comision").html("$ " + Intl.NumberFormat("en-US").format(Math.round(commission)));
+			const depositado = montoReal - commission;
+			$("#depositamos").html("$ " + Intl.NumberFormat("en-US").format(Math.round(depositado)));
+			$("#cclabe").html(response.response.clabe);
+			
+			$("#requestAmount").on("input", function () {
+				let montoReal = parseFloat($("#MontoReal").val()); // Actualiza montoReal en tiempo real
 				let commission = parseFloat(response.response.commission);
-				$('#solicitado').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(montoReal)));
-				$('#comision').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(commission)));
+				$("#solicitado").html("$ " + Intl.NumberFormat("en-US").format(Math.round(montoReal)));
+				$("#comision").html("$ " + Intl.NumberFormat("en-US").format(Math.round(commission)));
 				const depositado = montoReal - commission;
-				$('#depositamos').html('$ ' + Intl.NumberFormat("en-US").format(Math.round(depositado)));
+				$("#depositamos").html("$ " + Intl.NumberFormat("en-US").format(Math.round(depositado)));
 			});
 			
 		},
@@ -210,16 +213,15 @@ function RequestPay() {
 		success: function (response) {
 			console.log(response);
 			
-			if (response.error == 200)
-			{
-				texto = '<div class="alert alert-info mb-0 border-2" role="alert"><h4 class="alert-heading font-18">' + response.description + '</h4><p>' + response.response + '</p></div>';
+			if (response.error == 200) {
+				texto = "<div class=\"alert alert-info mb-0 border-2\" role=\"alert\"><h4 class=\"alert-heading font-18\">" + response.description + "</h4><p>" + response.response + "</p></div>";
 			} else {
-				texto = '<div class="alert alert-danger alert-dismissible fade show shadow-sm border-theme-white-2 mb-0" role="alert"><div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1"><i class="fas fa-xmark align-self-center mb-0 text-white "></i></div><strong>' + response.description + '</strong> ' + response.reason + '</div>';
+				texto = "<div class=\"alert alert-danger alert-dismissible fade show shadow-sm border-theme-white-2 mb-0\" role=\"alert\"><div class=\"d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1\"><i class=\"fas fa-xmark align-self-center mb-0 text-white \"></i></div><strong>" + response.description + "</strong> " + response.reason + "</div>";
 				
 			}
 			console.log(texto);
-			$('#texto_modal').html(texto);
-		},	
+			$("#texto_modal").html(texto);
+		},
 		complete: function () {
 			$("#Loader").css({
 				display: "none"
@@ -229,12 +231,12 @@ function RequestPay() {
 			// Maneja los errores de la solicitud
 			console.error("Error en la solicitud:", status);
 			console.log(status.responseJSON.reason);
-
-			texto = '<div class="alert alert-danger alert-dismissible fade show shadow-sm border-theme-white-2 mb-0" role="alert"><div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1"><i class="fas fa-xmark align-self-center mb-0 text-white "></i></div><h4 class="alert-heading font-18">' + status.responseJSON.description + '</h4><p>' + status.responseJSON.reason + '</p></div>';
-				
-			$('#texto_modal').html(texto);
+			
+			texto = "<div class=\"alert alert-danger alert-dismissible fade show shadow-sm border-theme-white-2 mb-0\" role=\"alert\"><div class=\"d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1\"><i class=\"fas fa-xmark align-self-center mb-0 text-white \"></i></div><h4 class=\"alert-heading font-18\">" + status.responseJSON.description + "</h4><p>" + status.responseJSON.reason + "</p></div>";
+			
+			$("#texto_modal").html(texto);
 		}
 	});
-
+	
 	
 }
