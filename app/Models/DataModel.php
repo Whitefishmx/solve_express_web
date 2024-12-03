@@ -17,62 +17,7 @@
 				$this->url = 'https://apisandbox.solve.com.mx/public/';
 			}
 		}
-		public function signIn ( string $curp, string $password ) {
-			$endPoint = 'toSignIn';
-			$data = [
-				'email'    => $curp,
-				'password' => $password,
-				'platform' => 6,
-			];
-			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
-		}
-		public function getDashboard ( int $user, string $token ) {
-			$endPoint = 'sExpressDashboard';
-			$data = [
-				'user' => $user,
-			];
-			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
-			//			return $this->sendRequestToken ();
-		}
-		public function getReport ( int $user, string $token ) {
-			$endPoint = 'sExpressReport';
-			$data = [
-				'user' => $user,
-			];
-			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
-		}
-		public function getPeriods ( int $company, string $token ) {
-			$endPoint = 'sExpressPeriods';
-			$data = [
-				'company' => $company,
-			];
-			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
-		}
-		public function validateCurp ( string $curp, string $fingerprint ) {
-			$endPoint = 'sExpressVerifyCurp';
-			$data = [
-				'curp'        => $curp,
-				'fingerprint' => $fingerprint,
-			];
-			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
-		}
-		public function requestPay ( int $user, $amount, string $token ) {
-			$endPoint = 'sExpressRequest';
-			$data = [
-				'user'   => $user,
-				"amount" => $amount,
-			];
-			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
-		}
-		public function getLaws ( string $type ) {
-			$endPoint = 'getLawsText';
-			$data = [
-				'type'     => $type,
-				'platform' => 6,
-			];
-			return $this->SendRequest ( $endPoint, $data, 'GET', NULL );
-		}
-		public function setPassword ( string $password, string $password2, $user ) {
+		public function setPassword ( string $password, string $password2, $user ): bool|string {
 			$endPoint = 'changePassword';
 			$data = [
 				'user'        => $user,
@@ -81,7 +26,82 @@
 			];
 			return $this->SendRequest ( $endPoint, $data, 'PATCH', 'JSON' );
 		}
-		private function SendRequest ( string $endpoint, array $data, ?string $method, ?string $dataType, string $token = NULL ): mixed {
+		public function getReportCompany ( array $args, $company, $token ): bool|string {
+			$endPoint = 'sExpressReportCompany';
+			$data = [
+				'company'  => $company,
+				'initDate' => $args[ 'date1' ],
+				'endDate'  => $args[ 'date2' ],
+				'period'   => $args[ 'period' ],
+				'rfc'      => $args[ 'rfc' ],
+				'curp'     => $args[ 'curp' ],
+				'name'     => $args[ 'name' ],
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
+		}
+		public function validateCurp ( string $curp, string $fingerprint ): bool|string {
+			$endPoint = 'sExpressVerifyCurp';
+			$data = [
+				'curp'        => $curp,
+				'fingerprint' => $fingerprint,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
+		}
+		public function requestPay ( int $user, $amount, string $token ): bool|string {
+			$endPoint = 'sExpressRequest';
+			$data = [
+				'user'   => $user,
+				"amount" => $amount,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
+		}
+		public function getPeriods ( int $company, string $token ): bool|string {
+			$endPoint = 'sExpressPeriods';
+			$data = [
+				'company' => $company,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
+		}
+		public function getDashboard ( int $user, string $token ): bool|string {
+			$endPoint = 'sExpressDashboard';
+			$data = [
+				'user' => $user,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
+			//			return $this->sendRequestToken ();
+		}
+		public function signIn ( string $curp, string $password ): bool|string {
+			$endPoint = 'toSignIn';
+			$data = [
+				'email'    => $curp,
+				'password' => $password,
+				'platform' => 6,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
+		}
+		public function getReport ( int $user, string $token ): bool|string {
+			$endPoint = 'sExpressReport';
+			$data = [
+				'user' => $user,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
+		}
+		public function getProfile ( int $user, string $token ): bool|string {
+			$endPoint = 'sExpressProfile';
+			$data = [
+				'user' => $user,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
+		}
+		public function getLaws ( string $type ): bool|string {
+			$endPoint = 'getLawsText';
+			$data = [
+				'type'     => $type,
+				'platform' => 6,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'GET', NULL );
+		}
+		private function SendRequest ( string $endpoint, array $data, ?string $method, ?string $dataType, string $token = NULL ): string|bool {
 			$method = !empty( $method ) ? strtoupper ( $method ) : 'POST';
 			$resp = [ 'error' => 500, 'error_description' => 'SolveAPITransport' ];
 			$headers = [];
@@ -139,17 +159,5 @@
 			}
 			return $response;
 		}
-		public function getReportCompany ( array $args, $company, $token ) {
-			$endPoint = 'sExpressReportCompany';
-			$data = [
-				'company'  => $company,
-				'initDate' => $args[ 'date1' ],
-				'endDate'  => $args[ 'date2' ],
-				'period'   => $args[ 'period' ],
-				'rfc'      => $args[ 'rfc' ],
-				'curp'     => $args[ 'curp' ],
-				'name'     => $args[ 'name' ],
-			];
-			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
-		}
+		
 	}

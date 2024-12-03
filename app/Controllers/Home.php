@@ -12,8 +12,6 @@
 			}
 			$session = session ();
 			$permissions = json_decode ( json_encode ( $session->get ( 'user' )[ 'permissions' ][ 0 ] ), TRUE );
-			//			var_dump ($permissions['name'] === 'main');
-			//			die();
 			$user = $session->get ( 'user' )[ 'data' ];
 			$name = $user[ 'name' ].' '.$user[ 'last_name' ];
 			$initials = substr ( $user[ 'name' ], 0, 1 ).substr ( $user[ 'last_name' ], 0, 1 );
@@ -22,11 +20,11 @@
 			$data[ 'company' ] = $user[ 'short_name' ];
 			$data[ 'session' ] = TRUE;
 			if ( $permissions[ 'name' ] === 'main' ) {
-				$data = [ 'title' => 'SoveExpress | Adelanta Sueldo' ];
+				$data = [ 'title' => 'SolveExpress | Adelanta Sueldo' ];
 				$data[ 'main' ] = view ( 'main' );
 				return view ( 'plantilla', $data );
 			}
-			$data [ 'title' ] = 'SoveExpress | Empresas';
+			$data [ 'title' ] = 'SolveExpress | Empresas';
 			return view ( 'Company/main', $data );
 		}
 		public function getLaws () {

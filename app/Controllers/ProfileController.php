@@ -3,9 +3,39 @@
 	namespace App\Controllers;
 	
 	use App\Models\UserModel;
+	use App\Models\DataModel;
 	use CodeIgniter\HTTP\ResponseInterface;
 	
 	class ProfileController extends BaseController {
+		public function index () {
+			if ( !$this->validateSession () ) {
+				return redirect ( 'signIn' );
+			}
+			$session = session ();
+			$permissions = json_decode ( json_encode ( $session->get ( 'user' )[ 'permissions' ][ 0 ] ), TRUE );
+			$user = $session->get ( 'user' )[ 'data' ];
+			$name = $user[ 'name' ].' '.$user[ 'last_name' ];
+			$initials = substr ( $user[ 'name' ], 0, 1 ).substr ( $user[ 'last_name' ], 0, 1 );
+			$data[ 'iniciales' ] = $initials;
+			$data[ 'name' ] = $name;
+			$data[ 'company' ] = $user[ 'short_name' ];
+			$data[ 'session' ] = TRUE;
+			$data [ 'title' ] = 'SolveExpress | Perfil';
+			return view ( 'profile', $data );
+		}
+		public function getProfile (): ResponseInterface {
+			$this->input = $this->getRequestInput ( $this->request );
+			if ( $data = $this->verifyRules ( 'POST', $this->request, NULL ) ) {
+				return $this->getResponse ( $this->responseBody, $this->errCode );
+			}
+			$data = new DataModel();
+			$session = session ();
+			$id = $session->get ( 'user' )[ 'data' ][ 'id' ];
+			$token = $session->get ( 'token' );
+			$profile = $data->getProfile ( $id, $token );
+//			var_dump ( $profile );  die();
+			return $this->getResponse ( json_decode ( $profile, TRUE ), json_decode ( $profile, TRUE )[ 'error' ] );
+		}
 		/**
 		 * Válida si un nickname ya está en uso
 		 * @return ResponseInterface|bool
