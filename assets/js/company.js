@@ -4,6 +4,7 @@ let rfc = $("#rfc");
 let curp = $("#curp");
 let name = $("#name");
 let period = $("#period");
+let dataTable;
 // noinspection JSUnresolvedReference
 let selector = new Selectr("#columns", {multiple: true});
 // noinspection JSUnresolvedReference
@@ -110,24 +111,30 @@ function getReport() {
 		success: function (response) {
 			let resArea = $("#datatable_1 tbody");
 			resArea.empty();
-			resArea.html();
+			
+			// Construir el contenido HTML en una cadena
+			let rows = "";
 			$.each(response["response"], function (index, value) {
 				let formattedName = capitalizeWords(value["name"]);
 				let formattedLastName = capitalizeWords(value["last_name"]);
 				let formattedSureName = capitalizeWords(value["sure_name"]);
-				let data = "<tr><td>" + value["external_id"] + "</td>" +
-					"<td>" + formattedLastName + " " + formattedSureName + " " + formattedName + "</td>" +
-					"<td>" + value["rfc"] + "</td>" +
-					"<td>$ " + value["net_salary"] + "</td>" +
-					"<td>$ " + value["sum_request_amount"] + "</td>" +
-					"<td>$ " + value["remaining_amount"] + "</td>" +
-					"<td>" + value["period"] + "</td></tr>";
-				resArea.append(data);
+				rows += `
+            <tr>
+                <td>${value["external_id"]}</td>
+                <td>${formattedLastName} ${formattedSureName} ${formattedName}</td>
+                <td>${value["rfc"]}</td>
+                <td>$ ${value["net_salary"]}</td>
+                <td>$ ${value["sum_request_amount"]}</td>
+                <td>$ ${value["remaining_amount"]}</td>
+                <td>${value["period"]}</td>
+            </tr>`;
 			});
-			try {
-				new simpleDatatables.DataTable("#datatable_1", {searchable: !0, fixedHeight: !1});
-			} catch (e) {
-			}
+			
+			// Insertar el contenido en una sola operación
+			resArea.html(rows);
+			
+			// Inicializar la tabla
+			initializeTable();
 		},
 		complete: function () {
 			$("#Loader").css({
@@ -439,7 +446,7 @@ function fireEmployees() {
 						$("#Loader").css({display: "none"});
 						getEmployees();
 					},
-					error(){
+					error() {
 						// noinspection JSUnresolvedReference
 						return void Swal.fire({
 							icon: "error",
@@ -471,4 +478,13 @@ function displayLoaderCompany() {
 		height: height,
 		zIndex: 999999
 	}).focus();
+}
+
+function initializeTable() {
+	if (!dataTable) {
+		dataTable = new simpleDatatables.DataTable("#datatable_1", {searchable: true, fixedHeight: false});
+	} else {
+		dataTable.destroy();
+		dataTable = new simpleDatatables.DataTable("#datatable_1", {searchable: true, fixedHeight: false});
+	}
 }
