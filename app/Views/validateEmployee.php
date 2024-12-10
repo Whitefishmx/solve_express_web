@@ -58,9 +58,8 @@
 			<div class="col-12 align-self-center">
 				<div class="card-body" id="curpValidator">
 					<div class="row">
-						<div class="col-lg-4 mx-auto">
-							<div class="card" style="
-									-webkit-box-shadow: 5px 13px 20px -2px rgba(0,0,0,0.75);
+						<div class="col-lg-6 mx-auto">
+							<div class="card" style="-webkit-box-shadow: 5px 13px 20px -2px rgba(0,0,0,0.75);
 									-moz-box-shadow: 5px 13px 20px -2px rgba(0,0,0,0.75);
 									box-shadow: 5px 13px 20px -2px rgba(0,0,0,0.75);">
 								<div class="card-body p-0 auth-header-box rounded-top">
@@ -69,9 +68,9 @@
 											<img src="/assets/img/logo.png" alt="logo" class="auth-logo" style="height: 50px">
 										</a>
 										<h4 class="card-title" id="TitleCard" style="margin-top: 20px">Validar CURP</h4>
-										<div >
+										<div>
 											<p class="card-subtitle fs-14 mb-2" id="InstructionsCard">Introduce tu CURP para validar que estes registrado con tu
-										                                                                  empresa.</p>
+											                                                          empresa.</p>
 										</div>
 									</div>
 								</div>
@@ -82,7 +81,14 @@
 											<input id="curp" name="curp" type="text" class="form-control" placeholder="JDHY587536HFTEHR73">
 										</div><!--end form-group-->
 										<div class="form-group mb-0 row">
-											<div class="col-12">
+											<div class="col-6">
+												<div class="d-grid mt-3">
+													<button class="btn btn-danger" type="button" id="backLogin" onclick="window.location.href = '/';">
+														Regresar a Inicio <i class="fas fa-home  ms-1"></i>
+													</button>
+												</div>
+											</div><!--end col-->
+											<div class="col-6">
 												<div class="d-grid mt-3">
 													<button class="btn btn-primary" type="button" id="validateCurp">
 														Validar <i class="fas fa-sign-in-alt ms-1"></i>
@@ -90,6 +96,7 @@
 												</div>
 											</div><!--end col-->
 										</div> <!--end form-group-->
+								
 									</form><!--end form-->
 								</div><!--end card-body-->
 								<div class="card-body pt-0" id="cardMeta" style="display: none; text-align: center">
@@ -106,28 +113,53 @@
 									</div>
 									<a href="/validarCURP" target="_self">Regrear a validar CURP</a>
 								</div>
-								<div class="card-body pt-0" id="cardPassword" style="display: none;">
+								<div class="card-body pt-4" id="cardPassword" style="display: none; padding-top: 0 !important;">
 									<form class="form" id="form-validation-2">
-										<div class="mb-3">
-											<label for="password" class="form-label">Contraseña</label>
-											<input
-													id="password" name="password" type="password" class="form-control" placeholder="C0ntraseña!" required
-													minlength="8" maxlength="128">
-										</div>
-										<div class="mb-3">
-											<label for="password2" class="form-label">Repetir contraseña</label>
-											<input
-													id="password2" name="password2" type="password" class="form-control" placeholder="Repita C0ntraseña!"
-													required minlength="8" maxlength="128">
-										</div><!--end form-group-->
-										<div class="form-group mb-0 row">
-											<div class="col-12">
-												<div class="d-grid mt-3">
-													<button type="submit" id="savePassword" class="btn btn-primary">Guardar contraseña <i
-																class="fas fa-sign-in-alt ms-1"></i></button>
+										<div class="row">
+											<div class="col-lg-6">
+												<div class="mb-3">
+													<label for="username" class="form-label">Usuario *</label>
+													<input
+															id="username" name="username" type="text" class="form-control" placeholder="Usuario">
+													<small>Error Message</small>
 												</div>
-											</div><!--end col-->
-										</div> <!--end form-group-->
+												<div class="mb-3">
+													<label for="email" class="form-label">Correo *</label>
+													<input class="form-control" id="email" name="email" type="text"
+													       placeholder="sobebody@somehow.com">
+													<small>Error Message</small>
+												</div>
+												<div class="mb-3">
+													<label for="phone" class="form-label">Teléfono</label>
+													<input id="phone" name="phone" type="tel" class="form-control" placeholder="(55)45-47-4545">
+													<small>Error Message</small><input id="phoneUnmasked" type="hidden">
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="mb-3">
+													<label for="password" class="form-label">Contraseña *</label>
+													<input
+															id="password" name="password" type="password" class="form-control" placeholder="C0ntraseña!">
+													<small>Error Message</small>
+												</div>
+												<div class="mb-3">
+													<label for="password2" class="form-label">Repetir contraseña *</label>
+													<input
+															id="password2" name="password2" type="password" class="form-control" placeholder="Repita C0ntraseña!">
+													<small>Error Message</small>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group mb-0 row">
+												<div class="col-12">
+													<div class="d-grid mt-3" style="margin-top: 0 !important;">
+														<button type="submit" id="savePassword" class="btn btn-primary">Guardar contraseña <i
+																	class="fas fa-sign-in-alt ms-1"></i></button>
+													</div>
+												</div><!--end col-->
+											</div> <!--end form-group-->
+										</div>
 									</form><!--end form-->
 								</div><!--end card-body-->
 							</div><!--end card-->
@@ -143,166 +175,10 @@
 <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
 <script src="/assets/libs/sweetalert2/sweetalert2.min.js"></script>
 <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/libs/imask/imask.min.js"></script>
+<!--<script src="/assets/js/pages/form-validation.js"></script>-->
 <script src="/assets/js/app.js"></script>
-<script>
-	let visitorId = "";
-	let curp = "";
-	let user = ";";
-	const metamapButton = document.querySelector("metamap-button");
-	FingerprintJS.load().then(fp => {
-		fp.get().then(result => {
-			visitorId = result.visitorId;
-		});
-	});
-	$(document).ready(function () {
-		document.getElementById("curp").addEventListener("input", function (e) {
-			e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
-			if (e.target.value.length > 18) {
-				e.target.value = e.target.value.slice(0, 18);
-			}
-		});
-		$("#validateCurp").on("click", function () {
-			validateCurp();
-		});
-		$("#formCurpValidator").on("submit", function (e) {
-			e.preventDefault();
-			validateCurp();
-		});
-		
-		$("#form-validation-2").on("submit", function (e) {
-			e.preventDefault();
-			const password = $("#password").val();
-			const password2 = $("#password2").val();
-			changePassword(password, password2, user);
-		});
-		metamapButton.addEventListener("metamap:userFinishedSdk", ({detail}) => {
-			console.log("finished payload", detail);
-			wait4Validation();
-		});
-		metamapButton.addEventListener("metamap:exitedSdk", ({detail}) => {
-			console.log("exited payload", detail);
-		});
-	});
-	
-	function validateCurp() {
-		curp = $("#curp").val();
-		FingerprintJS.load().then(fp => {
-			fp.get().then(result => {
-				visitorId = result.visitorId;
-			});
-		});
-		$.ajax({
-			url: "/toValidarCurp",
-			data: {
-				curp: curp,
-				fingerprint: visitorId
-			},
-			dataType: "JSON",
-			method: "POST",
-			beforeSend: function () {
-				const obj = $("#curpValidator");
-				$("#Loader").delay(50000).css({
-					display: "block",
-					opacity: 1,
-					visibility: "visible",
-					left: obj.offset().left,
-					top: obj.offset().top,
-					width: obj.width(),
-					height: obj.height(),
-					zIndex: 999999
-				}).focus();
-			},
-			success: function (data, textStatus, xhr) {
-				if (xhr.status === 201) {
-					$("metamap-button").attr("metadata", JSON.stringify({curp: curp}));
-					$("#cardForm").css("display", "none");
-					$("#cardMeta").css("display", "block");
-					$("#cardInValidation").css("display", "none");
-					$("#cardPassword").css("display", "none");
-					$("#TitleCard").html("Validar identidad");
-					$("#InstructionsCard").html("De click en el botón para comenzar la verificación de identidad");
-				}
-				if (xhr.status === 202) {
-					wait4Validation();
-				}
-				if (xhr.status === 200) {
-					user = data["response"]["id"];
-					console.log(user);
-					$("#cardForm").css("display", "none");
-					$("#cardMeta").css("display", "none");
-					$("#cardInValidation").css("display", "none");
-					$("#cardPassword").css("display", "block");
-					$("#TitleCard").html("Ingrese una nueva contraseña");
-					$("#InstructionsCard").html("La contraseña debe tener al menos 8 caracteres entre mayúsculas, minúsculas, números y carácter especial");
-				}
-			},
-			error: function (error) {
-				return void Swal.fire({icon: "error", title: "Oops...", text: error["responseJSON"]["reason"]});
-				
-			},
-			complete: function () {
-				$("#Loader").css({
-					display: "none"
-				});
-			},
-		});
-	}
-	
-	function wait4Validation() {
-		$("#cardForm").css("display", "none");
-		$("#cardMeta").css("display", "none");
-		$("#cardInValidation").css("display", "block");
-		$("#cardPassword").css("display", "none");
-		$("#TitleCard").html("Validando identidad");
-		$("#InstructionsCard").html("");
-	}
-	
-	function changePassword(password, password2, user) {
-		$.ajax({
-			url: "/setPassword",
-			data: JSON.stringify({
-				password: password,
-				password2: password2,
-				user: user,
-			}),
-			dataType: "JSON",
-			contentType: "application/json; charset=utf-8",
-			method: "POST",
-			beforeSend: function () {
-				const obj = $("#curpValidator");
-				$("#Loader").delay(50000).css({
-					display: "block",
-					opacity: 1,
-					visibility: "visible",
-					left: obj.offset().left,
-					top: obj.offset().top,
-					width: obj.width(),
-					height: obj.height(),
-					zIndex: 999999
-				}).focus();
-			},
-			success: function (data, textStatus, xhr) {
-				if (xhr.status === 200) {
-					void Swal.fire({icon: "success", title: "Se guardo su contraseña, ya puede iniciar sesión", timer: 1500});
-					setTimeout(function () {
-						window.location.href = "/";
-					}, 2500);
-				}
-			},
-			error: function () {
-				return void Swal.fire({
-					icon: "error", title: "Oops...", text: "No se pudo actualizar la contraseña, intente nuevamente o contacte a soporte " +
-						"técnico"
-				});
-			},
-			complete: function () {
-				$("#Loader").css({
-					display: "none"
-				});
-			},
-		});
-	}
-</script>
+<script src="/assets/js/validation.js"></script>
 </body>
 <!--end body-->
 </html>

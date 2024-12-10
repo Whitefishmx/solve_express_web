@@ -12,12 +12,12 @@
 				return redirect ( '/' );
 			}
 			$data = [ 'session' => FALSE ];
-			return view ( 'signInB' );
+			return view ( 'signInB', $data );
 		}
 		public function signIn (): ResponseInterface|bool {
 			
 			$this->input = $this->getRequestInput ( $this->request );
-			if ( $data = $this->verifyRules ( 'POST', $this->request, NULL ) ) {
+			if ( $this->verifyRules ( 'POST', $this->request, NULL ) ) {
 				//				$this->logResponse ( 1 );
 				return $this->getResponse ( $this->responseBody, $this->errCode );
 			}
@@ -42,10 +42,10 @@
 				'reason'      => 'Inicio de sesión exitoso' ];
 			return $this->getResponse ( $this->responseBody );
 		}
-		public function validarCurp () {
+		public function validarCurp (): string {
 			return view ( 'validateEmployee' );
 		}
-		public function validateIdentity () {
+		public function validateIdentity (): string {
 			return view ( 'validateIdentity' );
 		}
 	}

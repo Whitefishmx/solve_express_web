@@ -104,7 +104,7 @@
 				<h4 style="margin-bottom: 2rem">Inicio de sesión</h4>
 				<form id="signinForm" name="signinForm" method="POST">
 					<div class="form-group">
-						<label for="curp" style="display: block; width: 100%; padding-left: 50px; margin-bottom: 0; text-align: left;">CURP *</label>
+						<label for="curp" style="display: block; width: 100%; padding-left: 50px; margin-bottom: 0; text-align: left;">CURP/Correo/Usuario</label>
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="material-icons">account_circle</i></span>

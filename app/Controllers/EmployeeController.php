@@ -97,16 +97,22 @@
 			$this->responseBody = [ 'description' => $res[ 'description' ], 'response' => $res[ 'response' ] ];
 			return $this->getResponse ( $this->responseBody, $this->errCode );
 		}
-		public function setPassword () {
+		public function setUser () {
 			$this->input = $this->getRequestInput ( $this->request );
 			if ( $data = $this->verifyRules ( 'POST', $this->request, 'JSON' ) ) {
 				return $this->getResponse ( $this->responseBody, $this->errCode );
 			}
 			$data = new DataModel();
-			$res = json_decode ( $data->setPassword ( $this->input[ 'password' ], $this->input[ 'password2' ], $this->input[ 'user' ] ), TRUE );
-			//			var_dump ($res);die();
-			if ( $res[ 'error' ] === 500 || $res[ 'error' ] === 404 ) {
-				$this->serverError ( $res[ 'description' ], $res[ 'reason' ] );
+			$phone = isset( $this->input[ 'phone' ] ) && $this->input[ 'phone' ] !== '' ? $this->input[ 'phone' ] : NULL;
+			$res = json_decode ( $data->setUser ( $this->input[ 'nickName' ], $this->input[ 'email' ], $this->input[ 'password' ], $this->input[ 'password2' ], $this->input[ 'user' ], $phone ), TRUE );
+//			var_dump ( $res );
+//			die();
+			if ( $res[ 'error' ] === 500 || $res[ 'error' ] === 404 || $res[ 'error' ] === 400 ) {
+				$this->responseBody = [
+					"error"       => $this->errCode = $res[ 'error' ],
+					"description" => $res[ 'description' ],
+					"reason"      => $res[ 'reason' ],
+				];
 				return $this->getResponse ( $this->responseBody, $this->errCode );
 			}
 			$this->errCode = $res[ 'error' ];

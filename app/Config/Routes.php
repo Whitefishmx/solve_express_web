@@ -30,7 +30,7 @@
 	$routes->add ( 'dashboardEmployee', 'EmployeeController::dashboard' /**@uses \App\Controllers\EmployeeController::dashboard * */ );
 	$routes->add ( 'toValidarCurp', 'EmployeeController::validarCurp' /**@uses \App\Controllers\EmployeeController::validarCurp * */ );
 	$routes->add ( 'getEmployees', 'CompanyController::getEmployees' /**@uses \App\Controllers\CompanyController::getEmployees * */ );
-	$routes->add ( 'setPassword', 'EmployeeController::setPassword' /**@uses \App\Controllers\EmployeeController::setPassword * */ );
+	$routes->add ( 'setUser', 'EmployeeController::setUser' /**@uses \App\Controllers\EmployeeController::setUser * */ );
 	$routes->add ( 'requestPay', 'EmployeeController::requestPay' /**@uses \App\Controllers\EmployeeController::requestPay * */ );
 	$routes->add ( 'getProfile', 'ProfileController::getProfile' /**@uses \App\Controllers\ProfileController::getProfile * */ );
 	$routes->add ( 'getPeriods', 'CompanyController::getPeriods' /**@uses \App\Controllers\CompanyController::getPeriods * */ );

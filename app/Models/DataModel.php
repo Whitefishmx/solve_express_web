@@ -17,13 +17,18 @@
 				$this->url = 'https://apisandbox.solve.com.mx/public/';
 			}
 		}
-		public function setPassword ( string $password, string $password2, $user ): bool|string {
-			$endPoint = 'changePassword';
+		public function setUser ( string $nickname, string $email, string $password, string $password2, mixed $user, string $phone = NULL): bool|string {
+			$endPoint = 'setUser';
 			$data = [
 				'user'        => $user,
+				'nickName'    => $nickname,
+				"email"       => $email,
 				'contraseña'  => $password,
 				'contraseña2' => $password2,
 			];
+			if ( $phone !== NULL ) {
+				$data[ 'phone' ] = $phone;
+			}
 			return $this->SendRequest ( $endPoint, $data, 'PATCH', 'JSON' );
 		}
 		public function getReportCompany ( array $args, $company, $token ): bool|string {
@@ -89,13 +94,13 @@
 		public function getEmployees ( array $args, $company, $token ): bool|string {
 			$endPoint = 'sExpressEmployees';
 			$data = [
-				'company'  => $company,
+				'company'    => $company,
 				'hiringDate' => $args[ 'hiringDate' ],
-				'fireDate' => $args[ 'fireDate' ],
-				'rfc' => $args[ 'rfcFire' ],
-				'curp' => $args[ 'curpFire' ],
-				'name' => $args[ 'nameFire' ],
-				'fire' => $args[ 'fire' ],
+				'fireDate'   => $args[ 'fireDate' ],
+				'rfc'        => $args[ 'rfcFire' ],
+				'curp'       => $args[ 'curpFire' ],
+				'name'       => $args[ 'nameFire' ],
+				'fire'       => $args[ 'fire' ],
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
 		}
@@ -114,13 +119,13 @@
 			];
 			return $this->SendRequest ( $endPoint, $data, 'GET', NULL );
 		}
-		public function fireEmployee ($employee, $company, $token): bool|string {
+		public function fireEmployee ( $employee, $company, $token ): bool|string {
 			$endPoint = 'sExpressFireOne';
 			$data = [
-				'employee'     => $employee,
-				'company' => $company,
+				'employee' => $employee,
+				'company'  => $company,
 			];
-			return $this->SendRequest ( $endPoint, $data, 'DELETE', 'JSON' , $token);
+			return $this->SendRequest ( $endPoint, $data, 'DELETE', 'JSON', $token );
 		}
 		private function SendRequest ( string $endpoint, array $data, ?string $method, ?string $dataType, string $token = NULL ): string|bool {
 			$method = !empty( $method ) ? strtoupper ( $method ) : 'POST';
@@ -180,5 +185,4 @@
 			}
 			return $response;
 		}
-		
 	}
