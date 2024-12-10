@@ -4,26 +4,40 @@ let rfc = $("#rfc");
 let curp = $("#curp");
 let name = $("#name");
 let period = $("#period");
-let selector = new Selectr("#columns", {multiple: !0});
+// noinspection JSUnresolvedReference
+let selector = new Selectr("#columns", {multiple: true});
+// noinspection JSUnresolvedReference
+let periodSelector = new Selectr("#period");
+let hiringDate = $("#hiringDate");
+let fireDate = $("#fireDate");
+let rfcFire = $("#rfcFire");
+let curpFire = $("#curpFire");
+let nameFire = $("#nameFire");
+let showFires = $("#showFires");
+// let url = 'https://apisandbox.solve.com.mx/public/';
+let url = "https://api-solve.local/";
 $(document).ready(function () {
-	getPeriods();
-	getReport();
-	getInvoices();
+	initDate.add(endDate).add(rfc).add(curp).add(name).on("input", function () {
+		getReport();
+	});
+	hiringDate.add(fireDate).add(rfcFire).add(curpFire).add(nameFire).add(showFires).on("input", function () {
+		getEmployees();
+	});
+	$("#tabFireEmployee").on("click", function () {
+		getEmployees();
+	});
 	$("#tabEmployee").on("click", function () {
 		getPeriods();
 		getReport();
-	});
+	}).click();
 	$("#tabInvoices").on("click", function () {
-	
+		getInvoices();
 	});
 	$("#searchReport").on("click", function () {
 		getReport();
 	});
 	$("#download").on("click", function () {
 		downloadReport();
-	});
-	initDate.add(endDate).add(rfc).add(curp).add(name).add(period).on("input", function () {
-		getReport();
 	});
 	$("#all").on("select", function () {
 		selector.clear();
@@ -38,28 +52,16 @@ $(document).ready(function () {
 			selector.clear();
 			return selector.setValue("");
 		}
-		
-		// // Si se selecciona la opción "Todos"
-		// if (selectedOptions.includes("")) {
-		// 	// Desmarca todas las demás opciones
-		// 	$(this).find('option').prop('selected', false);
-		// 	allOption.prop('selected', true);
-		// } else {
-		// 	// Si se seleccionan otras opciones, desmarca "Todos"
-		// 	allOption.prop('selected', false);
-		// }
-		//
-		// // Actualiza el select con los cambios
-		// $(this).trigger('change.select2');
 	});
-	$("#formNomina").on("submit", function (e) {
+	$("#upLoadFires").on("click", function () {
+		fireEmployees();
+	});
+	$("#formFires").on("submit", function (e) {
 		e.preventDefault();
-		uploadNomina();
-	});
-	$("#uploadNomina").on("click", function () {
-		uploadNomina();
+		fireEmployees();
 	});
 });
+
 function getPeriods() {
 	$.ajax({
 		url: "/getPeriods",
@@ -67,30 +69,14 @@ function getPeriods() {
 		processData: false,
 		contentType: false,
 		beforeSend() {
-			let obj = $("#mainContainer");
-			const left = obj.offset().left;
-			const top = obj.offset().top;
-			const width = obj.width();
-			const height = obj.height();
-			$("#Loader").delay(50000).css({
-				display: "block",
-				opacity: 1,
-				visibility: "visible",
-				left: left,
-				top: top,
-				width: width,
-				height: height,
-				zIndex: 999999
-			}).focus();
+			displayLoaderCompany();
 		},
 		success: function (response) {
-			let select = $("#period");
-			select.empty();
-			select.append("<option value=\"\">Todos</option>");
+			periodSelector.removeAll();
+			periodSelector.add({value: "", text: "Todos"});
 			$.each(response.response, function (index, value) {
-				select.append("<option value=\"" + value + "\">" + value + "</option>");
+				periodSelector.add({value: value, text: value});
 			});
-			new Selectr("#period");
 		},
 		complete: function () {
 			$("#Loader").css({
@@ -103,6 +89,7 @@ function getPeriods() {
 		}
 	});
 }
+
 function getReport() {
 	$.ajax({
 		url: "/reportCompany",
@@ -118,29 +105,18 @@ function getReport() {
 		contentType: "application/json; charset=utf-8",
 		method: "POST",
 		beforeSend() {
-			let obj = $("#mainContainer");
-			const left = obj.offset().left;
-			const top = obj.offset().top;
-			const width = obj.width();
-			const height = obj.height();
-			$("#Loader").delay(50000).css({
-				display: "block",
-				opacity: 1,
-				visibility: "visible",
-				left: left,
-				top: top,
-				width: width,
-				height: height,
-				zIndex: 999999
-			}).focus();
+			displayLoaderCompany();
 		},
 		success: function (response) {
 			let resArea = $("#datatable_1 tbody");
 			resArea.empty();
 			resArea.html();
 			$.each(response["response"], function (index, value) {
+				let formattedName = capitalizeWords(value["name"]);
+				let formattedLastName = capitalizeWords(value["last_name"]);
+				let formattedSureName = capitalizeWords(value["sure_name"]);
 				let data = "<tr><td>" + value["external_id"] + "</td>" +
-					"<td>" + value["name"] + " " + value["sure_name"] + " " + value["last_name"] + "</td>" +
+					"<td>" + formattedLastName + " " + formattedSureName + " " + formattedName + "</td>" +
 					"<td>" + value["rfc"] + "</td>" +
 					"<td>$ " + value["net_salary"] + "</td>" +
 					"<td>$ " + value["sum_request_amount"] + "</td>" +
@@ -150,36 +126,6 @@ function getReport() {
 			});
 			try {
 				new simpleDatatables.DataTable("#datatable_1", {searchable: !0, fixedHeight: !1});
-			} catch (e) {
-			}
-			try {
-				let e = new simpleDatatables.DataTable("#datatable_2");
-				document.querySelector("button.csv").addEventListener("click", () => {
-					simpleDatatables.exportCSV(e, {download: !0, lineDelimiter: "\n\n", columnDelimiter: ";"});
-				}), document.querySelector("button.sql").addEventListener("click", () => {
-					simpleDatatables.exportSQL(e, {download: !0, tableName: "export_table"});
-				}), document.querySelector("button.txt").addEventListener("click", () => {
-					simpleDatatables.exportTXT(e, {download: !0});
-				}), document.querySelector("button.json").addEventListener("click", () => {
-					simpleDatatables.exportJSON(e, {download: !0, escapeHTML: !0, space: 3});
-				});
-			} catch (e) {
-			}
-			try {
-				document.addEventListener("DOMContentLoaded", function () {
-					var a = document.querySelector("[name='select-all']"), c = document.querySelectorAll("[name='check']");
-					a?.addEventListener("change", function () {
-						var t = a.checked;
-						c.forEach(function (e) {
-							e.checked = t;
-						});
-					}), c.forEach(function (e) {
-						e.addEventListener("click", function () {
-							var e = c.length, t = document.querySelectorAll("[name='check']:checked").length;
-							t <= 0 ? (a.checked = !1, a.indeterminate = !1) : e === t ? (a.checked = !0, a.indeterminate = !1) : (a.checked = !0, a.indeterminate = !0);
-						});
-					});
-				});
 			} catch (e) {
 			}
 		},
@@ -194,6 +140,7 @@ function getReport() {
 		}
 	});
 }
+
 function downloadReport() {
 	let cols = $("#columns").val();
 	let columns = cols;
@@ -212,7 +159,7 @@ function downloadReport() {
 	}
 	getWInfo().then(data => {
 		const settings = {
-			"url": "https://api-solve.local//excelCompany",
+			"url": url + "excelCompany",
 			"method": "POST",
 			"timeout": 0,
 			"headers": {
@@ -254,6 +201,7 @@ function downloadReport() {
 		
 	});
 }
+
 function month2Mes(month) {
 	const months = [
 		"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
@@ -261,26 +209,13 @@ function month2Mes(month) {
 	];
 	return months[month]; // Devuelve el nombre del mes
 }
+
 function getWInfo() {
 	return $.ajax({
 		url: "/data4req",
 		method: "POST",
 		beforeSend() {
-			let obj = $("#mainContainer");
-			const left = obj.offset().left;
-			const top = obj.offset().top;
-			const width = obj.width();
-			const height = obj.height();
-			$("#Loader").delay(50000).css({
-				display: "block",
-				opacity: 1,
-				visibility: "visible",
-				left: left,
-				top: top,
-				width: width,
-				height: height,
-				zIndex: 999999
-			}).focus();
+			displayLoaderCompany();
 		},
 		complete: function () {
 			$("#Loader").css({
@@ -293,13 +228,14 @@ function getWInfo() {
 		}
 	});
 }
-function uploadNomina() {
+
+/*function uploadNomina() {
 	getWInfo().then(data => {
 		const formData = new FormData($("#formNomina")[0]);
 		formData.append("nomina", $("#nominaFile")[0].files[0]);
 		formData.append("company", data["c"]);
 		$.ajax({
-			url: "https://api-solve.local//sExpressUploadNomina",
+			url: "https://api-solve.local/sExpressUploadNomina",
 			method: "POST",
 			timeout: 0,
 			headers: {"Authorization": "Bearer " + data["t"],},
@@ -337,10 +273,202 @@ function uploadNomina() {
 			}
 		});
 	});
-}
-function getInvoices(){
+}*/
+function getInvoices() {
 	try {
 		new simpleDatatables.DataTable("#tableInvoice", {searchable: !0, fixedHeight: !1});
 	} catch (e) {
 	}
+}
+
+function getEmployees() {
+	$.ajax({
+		url: "/getEmployees",
+		data: JSON.stringify({
+			hiringDate: hiringDate.val(),
+			fireDate: fireDate.val(),
+			rfcFire: rfcFire.val(),
+			curpFire: curpFire.val(),
+			nameFire: nameFire.val(),
+			fire: showFires.prop("checked"),
+		}),
+		dataType: "JSON",
+		contentType: "application/json; charset=utf-8",
+		method: "POST",
+		beforeSend() {
+			displayLoaderCompany();
+		},
+		success: function (response) {
+			let resultArea = $("#fireEmployees tbody");
+			resultArea.empty();
+			let rows = "";
+			response["response"].forEach((value) => {
+				let formattedName = capitalizeWords(value["name"]);
+				let formattedLastName = capitalizeWords(value["last_name"]);
+				let formattedSureName = capitalizeWords(value["sure_name"]);
+				let clabe = value["clabe"] || "No disponible";
+				let fired = value["fireDate"] || "No disponible";
+				
+				let fireIcon = value["fireDate"] === null
+					? `<i class='las la-trash-alt text-secondary font-16 text-danger'
+                   style='font-size: 1.5rem; cursor: pointer'
+                   onclick="fireEmployee('${value["employeeId"]}', '${formattedLastName}', '${formattedName}')"></i>`
+					: `<i class='las la-trash-alt text-secondary' style='font-size: 1.2rem;' title='No disponible'></i>`;
+				
+				rows += `
+            <tr>
+                <td>${value["external_id"]}</td>
+                <td>${formattedLastName} ${formattedSureName} ${formattedName}</td>
+                <td>${value["curp"]}</td>
+                <td>${clabe}</td>
+                <td>${value["hiringDate"]}</td>
+                <td>${fired}</td>
+                <td style='text-align: center'>${fireIcon}</td>
+            </tr>`;
+			});
+			
+			resultArea.html(rows); // Inserta todas las filas de una sola vez
+			
+			try {
+				new simpleDatatables.DataTable("#fireEmployees", {searchable: !0, fixedHeight: !1});
+			} catch (e) {
+			}
+		},
+		complete: function () {
+			$("#Loader").css({
+				display: "none"
+			});
+		},
+		error: function () {
+			// noinspection JSUnresolvedReference
+			return void Swal.fire({icon: "error", title: "Error...", text: "No se logro recuperar la información de los empleados."});
+		}
+	});
+}
+
+function capitalizeWords(str) {
+	if (!str) return ""; // Verifica si la cadena es nula o vacía
+	return str
+		.split(" ") // Divide la cadena en palabras
+		.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitaliza cada palabra
+		.join(" "); // Une las palabras nuevamente con espacios
+}
+
+function fireEmployee(employeeId, lastName, name) {
+	// noinspection JSUnresolvedReference
+	Swal.fire({
+		title: "Espera...",
+		text: `¿Estás seguro que deseas dar de baja al empleado: ${lastName} ${name}?`,
+		icon: "warning",
+		showCancelButton: !0,
+		confirmButtonColor: "#3085d6",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Sí, dar de baja",
+	}).then((e) => {
+		// noinspection JSUnresolvedReference
+		if (e.isConfirmed) {
+			$.ajax({
+				url: "/fireEmployee",
+				data: JSON.stringify({
+					employee: employeeId,
+				}),
+				dataType: "JSON",
+				contentType: "application/json; charset=utf-8",
+				method: "DELETE",
+				beforeSend() {
+					displayLoaderCompany();
+				},
+				success: function () {
+					// console.log(response);
+					// noinspection JSUnresolvedReference
+					return void Swal.fire({icon: "success", title: "Se dio de baja al empleado de forma exitosa.", timer: 1500});
+				},
+				complete: function () {
+					$("#Loader").css({
+						display: "none"
+					});
+					getEmployees();
+				},
+				error: function () {
+					// console.error("Error en la solicitud:", status);
+					// noinspection JSUnresolvedReference
+					return void Swal.fire({icon: "error", title: "Error...", text: "No se logro dar de baja al empleado, por favor, inténtelo nuevamente."});
+				}
+			});
+		}
+	});
+}
+
+function fireEmployees() {
+	// noinspection JSUnresolvedReference
+	Swal.fire({
+		title: "Espera...",
+		text: `¿Estás seguro que deseas dar de baja los empleados que se encuentran en el archivo?`,
+		icon: "warning",
+		showCancelButton: !0,
+		confirmButtonColor: "#3085d6",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Sí, dar de baja",
+	}).then((e) => {
+		// noinspection JSUnresolvedReference
+		if (e.isConfirmed) {
+			getWInfo().then(data => {
+				const formElement = $("#formNomina")[0];
+				if (!formElement || formElement.tagName !== "FORM") {
+					console.error("El elemento no es un formulario válido.");
+					return;
+				}
+				const formData = new FormData(formElement);
+				formData.append("bajas", $("#fireFile")[0].files[0]);
+				formData.append("company", data.c);
+				const settings = {
+					url: url + "sExpressUploadFires",
+					type: "POST",
+					headers: {"Authorization": "Bearer " + data["t"],},
+					data: formData,
+					processData: false,
+					contentType: false,
+					beforeSend() {
+						displayLoaderCompany();
+					},
+					success() {
+						// noinspection JSUnresolvedReference
+						return void Swal.fire({icon: "success", title: "Se dieron de baja a los empleados de forma exitosa.", timer: 1500});
+					},
+					complete() {
+						$("#Loader").css({display: "none"});
+						getEmployees();
+					},
+					error(){
+						// noinspection JSUnresolvedReference
+						return void Swal.fire({
+							icon: "error",
+							title: "Error...",
+							text: "No se logro dar de baja a los empleados, por favor, inténtelo nuevamente."
+						});
+					}
+				};
+				$.ajax(settings);
+			});
+		}
+	});
+}
+
+function displayLoaderCompany() {
+	// noinspection DuplicatedCode
+	let obj = $("#mainContainer");
+	const left = obj.offset().left;
+	const top = obj.offset().top;
+	const width = obj.width();
+	const height = obj.height();
+	$("#Loader").delay(50000).css({
+		display: "block",
+		opacity: 1,
+		visibility: "visible",
+		left: left,
+		top: top,
+		width: width,
+		height: height,
+		zIndex: 999999
+	}).focus();
 }

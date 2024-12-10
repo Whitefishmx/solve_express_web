@@ -86,6 +86,19 @@
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
 		}
+		public function getEmployees ( array $args, $company, $token ): bool|string {
+			$endPoint = 'sExpressEmployees';
+			$data = [
+				'company'  => $company,
+				'hiringDate' => $args[ 'hiringDate' ],
+				'fireDate' => $args[ 'fireDate' ],
+				'rfc' => $args[ 'rfcFire' ],
+				'curp' => $args[ 'curpFire' ],
+				'name' => $args[ 'nameFire' ],
+				'fire' => $args[ 'fire' ],
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
+		}
 		public function getProfile ( int $user, string $token ): bool|string {
 			$endPoint = 'sExpressProfile';
 			$data = [
@@ -100,6 +113,14 @@
 				'platform' => 6,
 			];
 			return $this->SendRequest ( $endPoint, $data, 'GET', NULL );
+		}
+		public function fireEmployee ($employee, $company, $token): bool|string {
+			$endPoint = 'sExpressFireOne';
+			$data = [
+				'employee'     => $employee,
+				'company' => $company,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'DELETE', 'JSON' , $token);
 		}
 		private function SendRequest ( string $endpoint, array $data, ?string $method, ?string $dataType, string $token = NULL ): string|bool {
 			$method = !empty( $method ) ? strtoupper ( $method ) : 'POST';
