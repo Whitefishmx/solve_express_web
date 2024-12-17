@@ -104,12 +104,12 @@
 				<h4 style="margin-bottom: 2rem">Inicio de sesión</h4>
 				<form id="signinForm" name="signinForm" method="POST">
 					<div class="form-group">
-						<label for="curp" style="display: block; width: 100%; padding-left: 50px; margin-bottom: 0; text-align: left;">CURP/Correo/Usuario</label>
+						<label for="curp" style="display: block; width: 100%; padding-left: 50px; margin-bottom: 0; text-align: left;">Usuario</label>
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="material-icons">account_circle</i></span>
 							</div>
-							<input id="curp" name="curp" type="text" class="form-control" placeholder="18 caracteres" required>
+							<input id="curp" name="curp" type="text" class="form-control" placeholder="CURP / Correo / Usuario" required>
 						</div>
 						<span class="invalid-feedback">formato erróneo</span>
 					</div>
@@ -132,9 +132,13 @@
 						</button>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="input-group">
+					<div class="form-group row">
+						<div class="input-group col-lg-5">
 							<a href="/validarCURP" target="_self">Registrarse</a>
+							</button>
+						</div>
+						<div class="input-group col-lg-7">
+							<a href="/resetPassword" target="_self">Recuperar contraseña</a>
 							</button>
 						</div>
 					</div>

@@ -18,12 +18,16 @@
 	$routes->add ( 'signout', 'SessionController::signOut' /**@uses \App\Controllers\SessionController::signOut * */ );
 	$routes->add ( 'forgot', 'ProfileController::forgot' /**@uses \App\Controllers\ProfileController::forgot * */ );
 	$routes->add ( 'signIn', 'SignInController::index' /**@uses \App\Controllers\SignInController::index * */ );
+	$routes->add ( 'initRecovery', 'ProfileController::initRecovery' /**@uses \App\Controllers\ProfileController::initRecovery * */ );
+	$routes->add ( 'validateCode', 'ProfileController::verifyCode' /**@uses \App\Controllers\ProfileController::verifyCode * */ );
+	$routes->add ( 'changePassword', 'ProfileController::changePassword' /**@uses \App\Controllers\ProfileController::changePassword * */ );
 	//====================================||   GET   ||====================================
-	$routes->add ( 'validateIdentity', 'SignInController::validateIdentity' /**@uses \App\Controllers\SignInController::validateIdentity * */ );
-	$routes->add ( 'validarCURP', 'SignInController::validarCURP' /**@uses \App\Controllers\SignInController::validarCURP * */ );
-	$routes->add ( 'profile', 'ProfileController::index' /**@uses \App\Controllers\ProfileController::index * */ );
-	$routes->add ( 'getLaws', 'Home::getLaws' /**@uses \App\Controllers\Home::getLaws * */ );
-	$routes->add ( '/', 'Home::index' /**@uses \App\Controllers\Home::index * */ );
+	$routes->get ( 'validateIdentity', 'SignInController::validateIdentity' /**@uses \App\Controllers\SignInController::validateIdentity * */ );
+	$routes->get ( 'validarCURP', 'SignInController::validarCURP' /**@uses \App\Controllers\SignInController::validarCURP * */ );
+	$routes->get ( 'profile', 'ProfileController::index' /**@uses \App\Controllers\ProfileController::index * */ );
+	$routes->get ( 'resetPassword', 'ProfileController::resetPassword' /**@uses \App\Controllers\ProfileController::resetPassword * */ );
+	$routes->get ( 'getLaws', 'Home::getLaws' /**@uses \App\Controllers\Home::getLaws * */ );
+	$routes->get ( '/', 'Home::index' /**@uses \App\Controllers\Home::index * */ );
 	//====================================||   POST  ||====================================
 	$routes->add ( 'disposiciones', 'EmployeeController::disposiciones' /**@uses \App\Controllers\EmployeeController::disposiciones * */ );
 	$routes->add ( 'reportCompany', 'CompanyController::reportCompany' /**@uses \App\Controllers\CompanyController::reportCompany * */ );

@@ -2,9 +2,6 @@
 	
 	namespace App\Models;
 	
-	use CodeIgniter\Model;
-	use Config\Database;
-	
 	class DataModel extends BaseModel {
 		private string $url = '';
 		public function __construct () {
@@ -17,7 +14,7 @@
 				$this->url = 'https://apisandbox.solve.com.mx/public/';
 			}
 		}
-		public function setUser ( string $nickname, string $email, string $password, string $password2, mixed $user, string $phone = NULL): bool|string {
+		public function setUser ( string $nickname, string $email, string $password, string $password2, mixed $user, string $phone = NULL ): bool|string {
 			$endPoint = 'setUser';
 			$data = [
 				'user'        => $user,
@@ -184,5 +181,30 @@
 				$response = json_encode ( $resp );
 			}
 			return $response;
+		}
+		public function initRecovery ( string $curp ): bool|string {
+			$endPoint = 'sExpressInitRecovery';
+			$data = [
+				'curp' => $curp,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
+		}
+		public function verifyCode ( string $code, string $user ): bool|string {
+			$endPoint = 'sExpressValidateCode';
+			$data = [
+				'code' => $code,
+				'user' => $user,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
+		}
+		public function resetPassword ( mixed $user, string $code, string $password, string $password2 ): bool|string {
+			$endPoint = 'resetPassword';
+			$data = [
+				'user'      => $user,
+				"code"      => $code,
+				'password'  => $password,
+				'password2' => $password2,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'PATCH', 'JSON' );
 		}
 	}
