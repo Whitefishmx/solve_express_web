@@ -9,10 +9,17 @@
 			if ( ENVIRONMENT === 'development' ) {
 				$this->url = 'https://api-solve.local/';
 			} else if ( ENVIRONMENT === 'production' ) {
+				$this->url = 'https://api-solve.local/';
+			} else {
+				$this->url = 'https://api-solve.local/';
+			}
+			/*if ( ENVIRONMENT === 'development' ) {
+				$this->url = 'https://apisandbox.solve.com.mx/public/';
+			} else if ( ENVIRONMENT === 'production' ) {
 				$this->url = 'https://apisandbox.solve.com.mx/public/';
 			} else {
 				$this->url = 'https://apisandbox.solve.com.mx/public/';
-			}
+			}*/
 		}
 		public function setUser ( string $nickname, string $email, string $password, string $password2, mixed $user, string $phone = NULL ): bool|string {
 			$endPoint = 'setUser';
@@ -185,7 +192,7 @@
 		public function initRecovery ( string $curp ): bool|string {
 			$endPoint = 'sExpressInitRecovery';
 			$data = [
-				'curp' => $curp,
+				'email' => $curp,
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
 		}

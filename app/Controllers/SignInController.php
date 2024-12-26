@@ -34,6 +34,7 @@
 			$session = session ();
 			$session->set ( 'logged_in', TRUE );
 			$session->set ( 'user', $res[ 'user' ] );
+			$session->set ( 'company', $res[ 'user' ]['data']['companyId'] );
 			$session->set ( 'token', $res[ 'access_token' ][ 'token' ] );
 			$this->errCode = 200;
 			$this->responseBody = [

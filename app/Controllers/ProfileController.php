@@ -72,7 +72,7 @@
 				return $this->getResponse ( $this->responseBody, $this->errCode );
 			}
 			$data = new DataModel();
-			$res = json_decode ( $data->initRecovery ( $this->input[ 'curp' ] ), TRUE );
+			$res = json_decode ( $data->initRecovery ( $this->input[ 'email' ] ), TRUE );
 			if ( $res[ 'error' ] !== 200 ) {
 				$this->serverError ( $res[ 'description' ], $res[ 'reason' ] );
 				return $this->getResponse ( $this->responseBody, $this->errCode );

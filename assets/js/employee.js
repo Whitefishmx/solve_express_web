@@ -56,7 +56,8 @@ function GetDisposiciones() {
 				let tableRes = "";
 				
 				$.each(response.response, function (index, value) {
-					let url = "https://api-solve.local/cepDownloader/";
+					let url = "https://apisandbox.solve.com.mx/public/cepDownloader/";
+					//let url = "https://api-solve.local/cepDownloader/";
 					let cep = "No disponible";
 					if (value["cep"] != null) {
 						cep = "<a href='" + url + value["cep"] + "' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";

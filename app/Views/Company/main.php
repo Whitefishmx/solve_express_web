@@ -18,16 +18,16 @@
 	
 	<link rel="shortcut icon" href="/favicon.ico">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
-	<link href="/assets/libs/animate.css/animate.min.css" rel="stylesheet" type="text/css">
-	<link href="/assets/libs/mobius1-selectr/selectr.min.css" rel="stylesheet" type="text/css" />
-	<link href="/assets/libs/simple-datatables/style.css" rel="stylesheet" type="text/css" />
-	<link href="/assets/libs/simplebar/simplebar.min.css" rel="stylesheet" type="text/css">
-	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-	<link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/libs/sweetalert2/sweetalert2.min.css?v=1.1.1" rel="stylesheet" type="text/css">
+	<link href="/assets/libs/animate.css/animate.min.css?v=1.1.1" rel="stylesheet" type="text/css">
+	<link href="/assets/libs/mobius1-selectr/selectr.min.css?v=1.1.1" rel="stylesheet" type="text/css" />
+	<link href="/assets/libs/simple-datatables/style.css?v=1.1.1" rel="stylesheet" type="text/css" />
+	<link href="/assets/libs/simplebar/simplebar.min.css?v=1.1.1" rel="stylesheet" type="text/css">
+	<link href="/assets/css/bootstrap.min.css?v=1.1.1" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/icons.min.css?v=1.1.1" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/app.min.css?v=1.1.2" rel="stylesheet" type="text/css" />
 	
-	<link href="/assets/css/CompanyExpress.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/CompanyExpress.css?v=1.1.1" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -404,14 +404,14 @@
 		</div>
 	</div>
 </div>
-<script src="/assets/js/jquery-3.7.1.min.js"></script>
-<script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/libs/simplebar/simplebar.min.js"></script>
-<script src="/assets/libs/simple-datatables/umd/simple-datatables.js"></script>
-<script src="/assets/libs/mobius1-selectr/selectr.min.js"></script>
-<script src="/assets/js/app.js"></script>
-<script src="/assets/libs/sweetalert2/sweetalert2.min.js"></script>
-<script src="/assets/js/company.js"></script>
+<script src="/assets/js/jquery-3.7.1.min.js?v=1.1.1"></script>
+<script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js?v=1.1.1"></script>
+<script src="/assets/libs/simplebar/simplebar.min.js?v=1.1.1"></script>
+<script src="/assets/libs/simple-datatables/umd/simple-datatables.js?v=1.1.1"></script>
+<script src="/assets/libs/mobius1-selectr/selectr.min.js?v=1.1.1"></script>
+<script src="/assets/js/app.js?v=1.1.1"></script>
+<script src="/assets/libs/sweetalert2/sweetalert2.min.js?v=1.1.1"></script>
+<script src="/assets/js/company.js?v=1.1.2"></script>
 </body>
 <!--end body-->
 </html>

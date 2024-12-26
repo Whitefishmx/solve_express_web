@@ -108,8 +108,8 @@
 								<div class="card-body pt-0" id="curpForm" style="display: block;">
 									<form class="my-4" id="formCurpValidator">
 										<div class="form-group mb-2">
-											<label for="curp" class="form-label">CURP</label>
-											<input id="curp" name="curp" type="text" class="form-control" placeholder="JDHY587536HFTEHR73">
+											<label for="email" class="form-label">Correo</label>
+											<input id="email" name="curp" type="text" class="form-control" placeholder="alguien@algo.com">
 										</div><!--end form-group-->
 										<div class="form-group mb-0 row">
 											<div class="col-6">

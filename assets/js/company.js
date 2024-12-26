@@ -15,8 +15,8 @@ let rfcFire = $("#rfcFire");
 let curpFire = $("#curpFire");
 let nameFire = $("#nameFire");
 let showFires = $("#showFires");
-// let url = 'https://apisandbox.solve.com.mx/public/';
-let url = "https://api-solve.local/";
+let url = 'https://apisandbox.solve.com.mx/public/';
+// let url = "https://api-solve.local/";
 $(document).ready(function () {
 	initDate.add(endDate).add(rfc).add(curp).add(name).on("input", function () {
 		getReport();
@@ -61,6 +61,9 @@ $(document).ready(function () {
 		e.preventDefault();
 		fireEmployees();
 	});
+	$("#uploadNomina").on('click', function (){
+		uploadNomina();
+	});
 });
 
 function getPeriods() {
@@ -86,7 +89,7 @@ function getPeriods() {
 		},
 		error: function (status) {
 			// Maneja los errores de la solicitud
-			console.error("Error en la solicitud:", status);
+			return void Swal.fire({icon: "error", title: "Error...", text: "No se logro recuperar la información de los periodos.",timer: 1500});
 		}
 	});
 }
@@ -143,7 +146,7 @@ function getReport() {
 		},
 		error: function (status) {
 			// Maneja los errores de la solicitud
-			console.error("Error en la solicitud:", status);
+			return void Swal.fire({icon: "error", title: "Error...", text: "No se logro recuperar la información de los empleados.",timer: 1500});
 		}
 	});
 }
@@ -236,13 +239,14 @@ function getWInfo() {
 	});
 }
 
-/*function uploadNomina() {
+function uploadNomina() {
 	getWInfo().then(data => {
 		const formData = new FormData($("#formNomina")[0]);
 		formData.append("nomina", $("#nominaFile")[0].files[0]);
 		formData.append("company", data["c"]);
+		formData.append("user", data["u"]);
 		$.ajax({
-			url: "https://api-solve.local/sExpressUploadNomina",
+			url: url+"sExpressUploadNomina",
 			method: "POST",
 			timeout: 0,
 			headers: {"Authorization": "Bearer " + data["t"],},
@@ -251,36 +255,25 @@ function getWInfo() {
 			contentType: false,
 			data: formData,
 			beforeSend: function () {
-				const obj = $("#mainContainer");
-				const left = obj.offset().left;
-				const top = obj.offset().top;
-				const width = obj.width();
-				const height = obj.height();
-				$("#solveLoader").delay(50000).css({
-					display: "block",
-					opacity: 1,
-					visibility: "visible",
-					left: left,
-					top: top,
-					width: width,
-					height: height,
-					zIndex: 999999
-				}).focus();
+				displayLoaderCompany();
 			},
 			success: function (response) {
 				console.log("Respuesta del servidor:", response);
+				void Swal.fire({icon: "success", title: "Se actualizó la nomina de forma exitosa. ", timer: 1500});
+				getEmployees();
 			},
 			complete: function () {
-				$("#solveLoader").css({
+				$("#Loader").css({
 					display: "none"
 				});
 			},
 			error: function (status) {
-				console.error("Error en la solicitud:", status);
+				// noinspection JSUnresolvedReference
+				return void Swal.fire({icon: "error", title: "Error...", text: "No se logro leer el archivo, verifique que los encabezados y tipo de celda sean correctos"});
 			}
 		});
 	});
-}*/
+}
 function getInvoices() {
 	try {
 		new simpleDatatables.DataTable("#tableInvoice", {searchable: !0, fixedHeight: !1});

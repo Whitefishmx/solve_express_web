@@ -125,7 +125,7 @@ function initRecovery() {
 	$.ajax({
 		url: "/initRecovery",
 		data: {
-			curp: $("#curp").val(),
+			email: $("#email").val(),
 		},
 		dataType: "JSON",
 		method: "POST",
