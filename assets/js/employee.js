@@ -21,7 +21,6 @@ $(document).ready(function () {
 		const value = (rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min) * 100;
 		rangeInput.style.background = `linear-gradient(to right, var(--main-color) ${value}%, #ddd ${value}%)`;
 	});
-	$("#reqPay").on("click", RequestPay);
 });
 
 function GetDisposiciones() {
@@ -135,7 +134,7 @@ function GetDashboard() {
 			$("#company").html(response.response.short_name);
 			
 			$("#DashDays").html("<h2 class=\"text-center\" style=\"font-weight: bold\"><img src=\"assets/img/calendar.png\" style=\"height: 1.7rem\"> " + response.response.worked_days + "</h2>");
-			$("#DashAvailable").html("<h2 class=\"text-center\" style=\"font-weight: bold\">$ " + Intl.NumberFormat("en-US").format(response.response.amount_available) + "</h2>");
+			$("#DashAvailable").html("<h2 class=\"text-center\" style=\"font-weight: bold\">$ " + Intl.NumberFormat("en-US").format(parseInt(response.response.amount_available)) + "</h2>");
 			
 			cantidad.attr("min", response.response.min_amount);
 			if (parseFloat(response.response.amount_available) <= parseFloat(response.response.max_amount)) {

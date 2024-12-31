@@ -34,7 +34,6 @@
 			$id = $session->get ( 'user' )[ 'data' ][ 'id' ];
 			$token = $session->get ( 'token' );
 			$profile = $data->getProfile ( $id, $token );
-			//			var_dump ( $profile );  die();
 			return $this->getResponse ( json_decode ( $profile, TRUE ), json_decode ( $profile, TRUE )[ 'error' ] );
 		}
 		/**

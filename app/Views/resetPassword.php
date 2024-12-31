@@ -99,7 +99,7 @@
 										</a>
 										<h4 class="card-title" id="TitleCard" style="margin-top: 20px">Recuperar contraseña</h4>
 										<div>
-											<p class="card-subtitle fs-14 mb-2" id="InstructionsCard">Introduce tu CURP para validar que estes registrado.</p>
+											<p class="card-subtitle fs-14 mb-2" id="InstructionsCard">Introduce tu correo para validar que estes registrado.</p>
 										</div>
 									</div>
 								</div>
@@ -194,10 +194,10 @@
 </div>
 
 <!-- Javascript  -->
-<script src="/assets/libs/sweetalert2/sweetalert2.min.js"></script>
-<script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/js/app.js"></script>
-<script src="/assets/js/resetPassword.js"></script>
+<script src="/assets/libs/sweetalert2/sweetalert2.min.js?v=1.1.2"></script>
+<script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js?v=1.1.3"></script>
+<script src="/assets/js/app.js?v=1.1.2"></script>
+<script src="/assets/js/resetPassword.js?v=1.1.3"></script>
 </body>
 <!--end body-->
 </html>
