@@ -35,7 +35,7 @@
 	<link href="/assets/css/CompanyExpress.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/css/_tables.scss" rel="stylesheet" type="text/css" />
 
-	<link type="text/css" rel="stylesheet" href="/./assets/css/sExpress.css" />
+	<link type="text/css" rel="stylesheet" href="/./assets/css/sExpress.css?v=1.1.2" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>SOLVE<?= $title ?></title>
 </head>
@@ -260,6 +260,6 @@
 <script src="/assets/libs/simplebar/simplebar.min.js"></script>
 <script src="/assets/js/app.js"></script>
 <script src="/assets/js/datatable.init.js"></script>
-<script type="text/javascript" src="/./assets/js/employee.js?v=1.1.5"></script>
+<script type="text/javascript" src="/./assets/js/employee.js?v=1.1.6"></script>
 </body>
 </html>

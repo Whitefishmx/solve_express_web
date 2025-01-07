@@ -100,7 +100,7 @@
 				
 				<div class="row justify-content-center">
 					<div class="col-md-10 card cardback bordercard">
-						<h3 class="text-center" style="font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0;">Solicitar</h3>
+						<h3 class="text-center" style="font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0;">Monto</h3>
 						<div class="col-md-12">
 							<div class="card-body text-center" style="padding-top: 0">
 								<div class="row justify-content-center">
@@ -119,7 +119,7 @@
 									id="reqPay" name="reqPay" type="submit" class="btn"
 									onclick="document.getElementById('exampleModalScrollable').style.display='block'"
 									style="width: 100%; color: var(--title-color) !important; font-size: 1rem; height: 2.5rem; letter-spacing: 0.1rem; margin-bottom: 1.5rem; background-color: #FF9400 !important;"
-									data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Solicitar adelanto
+									data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Solicitar
 							</button>
 						</div>
 					</div>
@@ -130,17 +130,17 @@
 					<table class="table table-hover mb-0">
 						<thead class="table-light">
 						<tr>
-							<th>Plan</th>
-							<th>Periodo</th>
-							<th>Monto pedido</th>
-							<th>Monto restante</th>
-							<th>Folio</th>
-							<th>Num. Referencia</th>
-							<th>Cuenta Clabe</th>
-							<th>Banco</th>
-							<th>CEP</th>
-							<th>Fecha de Solicitud</th>
-							<th>Fecha de Pago</th>
+							<th style="text-align: center">Plan</th>
+							<th style="text-align: center">Periodo</th>
+							<th style="text-align: center">Monto solicitado</th>
+							<th style="text-align: center">Monto restante</th>
+							<th style="text-align: center">Folio</th>
+							<th style="text-align: center">Num. Referencia</th>
+							<th style="text-align: center">Cuenta Clabe</th>
+							<th style="text-align: center">Banco</th>
+							<th style="text-align: center">Comprobante de Pago</th>
+							<th style="text-align: center">Fecha de Solicitud</th>
+							<th style="text-align: center">Fecha de Pago</th>
 						</tr>
 						</thead>
 						<tbody id="resDisposition"></tbody>
