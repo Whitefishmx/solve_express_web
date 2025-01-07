@@ -10,6 +10,7 @@
     --shadow-box: #75757587;
     --background-card: #FFFFFF;
     --progressW: 50%;
+    --range-color: #FF9400;
 }
 
 /*@media (prefers-color-scheme: dark) {

@@ -8,7 +8,7 @@ $(document).ready(function () {
 	$("#dashboard").on("click", GetDashboard);
 	rangeInput.addEventListener("input", function () {
 		const value = (this.value - this.min) / (this.max - this.min) * 100;
-		this.style.background = `linear-gradient(to right, var(--main-color) ${value}%, #ddd ${value}%)`;
+		this.style.background = `linear-gradient(to right, var(--range-color) ${value}%, #ddd ${value}%)`;
 	});
 	cantidad.on("input", function () {
 		let rangeMin = $(this).attr("min");
@@ -19,7 +19,7 @@ $(document).ready(function () {
 	rangeOutput.addEventListener("input", function () {
 		rangeInput.value = this.value; // Actualiza el valor del rango
 		const value = (rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min) * 100;
-		rangeInput.style.background = `linear-gradient(to right, var(--main-color) ${value}%, #ddd ${value}%)`;
+		rangeInput.style.background = `linear-gradient(to right, var(--range-color) ${value}%, #ddd ${value}%)`;
 	});
 });
 
