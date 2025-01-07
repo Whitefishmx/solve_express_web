@@ -15,7 +15,7 @@ let rfcFire = $("#rfcFire");
 let curpFire = $("#curpFire");
 let nameFire = $("#nameFire");
 let showFires = $("#showFires");
-let url = 'https://apisandbox.solve.com.mx/public/';
+let url = "https://apisandbox.solve.com.mx/public/";
 // let url = "https://api-solve.local/";
 $(document).ready(function () {
 	initDate.add(endDate).add(rfc).add(curp).add(name).on("input", function () {
@@ -61,7 +61,7 @@ $(document).ready(function () {
 		e.preventDefault();
 		fireEmployees();
 	});
-	$("#uploadNomina").on('click', function (){
+	$("#uploadNomina").on("click", function () {
 		uploadNomina();
 	});
 });
@@ -77,9 +77,9 @@ function getPeriods() {
 		},
 		success: function (response) {
 			periodSelector.removeAll();
-			periodSelector.add({value: "", text: "Todos"});
+			periodSelector.add({value: "", text: "Todos", selected: true});
 			$.each(response.response, function (index, value) {
-				periodSelector.add({value: value, text: value});
+				periodSelector.add({value: value["period"], text: value["period"]});
 			});
 		},
 		complete: function () {
@@ -89,7 +89,7 @@ function getPeriods() {
 		},
 		error: function (status) {
 			// Maneja los errores de la solicitud
-			return void Swal.fire({icon: "error", title: "Error...", text: "No se logro recuperar la información de los periodos.",timer: 1500});
+			return void Swal.fire({icon: "error", title: "Error...", text: "No se logro recuperar la información de los periodos.", timer: 1500});
 		}
 	});
 }
@@ -118,18 +118,16 @@ function getReport() {
 			// Construir el contenido HTML en una cadena
 			let rows = "";
 			$.each(response["response"], function (index, value) {
-				let formattedName = capitalizeWords(value["name"]);
-				let formattedLastName = capitalizeWords(value["last_name"]);
-				let formattedSureName = capitalizeWords(value["sure_name"]);
 				rows += `
             <tr>
                 <td>${value["external_id"]}</td>
-                <td>${formattedLastName} ${formattedSureName} ${formattedName}</td>
-                <td>${value["rfc"]}</td>
-                <td>$ ${value["net_salary"]}</td>
-                <td>$ ${value["sum_request_amount"]}</td>
-                <td>$ ${value["remaining_amount"]}</td>
+                <td>${value["name"]} ${value["last_name"]} ${value["sure_name"]}</td>
+                <td>${value["curp"]}</td>
+                <td>$ ${Intl.NumberFormat("en-US").format(value["net_salary"])}</td>
+                <td>$ ${Intl.NumberFormat("en-US").format(value["requested_amount"])}</td>
+                <td>$ ${Intl.NumberFormat("en-US").format(value["remaining_amount"])}</td>
                 <td>${value["period"]}</td>
+                <td>${value["request_date"]}</td>
             </tr>`;
 			});
 			
@@ -146,7 +144,7 @@ function getReport() {
 		},
 		error: function (status) {
 			// Maneja los errores de la solicitud
-			return void Swal.fire({icon: "error", title: "Error...", text: "No se logro recuperar la información de los empleados.",timer: 1500});
+			return void Swal.fire({icon: "error", title: "Error...", text: "No se logro recuperar la información de los empleados.", timer: 1500});
 		}
 	});
 }
@@ -246,7 +244,7 @@ function uploadNomina() {
 		formData.append("company", data["c"]);
 		formData.append("user", data["u"]);
 		$.ajax({
-			url: url+"sExpressUploadNomina",
+			url: url + "sExpressUploadNomina",
 			method: "POST",
 			timeout: 0,
 			headers: {"Authorization": "Bearer " + data["t"],},
@@ -269,11 +267,16 @@ function uploadNomina() {
 			},
 			error: function (status) {
 				// noinspection JSUnresolvedReference
-				return void Swal.fire({icon: "error", title: "Error...", text: "No se logro leer el archivo, verifique que los encabezados y tipo de celda sean correctos"});
+				return void Swal.fire({
+					icon: "error",
+					title: "Error...",
+					text: "No se logro leer el archivo, verifique que los encabezados y tipo de celda sean correctos"
+				});
 			}
 		});
 	});
 }
+
 function getInvoices() {
 	try {
 		new simpleDatatables.DataTable("#tableInvoice", {searchable: !0, fixedHeight: !1});
