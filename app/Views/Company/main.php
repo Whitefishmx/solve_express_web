@@ -152,7 +152,7 @@
 <script src="/assets/libs/mobius1-selectr/selectr.min.js?v=1.1.1"></script>
 <script src="/assets/js/app.js?v=1.1.1"></script>
 <script src="/assets/libs/sweetalert2/sweetalert2.min.js?v=1.1.1"></script>
-<script src="/assets/js/company.js?v=1.1.3"></script>
+<script src="/assets/js/company.js?v=1.1.4"></script>
 </body>
 <!--end body-->
 </html>

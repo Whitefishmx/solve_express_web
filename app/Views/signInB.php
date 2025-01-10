@@ -64,28 +64,32 @@
     .container {
         margin: 0 auto !important;
     }
-	.header{
-		display: flex;
-		flex-wrap: wrap;
-	}
-	.header div{
-		width: 100%;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		padding: 20px;
-	}
-	@media screen and (max-width: 770px){
-		.header div{
-			width: 100%;
-		}
-	}
-	.alerta{
-		position: absolute;
-		display: block;
-		left: calc(50% - 200px);
-		top: 50%;
-	}
+
+    .header {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .header div {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    @media screen and (max-width: 770px) {
+        .header div {
+            width: 100%;
+        }
+    }
+
+    .alerta {
+        position: absolute;
+        display: block;
+        left: calc(50% - 200px);
+        top: 50%;
+    }
 </style>
 <div id="Loader"></div>
 <main class="py-4">
@@ -98,9 +102,9 @@
 			<div class="col-md-5 d-none d-md-block" style="background-color: var(--main-color); border-radius: 25px; color: var(--title-color); height: 90%;">
 				<h4 class="font-weight-bold" style="margin-top: 1rem; margin-bottom: 0;">¡Tu nómina al instante!</h4>
 				<h5 style="font-weight: 100;">Sin deudas y sin intereses</h5>
-				<img src="/./assets/img/women1.png" alt="ok" style="height: 24vw; display: block; margin: auto">
+				<img src="/./assets/img/women1.webp" alt="ok" style="height: 24vw; display: block; margin: auto">
 			</div>
-			<div class="col-md-6 d-md-block" style="padding: 1rem 5rem; min-width: 50%; width: auto">
+			<div class="col-md-6 d-md-block" style="min-width: 50%; width: auto">
 				<h4 style="margin-bottom: 2rem">Inicio de sesión</h4>
 				<form id="signinForm" name="signinForm" method="POST">
 					<div class="form-group">
@@ -125,11 +129,11 @@
 					</div>
 					<div class="form-group">
 						<div class="input-group">
-						<button
-								id="btnSend" name="btnSend" type="submit" class="btn btn-primary btn-block"
-								style="width: 100%; color: var(--title-color) !important; font-size: 1.2rem; height: 8vh; margin-top: 1.5rem; letter-spacing: 0.1rem;">
-							Iniciar sesión
-						</button>
+							<button
+									id="btnSend" name="btnSend" type="submit" class="btn btn-primary btn-block"
+									style="width: 100%; color: var(--title-color) !important; font-size: 1.2rem; height: 8vh; margin-top: 1.5rem; letter-spacing: 0.1rem;">
+								Iniciar sesión
+							</button>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -191,9 +195,9 @@
 					} else {
 						toastHTML = "<div class='alert alert-danger alerta' role='alert'>" + errors + "</div>";
 						$("body").append(toastHTML);
-						setTimeout(function() { 
-							$('.alerta').fadeOut('fast'); 
-						}, 1000)
+						setTimeout(function () {
+							$(".alerta").fadeOut("fast");
+						}, 1000);
 					}
 				},
 				complete: function () {
@@ -205,7 +209,7 @@
 		});
 	});
 
-	
+
 </script>
 </body>
 </html>

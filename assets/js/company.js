@@ -15,7 +15,7 @@ let rfcFire = $("#rfcFire");
 let curpFire = $("#curpFire");
 let nameFire = $("#nameFire");
 let showFires = $("#showFires");
-let url = "https://apisandbox.solve.com.mx/public/";
+let url = "https://sandbox.solvegcm.mx/";
 // let url = "https://api-solve.local/";
 $(document).ready(function () {
 	initDate.add(endDate).add(rfc).add(curp).add(name).on("input", function () {
@@ -79,7 +79,7 @@ function getPeriods() {
 			periodSelector.removeAll();
 			periodSelector.add({value: "", text: "Todos", selected: true});
 			$.each(response.response, function (index, value) {
-				periodSelector.add({value: value["period"], text: value["period"]});
+				periodSelector.add({value: value, text: value});
 			});
 		},
 		complete: function () {

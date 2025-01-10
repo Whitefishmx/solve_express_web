@@ -4,9 +4,10 @@
 	
 	use App\Models\DataModel;
 	use CodeIgniter\HTTP\RedirectResponse;
+	use CodeIgniter\HTTP\ResponseInterface;
 	
 	class Home extends BaseController {
-		public function index (): string|RedirectResponse {
+		public function index (): string|RedirectResponse|ResponseInterface {
 			if ( !$this->validateSession () ) {
 				return redirect ( 'signIn' );
 			}
@@ -22,9 +23,19 @@
 			if ( $permissions[ 'name' ] === 'main' ) {
 				$data = [ 'title' => 'SolveExpress | Adelanta Sueldo' ];
 				$data[ 'main' ] = view ( 'main' );
+				if ( str_contains ( service ( 'request' )->getHeaderLine ( 'Accept-Encoding' ), 'gzip' ) ) {
+					$this->response->setHeader('Content-Encoding', 'gzip');
+					$this->response->setBody(gzencode(view('plantilla', $data )));
+					return $this->response;
+				}
 				return view ( 'plantilla', $data );
 			}
 			$data [ 'title' ] = 'SolveExpress | Empresas';
+			if ( str_contains ( service ( 'request' )->getHeaderLine ( 'Accept-Encoding' ), 'gzip' ) ) {
+				$this->response->setHeader('Content-Encoding', 'gzip');
+				$this->response->setBody(gzencode(view('Company/main', $data )));
+				return $this->response;
+			}
 			return view ( 'Company/main', $data );
 		}
 		public function getLaws () {

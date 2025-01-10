@@ -5,7 +5,6 @@
 	/**
 	 * Permite guardar un log en la base de datos
 	 *
-	 * @param int         $company  id de la compañía
 	 * @param int         $user     id de usuario
 	 * @param int         $function id de función
 	 * @param int         $code     Código de estatus
@@ -15,17 +14,18 @@
 	 *
 	 * @return bool resultado
 	 */
-	function saveLog ( int $user, int $function, int $code, string $dataIn, string $dataOut = NULL, string $env = NULL ): bool {
+	function saveLog ( int $user, int $function, int $code, string $dataIn, ?string $dataOut = NULL, ?string $env = NULL ): bool {
 		$model = new BaseModel();
 		$data = [
-			'user' => $user,
+			'user'     => $user,
 			'function' => $function,
-			'code' => $code,
-			'dataIn' => $dataIn,
-			'dataOut' => $dataOut,
+			'code'     => $code,
+			'dataIn'   => $dataIn,
+			'dataOut'  => $dataOut,
 		];
 		return $model->saveLogs ( $data, $env );
 	}
+	
 	/**
 	 * Permite crear un archivo
 	 *
@@ -36,9 +36,9 @@
 	 */
 	function createLog ( string $logName, string $message ): bool {
 		$logDir = 'logs/';
-		$logFile = fopen ( $logDir . $logName . '.log', 'a+' );
+		$logFile = fopen ( $logDir.$logName.'.log', 'a+' );
 		if ( $logFile !== FALSE ) {
-			$logMessage = '|' . date ( 'Y-m-d H:i:s' ) . '|   ' . $message . "\r\n";
+			$logMessage = '|'.date ( 'Y-m-d H:i:s' ).'|   '.$message."\r\n";
 			fwrite ( $logFile, $logMessage );
 			fclose ( $logFile );
 			return TRUE;

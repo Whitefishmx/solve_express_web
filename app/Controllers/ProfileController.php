@@ -8,7 +8,7 @@
 	use CodeIgniter\HTTP\ResponseInterface;
 	
 	class ProfileController extends BaseController {
-		public function index (): string|RedirectResponse {
+		public function index (): string|RedirectResponse|ResponseInterface {
 			if ( !$this->validateSession () ) {
 				return redirect ( 'signIn' );
 			}
@@ -22,6 +22,11 @@
 			$data[ 'company' ] = $user[ 'short_name' ];
 			$data[ 'session' ] = TRUE;
 			$data [ 'title' ] = 'SolveExpress | Perfil';
+			if ( str_contains ( service ( 'request' )->getHeaderLine ( 'Accept-Encoding' ), 'gzip' ) ) {
+				$this->response->setHeader('Content-Encoding', 'gzip');
+				$this->response->setBody(gzencode(view('profile', $data )));
+				return $this->response;
+			}
 			return view ( 'profile', $data );
 		}
 		public function getProfile (): ResponseInterface {
@@ -36,34 +41,18 @@
 			$profile = $data->getProfile ( $id, $token );
 			return $this->getResponse ( json_decode ( $profile, TRUE ), json_decode ( $profile, TRUE )[ 'error' ] );
 		}
-		/**
-		 * Válida si un nickname ya está en uso
-		 * @return ResponseInterface
-		 */
-		public function validateNickname (): ResponseInterface {
-			if ( $data = $this->verifyRules ( 'POST', $this->request, NULL ) ) {
-				return ( $data );
-			}
-			$input = $this->getRequestInput ( $this->request );
-			$validation = service ( 'validation' );
-			$validation->setRules ( [ 'nickname' => 'required|max_length[15]', ],
-				[ 'nickname' => [ 'max_length' => 'El nickName no debe tener mas de {param} caracteres' ] ] );
-			if ( !$validation->run ( $input ) ) {
-				$errors = $validation->getErrors ();
-				return $this->errDataSuplied ( $errors );
-			}
-			$user = new UserModel();
-			$res = $user->searchNickname ( $input[ 'nickname' ] );
-			if ( $res[ 0 ] ) {
-				return $this->getResponse ( [ 'error' => 200, 'description' => 'correcto', 'reason' => 'Nickname disponible' ] );
-			}
-			return $this->serverError ( 'Nickname invalido', 'El nickname ingresado ya esta en uso' );
-		}
-		public function resetPassword (): string|RedirectResponse {
+		public function resetPassword (): ResponseInterface|string {
 			if ( $this->validateSession () ) {
 				return redirect ( 'signIn' );
 			}
-			return view ( 'resetPassword' );
+			if ( str_contains ( service ( 'request' )->getHeaderLine ( 'Accept-Encoding' ), 'gzip' ) ) {
+				$this->response->setHeader('Content-Encoding', 'gzip');
+				$this->response->setBody(gzencode(view('resetPassword')));
+				return $this->response;
+			}
+			
+			// Si no se puede usar Gzip, simplemente devuelve la vista
+			return view('resetPassword');
 		}
 		public function initRecovery (): ResponseInterface {
 			$this->input = $this->getRequestInput ( $this->request );

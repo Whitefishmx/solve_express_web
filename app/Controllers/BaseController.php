@@ -38,7 +38,7 @@
 				'description' => 'Sesión invalida',
 				'reason'      => 'la sesión a caducado, vuelve a iniciar sesión' ];
 		}
-		public function logResponse ( int $function, array $inputData = NULL, array $responseData = NULL ): void {
+		public function logResponse ( int $function, ?array $inputData = NULL, ?array $responseData = NULL ): void {
 			saveLog ( $this->user, $function, $this->errCode, json_encode ( $inputData ?? $this->input, JSON_UNESCAPED_UNICODE ), json_encode ( $responseData ?? $this->responseBody, JSON_UNESCAPED_UNICODE ), $this->env );
 		}
 		/**
@@ -215,9 +215,9 @@
 			$login = $session->get ( 'logged_in' ) !== NULL ? $session->get ( 'logged_in' ) : FALSE;
 			$session->set ( 'logged_in', $login );
 			if ( $login ) {
-//				var_dump ( $session->get ( 'user' ) );
-//				die ();
-				$this->user = $session->get ( 'user' )['data'][ 'id' ];
+				//				var_dump ( $session->get ( 'user' ) );
+				//				die ();
+				$this->user = $session->get ( 'user' )[ 'data' ][ 'id' ];
 			} else {
 				$this->errCode = 500;
 			}

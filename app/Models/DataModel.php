@@ -14,14 +14,14 @@
 				$this->url = 'https://api-solve.local/';
 			}*/
 			if ( ENVIRONMENT === 'development' ) {
-				$this->url = 'https://apisandbox.solve.com.mx/public/';
+				$this->url = 'https://sandbox.solvegcm.mx/';
 			} else if ( ENVIRONMENT === 'production' ) {
-				$this->url = 'https://apisandbox.solve.com.mx/public/';
+				$this->url = 'https://sandbox.solvegcm.mx/';
 			} else {
-				$this->url = 'https://apisandbox.solve.com.mx/public/';
+				$this->url = 'https://sandbox.solvegcm.mx/';
 			}
 		}
-		public function setUser ( string $nickname, string $email, string $password, string $password2, mixed $user, string $phone = NULL ): bool|string {
+		public function setUser ( string $nickname, string $email, string $password, string $password2, mixed $user, ?string $phone = NULL ): bool|string {
 			$endPoint = 'setUser';
 			$data = [
 				'user'        => $user,
@@ -131,7 +131,7 @@
 			];
 			return $this->SendRequest ( $endPoint, $data, 'DELETE', 'JSON', $token );
 		}
-		private function SendRequest ( string $endpoint, array $data, ?string $method, ?string $dataType, string $token = NULL ): string|bool {
+		private function SendRequest ( string $endpoint, array $data, ?string $method, ?string $dataType, ?string $token = NULL ): string|bool {
 			$method = !empty( $method ) ? strtoupper ( $method ) : 'POST';
 			$resp = [ 'error' => 500, 'error_description' => 'SolveAPITransport' ];
 			$headers = [];

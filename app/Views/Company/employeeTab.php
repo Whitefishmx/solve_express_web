@@ -6,7 +6,7 @@
 					<div class="col-md-2 text-end">
 						<label class="col-form-label">
 							Descargar layout de nomina
-							<a href="https://apisandbox.solve.com.mx/public/layoutDownloader/express_nomina.xlsx" target="_blank"
+							<a href="https://sandbox.solvegcm.mx/layoutDownloader/express_nomina.xlsx" target="_blank"
 							   style="color: #FF9400"><i class="fas fa-download" style="font-size: 1.5rem"></i></a>
 						</label>
 					</div>

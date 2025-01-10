@@ -7,11 +7,16 @@
 	use CodeIgniter\HTTP\ResponseInterface;
 	
 	class SignInController extends BaseController {
-		public function index (): string|RedirectResponse {
+		public function index (): string|RedirectResponse|ResponseInterface {
 			if ( $this->validateSession () ) {
 				return redirect ( '/' );
 			}
 			$data = [ 'session' => FALSE ];
+			if ( str_contains ( service ( 'request' )->getHeaderLine ( 'Accept-Encoding' ), 'gzip' ) ) {
+				$this->response->setHeader('Content-Encoding', 'gzip');
+				$this->response->setBody(gzencode(view('signInB', $data )));
+				return $this->response;
+			}
 			return view ( 'signInB', $data );
 		}
 		public function signIn (): ResponseInterface|bool {
@@ -23,8 +28,6 @@
 			}
 			$user = new DataModel();
 			$res = json_decode ( $user->signIn ( $this->input[ 'curp' ], $this->input[ 'password' ] ), TRUE );
-			//			var_dump ($res );
-			//			die();
 			if ( $res[ 'error' ] != 0 ) {
 				$this->errDataSuplied ( 'Las credenciales ingresadas son incorrectas' );
 				//				$this->logResponse ( 1 );

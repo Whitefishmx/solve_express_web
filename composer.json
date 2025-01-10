@@ -15,7 +15,8 @@
       "ext-curl": "*",
       "ext-simplexml": "*",
       "ext-libxml": "*",
-      "ext-openssl": "*"
+      "ext-openssl": "*",
+      "ext-zlib": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",
