@@ -296,7 +296,7 @@ function createUser() {
 			}
 		},
 		error: function (error, textStatus, xhr) {
-			let textReason = "No se logro crear el usuario, intente nuevamente o contacte a soporte técnico";
+			let textReason = "No se logró crear el usuario, intente nuevamente o contacte a soporte técnico";
 			let parsedData = JSON.parse(error.responseText);
 			if (parsedData.reason) {
 				$.each(parsedData.reason, function (index, value) {
