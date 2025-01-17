@@ -520,6 +520,7 @@ function getPayments(){
                 <td>${status}</td>
                 <td>${cep}</td>
                 <td>${value["death_line"]}</td>
+                <td><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" onclick="showDetailsPayment" data-bs-target="#paymentsDetails">Ver detalles</button></td>
             </tr>`;
 			});
 			
@@ -542,52 +543,46 @@ function getPayments(){
 }
 function showDetailsPayment(period){
 	$.ajax({
-		url: "/getPaymentsDetails",
-		dataType: "JSON",
+		url: "/reportCompany",
 		data: JSON.stringify({
+			date1: initDate.val(),
+			date2: endDate.val(),
+			rfc: rfc.val(),
+			curp: curp.val(),
+			name: name.val(),
 			period: period,
 		}),
+		dataType: "JSON",
 		contentType: "application/json; charset=utf-8",
 		method: "POST",
 		beforeSend() {
 			displayLoaderCompany();
 		},
 		success: function (response) {
-			
-			let resAreaI = $("#tableInvoice tbody");
-			resAreaI.empty();
+			let resArea = $("#detailsPaaymentTbl tbody");
+			resArea.empty();
 			
 			// Construir el contenido HTML en una cadena
 			let rows = "";
 			$.each(response["response"], function (index, value) {
-				let status = "<span class='badge rounded-pill bg-danger'><strong>Pendiente</strong></span>";
-				if (value["status"] === '1'){
-					status = "<span class='badge rounded-pill bg-primary'><strong>Liquidado</strong></span>";
-				}
-				let cep = "En proceso";
-				if (value["cep"] != null) {
-					cep = "<a href='" + url + value["cep"] + "' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
-				}
 				rows += `
-            <tr onclick="showDetailsPayment('${value["concept"]}')" style="cursor: pointer">
-                <td>$ ${Intl.NumberFormat("en-US").format(value["amount"])}</td>
-                <td>${value["short_name"]}</td>
-                <td>${value["clabe"]}</td>
-                <td>${value["magicAlias"]}</td>
-                <td>${value["noReference"]}</td>
-                <td>${value["noReference"]}</td>
-                <td>${value["concept"]}</td>
-                <td>${status}</td>
-                <td>${cep}</td>
-                <td>${value["death_line"]}</td>
+            <tr>
+                <td>${value["external_id"]}</td>
+                <td>${value["name"]} ${value["last_name"]} ${value["sure_name"]}</td>
+                <td>${value["curp"]}</td>
+                <td>$ ${Intl.NumberFormat("en-US").format(value["net_salary"])}</td>
+                <td>$ ${Intl.NumberFormat("en-US").format(value["requested_amount"])}</td>
+                <td>$ ${Intl.NumberFormat("en-US").format(value["remaining_amount"])}</td>
+                <td>${value["period"]}</td>
+                <td>${value["request_date"]}</td>
             </tr>`;
 			});
 			
 			// Insertar el contenido en una sola operación
-			resAreaI.html(rows);
+			resArea.html(rows);
 			
 			// Inicializar la tabla
-			initializePayments();
+			initializeTable();
 		},
 		complete: function () {
 			$("#Loader").css({

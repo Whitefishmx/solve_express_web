@@ -14,6 +14,7 @@
 					<th>Estatus</th>
 					<th>CEP</th>
 					<th>Fecha limite de pago</th>
+					<th>Detalles</th>
 				</tr>
 				</thead>
 				<tbody id="companyResults">
@@ -23,3 +24,31 @@
 	</div>
 </div>
 
+<div class="modal fade bd-example-modal-xl" id="paymentsDetails" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title m-0" id="myExtraLargeModalLabel">Detalle de pago</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+	        <div class="modal-body">
+		        <table class="table datatable" id="detailsPaaymentTbl">
+			        <thead class="table-light">
+			        <tr>
+				        <th>#Empleado</th>
+				        <th>Nombre</th>
+				        <th>CURP</th>
+				        <th>Salario Neto</th>
+				        <th>Monto adelantado</th>
+				        <th>Monto restante</th>
+				        <th>Periodo</th>
+				        <th>Fecha</th>
+			        </tr>
+			        </thead>
+			        <tbody id="companyResults">
+			        </tbody>
+		        </table>
+	        </div>
+        </div>
+	</div>
+</div>
