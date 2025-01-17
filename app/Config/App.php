@@ -20,11 +20,11 @@ class App extends BaseConfig
 	public function __construct () {
 		parent::__construct ();
 		if ( ENVIRONMENT === 'development' ) {
-			$this->baseURL = 'https://app.solve-express.mx/signIn';
+			$this->baseURL = 'https://app.solve-express.mx/';
 		} else if ( ENVIRONMENT === 'production' ) {
-			$this->baseURL = 'https://app.solve-express.mx/signIn';
+			$this->baseURL = 'https://app.solve-express.mx/';
 		} else {
-			$this->baseURL = 'https://app.solve-express.mx/signIn';
+			$this->baseURL = 'https://app.solve-express.mx/';
 		}
 	}
 
