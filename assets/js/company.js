@@ -32,7 +32,7 @@ $(document).ready(function () {
 		getReport();
 	}).click();
 	$("#tabInvoices").on("click", function () {
-		getInvoices();
+		getPayments();
 	});
 	$("#searchReport").on("click", function () {
 		getReport();
@@ -277,7 +277,7 @@ function uploadNomina() {
 	});
 }
 
-function getInvoices() {
+function initializePayments() {
 	try {
 		new simpleDatatables.DataTable("#tableInvoice", {searchable: !0, fixedHeight: !1});
 	} catch (e) {
@@ -483,4 +483,120 @@ function initializeTable() {
 		dataTable.destroy();
 		dataTable = new simpleDatatables.DataTable("#datatable_1", {searchable: true, fixedHeight: false});
 	}
+}
+function getPayments(){
+	$.ajax({
+		url: "/getPayments",
+		dataType: "JSON",
+		contentType: "application/json; charset=utf-8",
+		method: "POST",
+		beforeSend() {
+			displayLoaderCompany();
+		},
+		success: function (response) {
+			let resAreaI = $("#tableInvoice tbody");
+			resAreaI.empty();
+			
+			// Construir el contenido HTML en una cadena
+			let rows = "";
+			$.each(response["response"], function (index, value) {
+				let status = "<span class='badge rounded-pill bg-danger'><strong>Pendiente</strong></span>";
+				if (value["status"] === '1'){
+					status = "<span class='badge rounded-pill bg-primary'><strong>Liquidado</strong></span>";
+				}
+				let cep = "En proceso";
+				if (value["cep"] != null) {
+					cep = "<a href='" + url + value["cep"] + "' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
+				}
+				rows += `
+            <tr onclick="showDetailsPayment('${value["concept"]}')" style="cursor: pointer">
+                <td>$ ${Intl.NumberFormat("en-US").format(value["amount"])}</td>
+                <td>${value["short_name"]}</td>
+                <td>${value["clabe"]}</td>
+                <td>${value["magicAlias"]}</td>
+                <td>${value["noReference"]}</td>
+                <td>${value["noReference"]}</td>
+                <td>${value["concept"]}</td>
+                <td>${status}</td>
+                <td>${cep}</td>
+                <td>${value["death_line"]}</td>
+            </tr>`;
+			});
+			
+			// Insertar el contenido en una sola operación
+			resAreaI.html(rows);
+			
+			// Inicializar la tabla
+			initializePayments();
+		},
+		complete: function () {
+			$("#Loader").css({
+				display: "none"
+			});
+		},
+		error: function (status) {
+			// Maneja los errores de la solicitud
+			return void Swal.fire({icon: "error", title: "Error...", text: "No se logro recuperar la información de los empleados.", timer: 1500});
+		}
+	});
+}
+function showDetailsPayment(period){
+	$.ajax({
+		url: "/getPaymentsDetails",
+		dataType: "JSON",
+		data: JSON.stringify({
+			period: period,
+		}),
+		contentType: "application/json; charset=utf-8",
+		method: "POST",
+		beforeSend() {
+			displayLoaderCompany();
+		},
+		success: function (response) {
+			
+			let resAreaI = $("#tableInvoice tbody");
+			resAreaI.empty();
+			
+			// Construir el contenido HTML en una cadena
+			let rows = "";
+			$.each(response["response"], function (index, value) {
+				let status = "<span class='badge rounded-pill bg-danger'><strong>Pendiente</strong></span>";
+				if (value["status"] === '1'){
+					status = "<span class='badge rounded-pill bg-primary'><strong>Liquidado</strong></span>";
+				}
+				let cep = "En proceso";
+				if (value["cep"] != null) {
+					cep = "<a href='" + url + value["cep"] + "' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
+				}
+				rows += `
+            <tr onclick="showDetailsPayment('${value["concept"]}')" style="cursor: pointer">
+                <td>$ ${Intl.NumberFormat("en-US").format(value["amount"])}</td>
+                <td>${value["short_name"]}</td>
+                <td>${value["clabe"]}</td>
+                <td>${value["magicAlias"]}</td>
+                <td>${value["noReference"]}</td>
+                <td>${value["noReference"]}</td>
+                <td>${value["concept"]}</td>
+                <td>${status}</td>
+                <td>${cep}</td>
+                <td>${value["death_line"]}</td>
+            </tr>`;
+			});
+			
+			// Insertar el contenido en una sola operación
+			resAreaI.html(rows);
+			
+			// Inicializar la tabla
+			initializePayments();
+		},
+		complete: function () {
+			$("#Loader").css({
+				display: "none"
+			});
+		},
+		error: function (status) {
+			// Maneja los errores de la solicitud
+			return void Swal.fire({icon: "error", title: "Error...", text: "No se logro recuperar la información de los empleados.", timer: 1500});
+		}
+	});
 }

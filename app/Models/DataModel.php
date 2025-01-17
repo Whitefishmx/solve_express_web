@@ -6,13 +6,13 @@
 		private string $url = '';
 		public function __construct () {
 			parent::__construct ();
-			/*if ( ENVIRONMENT === 'development' ) {
-				$this->url = 'https://api-solve.local/';
-			} else if ( ENVIRONMENT === 'production' ) {
-				$this->url = 'https://api-solve.local/';
-			} else {
-				$this->url = 'https://api-solve.local/';
-			}*/
+//			if ( ENVIRONMENT === 'development' ) {
+//				$this->url = 'http://api-solve.local/';
+//			} else if ( ENVIRONMENT === 'production' ) {
+//				$this->url = 'http://api-solve.local/';
+//			} else {
+//				$this->url = 'http://api-solve.local/';
+//			}
 			if ( ENVIRONMENT === 'development' ) {
 				$this->url = 'https://sandbox.solvegcm.mx/';
 			} else if ( ENVIRONMENT === 'production' ) {
@@ -92,6 +92,13 @@
 			$endPoint = 'sExpressReport';
 			$data = [
 				'user' => $user,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
+		}
+		public function getPayments ( int $company, string $token ): bool|string {
+			$endPoint = 'sExpressPayments';
+			$data = [
+				'company' => $company,
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
 		}
