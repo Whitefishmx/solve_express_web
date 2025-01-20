@@ -61,9 +61,9 @@
 		<nav class="topbar-custom d-flex justify-content-between" id="topbar-custom">
 			<ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">
 				<li>
-					<a class="navbar-brand" href="#">
-						<img src="/assets/img/logo.png" alt="" class="me-2 logo-dark" style="width: 135px;">
-						<img src="/assets/img/dark_logo.png" alt="" class="me-2 logo-light" style="width: 135px;">
+					<a class="navbar-brand" href="/">
+						<img src="/assets/img/express_logo.svg" alt="" class="me-2 logo-dark" style="width: 135px;">
+						<img src="/assets/img/express_logo_dark.svg" alt="" class="me-2 logo-light" style="width: 135px;">
 					</a>
 				</li>
 				<li class="mx-3 welcome-text">

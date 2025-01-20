@@ -4,7 +4,7 @@ let rfc = $("#rfc");
 let curp = $("#curp");
 let name = $("#name");
 let period = $("#period");
-let dataTable;
+let dataTable = null;
 // noinspection JSUnresolvedReference
 let selector = new Selectr("#columns", {multiple: true});
 // noinspection JSUnresolvedReference
@@ -112,30 +112,30 @@ function getReport() {
 			displayLoaderCompany();
 		},
 		success: function (response) {
-			let resArea = $("#datatable_1 tbody");
+			if (dataTable != null) dataTable.destroy();
+			const resArea = $('#datatable_1 tbody');
 			resArea.empty();
-			
 			// Construir el contenido HTML en una cadena
 			let rows = "";
 			$.each(response["response"], function (index, value) {
 				rows += `
-            <tr>
-                <td>${value["external_id"]}</td>
-                <td>${value["name"]} ${value["last_name"]} ${value["sure_name"]}</td>
-                <td>${value["curp"]}</td>
-                <td>$ ${Intl.NumberFormat("en-US").format(value["net_salary"])}</td>
-                <td>$ ${Intl.NumberFormat("en-US").format(value["requested_amount"])}</td>
-                <td>$ ${Intl.NumberFormat("en-US").format(value["remaining_amount"])}</td>
-                <td>${value["period"]}</td>
-                <td>${value["request_date"]}</td>
-            </tr>`;
+			<tr>
+			    <td>${value["external_id"]}</td>
+			    <td>${value["name"]} ${value["last_name"]} ${value["sure_name"]}</td>
+			    <td>${value["curp"]}</td>
+			    <td>$ ${Intl.NumberFormat("en-US").format(value["net_salary"])}</td>
+			    <td>$ ${Intl.NumberFormat("en-US").format(value["requested_amount"])}</td>
+			    <td>$ ${Intl.NumberFormat("en-US").format(value["remaining_amount"])}</td>
+			    <td>${value["period"]}</td>
+			    <td>${value["request_date"]}</td>
+			</tr>`;
 			});
+			resArea.append(rows);
 			
-			// Insertar el contenido en una sola operación
-			resArea.html(rows);
-			
-			// Inicializar la tabla
-			initializeTable();
+			dataTable = new simpleDatatables.DataTable("#datatable_1", {
+				searchable: true,
+				fixedHeight: true,
+			});
 		},
 		complete: function () {
 			$("#Loader").css({
@@ -484,7 +484,8 @@ function initializeTable() {
 		dataTable = new simpleDatatables.DataTable("#datatable_1", {searchable: true, fixedHeight: false});
 	}
 }
-function getPayments(){
+
+function getPayments() {
 	$.ajax({
 		url: "/getPayments",
 		dataType: "JSON",
@@ -501,7 +502,7 @@ function getPayments(){
 			let rows = "";
 			$.each(response["response"], function (index, value) {
 				let status = "<span class='badge rounded-pill bg-danger'><strong>Pendiente</strong></span>";
-				if (value["status"] === '1'){
+				if (value["status"] === "1") {
 					status = "<span class='badge rounded-pill bg-primary'><strong>Liquidado</strong></span>";
 				}
 				let cep = "En proceso";
@@ -509,7 +510,7 @@ function getPayments(){
 					cep = "<a href='" + url + value["cep"] + "' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
 				}
 				rows += `
-            <tr onclick="showDetailsPayment('${value["concept"]}')" style="cursor: pointer">
+            <tr onclick="showDetailsPayment('${value["concept"]}')">
                 <td>$ ${Intl.NumberFormat("en-US").format(value["amount"])}</td>
                 <td>${value["short_name"]}</td>
                 <td>${value["clabe"]}</td>
@@ -541,7 +542,8 @@ function getPayments(){
 		}
 	});
 }
-function showDetailsPayment(period){
+
+function showDetailsPayment(period) {
 	$.ajax({
 		url: "/reportCompany",
 		data: JSON.stringify({

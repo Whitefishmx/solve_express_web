@@ -65,7 +65,8 @@
 								<div class="card-body p-0 auth-header-box rounded-top">
 									<div class="text-center p-3">
 										<a href="/" class="logo logo-admin">
-											<img src="/assets/img/logo.png" alt="logo" class="auth-logo" style="height: 50px">
+											<img src="/assets/img/express_logo.svg"alt="Solve Express" class="me-2 logo-dark" style="height: 50px;">
+											<img src="/assets/img/express_logo_dark.svg" alt="Solve Express" class="me-2 logo-light" style="height: 50px;">
 										</a>
 										<h4 class="card-title" id="TitleCard" style="margin-top: 20px">Validar CURP</h4>
 										<div>

@@ -11,8 +11,8 @@ let curpSession;
 let curpLocal;
 let intervalId;
 $(document).ready(function () {
-	curpSession = sessionStorage.getItem('curp');
-	curpLocal = localStorage.getItem('curp');
+	curpSession = sessionStorage.getItem("curp");
+	curpLocal = localStorage.getItem("curp");
 	if (curpSession || curpLocal) {
 		startInterval();
 	}
@@ -24,15 +24,15 @@ $(document).ready(function () {
 		}
 	});
 	$("#validateCurp").on("click", function () {
-		let curp =  $("#curp").val()
-		sessionStorage.setItem('curp',curp);
-		localStorage.setItem('curp',curp);
+		let curp = $("#curp").val();
+		sessionStorage.setItem("curp", curp);
+		localStorage.setItem("curp", curp);
 		validateCurp();
 	});
 	$("#formCurpValidator").on("submit", function (e) {
-		let curp =  $("#curp").val()
-		sessionStorage.setItem('curp',curp);
-		localStorage.setItem('curp',curp);
+		let curp = $("#curp").val();
+		sessionStorage.setItem("curp", curp);
+		localStorage.setItem("curp", curp);
 		e.preventDefault();
 		validateCurp();
 	});
@@ -66,8 +66,8 @@ $(document).ready(function () {
 });
 
 function validateCurp() {
-
-		curp = localStorage.getItem('curp');
+	
+	curp = localStorage.getItem("curp");
 	
 	FingerprintJS.load().then(fp => {
 		fp.get().then(result => {
@@ -104,7 +104,7 @@ function validateCurp() {
 				$("#cardPassword").css("display", "none");
 				$("#TitleCard").html("Validar identidad");
 				$("#InstructionsCard").html("De click en el botón para comenzar la verificación de identidad");
-				sessionStorage.setItem('curp',curp);
+				sessionStorage.setItem("curp", curp);
 			}
 			if (xhr.status === 202) {
 				wait4Validation();
@@ -112,8 +112,8 @@ function validateCurp() {
 			if (xhr.status === 200) {
 				clearInterval(intervalId);
 				intervalId = null;
-				sessionStorage.removeItem('curp');
-				localStorage.removeItem('curp');
+				sessionStorage.removeItem("curp");
+				localStorage.removeItem("curp");
 				user = data["response"]["id"];
 				$("#cardForm").css("display", "none");
 				$("#cardMeta").css("display", "none");
@@ -126,8 +126,8 @@ function validateCurp() {
 		error: function (error) {
 			clearInterval(intervalId);
 			intervalId = null;
-			sessionStorage.removeItem('curp');
-			localStorage.removeItem('curp');
+			sessionStorage.removeItem("curp");
+			localStorage.removeItem("curp");
 			return void Swal.fire({icon: "error", title: "Oops...", text: error["responseJSON"]["reason"]});
 			
 		},
@@ -227,14 +227,6 @@ function formUserValidate() {
 				: c(e);
 	}
 	
-	function q(e, t, s) {
-		e.value.length < t
-			? l(e, `La contraseña debe tener al menos ${t} caracteres`)
-			: e.value.length > s
-				? l(e, `La contraseña debe tener menos de ${s} caracteres`)
-				: c(e);
-	}
-	
 	function z(e, t, s) {
 		e.value.length !== s
 			? e.value.length !== t
@@ -276,7 +268,7 @@ function formUserValidate() {
 	validatePasswordStrength(n, 8, 100);
 	
 	
-	let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	emailRegex.test(a.value.trim()) ? c(a) : l(a, "El correo no es válido");
 	
 	if (n.value !== r.value) {
@@ -315,13 +307,14 @@ function createUser() {
 		},
 		success: function (data, textStatus, xhr) {
 			if (xhr.status === 200) {
+				// noinspection JSUnresolvedReference
 				void Swal.fire({icon: "success", title: "Se guardo su contraseña, ya puede iniciar sesión", timer: 1500});
 				setTimeout(function () {
 					window.location.href = "/";
 				}, 2500);
 			}
 		},
-		error: function (error, textStatus, xhr) {
+		error: function (error) {
 			let textReason = "No se logró crear el usuario, intente nuevamente o contacte a soporte técnico";
 			let parsedData = JSON.parse(error.responseText);
 			if (parsedData.reason) {
@@ -338,7 +331,8 @@ function createUser() {
 		},
 	});
 }
-function startInterval(){
+
+function startInterval() {
 	if (intervalId) return;
 	intervalId = setInterval(function () {
 		validateCurp();

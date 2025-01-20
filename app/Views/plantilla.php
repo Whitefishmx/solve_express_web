@@ -58,9 +58,9 @@
 		<nav class="topbar-custom d-flex justify-content-between" id="topbar-custom">
 			<ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0" style="margin-left: 2rem;">
 				<li>
-					<a class="navbar-brand" href="#">
+					<a class="navbar-brand" href="/">
 						<!--<img src="assets/img/arbol-de-navidad.png" height="50" class="me-2" style="margin-right:0 !important;">-->
-						<img src="assets/img/logo.png" width="135" alt="" class="me-2">
+						<img src="/assets/img/express_logo.svg" width="135" alt="" class="me-2">
 					</a>
 				</li>
 				<li class="mx-3 welcome-text">

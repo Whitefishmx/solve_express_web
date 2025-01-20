@@ -95,7 +95,7 @@
 <main class="py-4">
 	<div class="container text-center" style="margin: auto; width: 75vw; height: 90vh;">
 		<div class="header">
-			<div class="d-md-block"><img src="/./assets/img/logo.png" alt="logo" style="height: 80px"></div>
+			<div class="d-md-block"><img src="/./assets/img/express_logo.svg" alt="logo" style="height: 80px"></div>
 		</div>
 		<div class="row">
 			<div class="col-md-1 d-none d-md-block"></div>
