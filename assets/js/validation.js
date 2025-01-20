@@ -7,7 +7,15 @@ FingerprintJS.load().then(fp => {
 		visitorId = result.visitorId;
 	});
 });
+let curpSession;
+let curpLocal;
+let intervalId;
 $(document).ready(function () {
+	curpSession = sessionStorage.getItem('curp');
+	curpLocal = localStorage.getItem('curp');
+	if (curpSession || curpLocal) {
+		startInterval();
+	}
 	let mask = IMask(document.getElementById("phone"), {mask: "(00)00-00-0000"});
 	document.getElementById("curp").addEventListener("input", function (e) {
 		e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
@@ -16,9 +24,15 @@ $(document).ready(function () {
 		}
 	});
 	$("#validateCurp").on("click", function () {
+		let curp =  $("#curp").val()
+		sessionStorage.setItem('curp',curp);
+		localStorage.setItem('curp',curp);
 		validateCurp();
 	});
 	$("#formCurpValidator").on("submit", function (e) {
+		let curp =  $("#curp").val()
+		sessionStorage.setItem('curp',curp);
+		localStorage.setItem('curp',curp);
 		e.preventDefault();
 		validateCurp();
 	});
@@ -52,7 +66,9 @@ $(document).ready(function () {
 });
 
 function validateCurp() {
-	curp = $("#curp").val();
+
+		curp = localStorage.getItem('curp');
+	
 	FingerprintJS.load().then(fp => {
 		fp.get().then(result => {
 			visitorId = result.visitorId;
@@ -88,11 +104,16 @@ function validateCurp() {
 				$("#cardPassword").css("display", "none");
 				$("#TitleCard").html("Validar identidad");
 				$("#InstructionsCard").html("De click en el botón para comenzar la verificación de identidad");
+				sessionStorage.setItem('curp',curp);
 			}
 			if (xhr.status === 202) {
 				wait4Validation();
 			}
 			if (xhr.status === 200) {
+				clearInterval(intervalId);
+				intervalId = null;
+				sessionStorage.removeItem('curp');
+				localStorage.removeItem('curp');
 				user = data["response"]["id"];
 				$("#cardForm").css("display", "none");
 				$("#cardMeta").css("display", "none");
@@ -103,6 +124,10 @@ function validateCurp() {
 			}
 		},
 		error: function (error) {
+			clearInterval(intervalId);
+			intervalId = null;
+			sessionStorage.removeItem('curp');
+			localStorage.removeItem('curp');
 			return void Swal.fire({icon: "error", title: "Oops...", text: error["responseJSON"]["reason"]});
 			
 		},
@@ -121,6 +146,7 @@ function wait4Validation() {
 	$("#cardPassword").css("display", "none");
 	$("#TitleCard").html("Validando identidad");
 	$("#InstructionsCard").html("");
+	startInterval();
 }
 
 function changePassword(password, password2, user) {
@@ -311,4 +337,10 @@ function createUser() {
 			});
 		},
 	});
+}
+function startInterval(){
+	if (intervalId) return;
+	intervalId = setInterval(function () {
+		validateCurp();
+	}, 3000);
 }
