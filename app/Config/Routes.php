@@ -40,7 +40,8 @@
 	$routes->add ( 'getPeriods', 'CompanyController::getPeriods' /**@uses \App\Controllers\CompanyController::getPeriods * */ );
 	$routes->add ( 'data4req', 'CompanyController::getInfo' /**@uses \App\Controllers\CompanyController::getInfo * */ );
 	$routes->add ( 'toSignIn', 'SignInController::signIn' /**@uses \App\Controllers\SignInController::signIn * */ );
-	$routes->add ( 'getPayments', 'CompanyController::getPayments' /**@uses \App\Controllers\CompanyController::getPayments * */)<
+	$routes->add ( 'getPayments', 'CompanyController::getPayments' /**@uses \App\Controllers\CompanyController::getPayments * */ );
+	$routes->add ( 'getLaws', 'EmployeeController::getLaws' /**@uses \App\Controllers\EmployeeController::getLaws * */ );
 	//====================================||   PUT   ||====================================
 	//====================================||  PATCH  ||====================================
 	//====================================|| DELETE  ||====================================

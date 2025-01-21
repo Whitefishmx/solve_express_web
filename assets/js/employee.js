@@ -1,5 +1,6 @@
 $(document).ready(function () {
 	GetDashboard();
+	getDisclaimer();
 	const toggleButton = document.getElementById("theme-toggle");
 	const cantidad = $("#requestAmount");
 	const rangeOutput = document.getElementById("outRequestAmount");
@@ -239,4 +240,43 @@ function RequestPay() {
 	});
 	
 	
+}
+function getDisclaimer(){
+	$.ajax({
+		url: "/getLaws",
+		data: {
+			type: 3
+		},
+		dataType: "JSON",
+		method: "POST",
+		beforeSend: function () {
+			const obj = $("#mainContainer");
+			const left = obj.offset().left;
+			const top = obj.offset().top;
+			const width = obj.width();
+			const height = obj.height();
+			$("#Loader").delay(50000).css({
+				display: "block",
+				opacity: 1,
+				visibility: "visible",
+				left: left,
+				top: top,
+				width: width,
+				height: height,
+				zIndex: 999999
+			}).focus();
+		},
+		success: function (response) {
+			$('#textDisclaimer').html(response['response']);
+		},
+		complete: function () {
+			$("#Loader").css({
+				display: "none"
+			});
+		},
+		error: function (status) {
+			// Maneja los errores de la solicitud
+			console.error("Error en la solicitud:", status);
+		}
+	});
 }

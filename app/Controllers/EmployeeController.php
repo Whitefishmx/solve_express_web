@@ -105,8 +105,8 @@
 			$data = new DataModel();
 			$phone = isset( $this->input[ 'phone' ] ) && $this->input[ 'phone' ] !== '' ? $this->input[ 'phone' ] : NULL;
 			$res = json_decode ( $data->setUser ( $this->input[ 'nickName' ], $this->input[ 'email' ], $this->input[ 'password' ], $this->input[ 'password2' ], $this->input[ 'user' ], $phone ), TRUE );
-//			var_dump ( $res );
-//			die();
+			//			var_dump ( $res );
+			//			die();
 			if ( $res[ 'error' ] === 500 || $res[ 'error' ] === 404 || $res[ 'error' ] === 400 ) {
 				$this->responseBody = [
 					"error"       => $this->errCode = $res[ 'error' ],
@@ -117,6 +117,23 @@
 			}
 			$this->errCode = $res[ 'error' ];
 			$this->responseBody = [ 'description' => $res[ 'description' ], 'response' => $res[ 'response' ] ];
+			return $this->getResponse ( $this->responseBody, $this->errCode );
+		}
+		public function getLaws () {
+			$this->input = $this->getRequestInput ( $this->request );
+			if ( $data = $this->verifyRules ( 'POST', $this->request, NULL ) ) {
+				//				$this->logResponse ( 1 );
+				return $this->getResponse ( $this->responseBody, $this->errCode );
+			}
+			$data = new DataModel();
+			$res = json_decode ( $data->getLaws ( $this->input[ 'type' ] ), TRUE );
+//			var_dump ($res);die();
+			if ( $res[ 'error' ] === 500 || $res[ 'error' ] === 404 ) {
+				$this->responseBody = [ 'error' => $this->errCode=$res[ 'error' ], 'description' => $res[ 'description' ], 'reason' => $res[ 'reason' ] ];
+				return $this->getResponse ( $this->responseBody, $this->errCode );
+			}
+//			var_dump ($res);die ( );
+			$this->responseBody = [ 'error' => $this->errCode=$res[ 'error' ], 'description' => $res[ 'description' ], 'response' => $res[ 'response' ] ];
 			return $this->getResponse ( $this->responseBody, $this->errCode );
 		}
 	}

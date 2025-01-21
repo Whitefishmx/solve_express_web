@@ -183,57 +183,7 @@
 								style="color: #26b719" id="cclabe"></span></p>
 				</div>
 			</div>
-			<div class="modal-body" id="texto_modal">
-				<h4 style="display: block; width: 100%; text-align: center">Tu Contrato</h4>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-				   egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-				</p>
-			
+			<div class="modal-body" id="textDisclaimer">
 			</div><!--end modal-body-->
 			<div class="modal-footer">
 				<button
