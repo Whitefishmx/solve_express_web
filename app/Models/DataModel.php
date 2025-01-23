@@ -1,25 +1,24 @@
 <?php
 	
 	namespace App\Models;
-	
 	class DataModel extends BaseModel {
 		private string $url = '';
 		public function __construct () {
 			parent::__construct ();
 			if ( ENVIRONMENT === 'development' ) {
-				$this->url = 'http://api-solve.local/';
+				$this->url = 'https://api-solve.local/';
 			} else if ( ENVIRONMENT === 'production' ) {
-				$this->url = 'http://api-solve.local/';
+				$this->url = 'https://api-solve.local/';
 			} else {
-				$this->url = 'http://api-solve.local/';
+				$this->url = 'https://api-solve.local/';
 			}
-//			if ( ENVIRONMENT === 'development' ) {
-//				$this->url = 'https://sandbox.solvegcm.mx/';
-//			} else if ( ENVIRONMENT === 'production' ) {
-//				$this->url = 'https://sandbox.solvegcm.mx/';
-//			} else {
-//				$this->url = 'https://sandbox.solvegcm.mx/';
-//			}
+			//			if ( ENVIRONMENT === 'development' ) {
+			//				$this->url = 'https://sandbox.solvegcm.mx/';
+			//			} else if ( ENVIRONMENT === 'production' ) {
+			//				$this->url = 'https://sandbox.solvegcm.mx/';
+			//			} else {
+			//				$this->url = 'https://sandbox.solvegcm.mx/';
+			//			}
 		}
 		public function setUser ( string $nickname, string $email, string $password, string $password2, mixed $user, ?string $phone = NULL ): bool|string {
 			$endPoint = 'setUser';
@@ -210,6 +209,14 @@
 				'user' => $user,
 			];
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
+		}
+		public function reportDetail ( $company, $period, $token ): bool|string {
+			$endPoint ='sExpressPaymentDetail';
+            $data = [
+                'company' => $company,
+                'period'  => $period,
+            ];
+            return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
 		}
 		public function resetPassword ( mixed $user, string $code, string $password, string $password2 ): bool|string {
 			$endPoint = 'resetPassword';

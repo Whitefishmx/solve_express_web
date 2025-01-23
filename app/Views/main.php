@@ -27,7 +27,7 @@
 								<div class="" style="padding: 5px 0 0 0">
 									<h5 class="card-title text-center" style="margin: 0;">Dias trabajados</h5>
 								</div>
-								<div class="" style="padding: 2px">
+								<div class="" style="padding: 2px" id="DashDays">
 									<h2 class="text-center" style="font-weight: bold"><img src="assets/img/calendar.png" style="height: 1.7rem"> 13</h2>
 								</div>
 							</div>
@@ -55,7 +55,7 @@
 											<output id="outRequestAmount" class="dinero" style="font-weight: bold">$ 4,000</output>
 											<input type="hidden" id="MontoReal" value="">
 										</div>
-										<div class="col-xs-3 col-md-8">
+										<div class="col-xs-4 col-md-8">
 											<input
 													id="requestAmount" name="requestAmount" type="range" value="" min="" max="" step="10"
 													oninput="document.getElementById('MontoReal').value = this.value; outRequestAmount.value= '$ ' + Intl.NumberFormat('en-US').format(value); this.style.cssText = '';" />
@@ -241,8 +241,7 @@
 								style="color: #26b719" id="cclabe"></span></p>
 				</div>
 			</div>
-			<div class="modal-body" id="textDisclaimer">
-			</div><!--end modal-body-->
+			<div class="modal-body" id="textDisclaimer"></div><!--end modal-body-->
 			<div class="modal-footer">
 				<button
 						type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
@@ -260,6 +259,9 @@
 
 
 <style>
+	#requestAmount{
+		min-width: 100px!important;
+	}
     :root {
         --base: #FF9400;
         --trackball: var(--base);

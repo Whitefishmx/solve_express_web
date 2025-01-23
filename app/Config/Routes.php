@@ -41,6 +41,7 @@
 	$routes->add ( 'data4req', 'CompanyController::getInfo' /**@uses \App\Controllers\CompanyController::getInfo * */ );
 	$routes->add ( 'toSignIn', 'SignInController::signIn' /**@uses \App\Controllers\SignInController::signIn * */ );
 	$routes->add ( 'getPayments', 'CompanyController::getPayments' /**@uses \App\Controllers\CompanyController::getPayments * */ );
+	$routes->add ( 'getPaymentsDetails', 'CompanyController::getPaymentsDetails' /**@uses \App\Controllers\CompanyController::getPaymentsDetails * */ );
 	$routes->add ( 'getLaws', 'EmployeeController::getLaws' /**@uses \App\Controllers\EmployeeController::getLaws * */ );
 	//====================================||   PUT   ||====================================
 	//====================================||  PATCH  ||====================================

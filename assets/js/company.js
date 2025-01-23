@@ -15,6 +15,7 @@ let rfcFire = $("#rfcFire");
 let curpFire = $("#curpFire");
 let nameFire = $("#nameFire");
 let showFires = $("#showFires");
+let periodDetail = null;
 let url = "https://sandbox.solvegcm.mx/";
 // let url = "https://api-solve.local/";
 $(document).ready(function () {
@@ -63,6 +64,9 @@ $(document).ready(function () {
 	});
 	$("#uploadNomina").on("click", function () {
 		uploadNomina();
+	});
+	$('#downloadPaymentDetail').on('click', function () {
+		downloadDetailPaymentReport();
 	});
 });
 
@@ -113,7 +117,7 @@ function getReport() {
 		},
 		success: function (response) {
 			if (dataTable != null) dataTable.destroy();
-			const resArea = $('#datatable_1 tbody');
+			const resArea = $("#datatable_1 tbody");
 			resArea.empty();
 			// Construir el contenido HTML en una cadena
 			let rows = "";
@@ -544,14 +548,10 @@ function getPayments() {
 }
 
 function showDetailsPayment(period) {
+	periodDetail = period;
 	$.ajax({
-		url: "/reportCompany",
+		url: "/getPaymentsDetails",
 		data: JSON.stringify({
-			date1: initDate.val(),
-			date2: endDate.val(),
-			rfc: rfc.val(),
-			curp: curp.val(),
-			name: name.val(),
 			period: period,
 		}),
 		dataType: "JSON",
@@ -567,15 +567,24 @@ function showDetailsPayment(period) {
 			// Construir el contenido HTML en una cadena
 			let rows = "";
 			$.each(response["response"], function (index, value) {
+				let url = "https://sandbox.solvegcm.mx/cepDownloader/";
+				//let url = "https://api-solve.local/cepDownloader/";
+				let cep = "En proceso";
+				if (value["cep"] != null) {
+					cep = "<a href='" + url + value["cep"] + "' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
+				}
 				rows += `
             <tr>
                 <td>${value["external_id"]}</td>
                 <td>${value["name"]} ${value["last_name"]} ${value["sure_name"]}</td>
                 <td>${value["curp"]}</td>
-                <td>$ ${Intl.NumberFormat("en-US").format(value["net_salary"])}</td>
-                <td>$ ${Intl.NumberFormat("en-US").format(value["requested_amount"])}</td>
-                <td>$ ${Intl.NumberFormat("en-US").format(value["remaining_amount"])}</td>
-                <td>${value["period"]}</td>
+                <td style="white-space: nowrap">$ ${Intl.NumberFormat("en-US").format(value["net_salary"])}</td>
+                <td style="white-space: nowrap">$ ${Intl.NumberFormat("en-US").format(value["requested_amount"])}</td>
+                <td style="white-space: nowrap">$ ${Intl.NumberFormat("en-US").format(value["amount_deposited"])}</td>
+                <td style="white-space: nowrap">$ ${Intl.NumberFormat("en-US").format(value["tax"])}</td>
+                <td style="white-space: nowrap">$ ${Intl.NumberFormat("en-US").format(value["remaining_amount"])}</td>
+                <td style="white-space: nowrap">${cep}</td>
+                <td style="white-space: nowrap">${value["period"]}</td>
                 <td>${value["request_date"]}</td>
             </tr>`;
 			});
@@ -595,5 +604,57 @@ function showDetailsPayment(period) {
 			// Maneja los errores de la solicitud
 			return void Swal.fire({icon: "error", title: "Error...", text: "No se logro recuperar la información de los empleados.", timer: 1500});
 		}
+	});
+}
+function downloadDetailPaymentReport(){
+	let columns = [
+			"noEmpleado",
+			"name",
+			"lastName",
+			"sureName",
+			"rfc",
+			"curp",
+			"plan",
+			"netSalary",
+			"period"
+		];
+	getWInfo().then(data => {
+		const settings = {
+			"url": url + "excelCompany",
+			"method": "POST",
+			"timeout": 0,
+			"headers": {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + data["t"],
+			},
+			"data": JSON.stringify({
+				"filters": {
+					"company": data["c"],
+					"period": "" + periodDetail,
+				},
+				"columns": columns,
+			}),
+			"xhrFields": {
+				responseType: "blob" // Esto es clave para recibir la respuesta como un archivo binario
+			}
+		};
+		
+		$.ajax(settings).done(function (response) {
+			let url = window.URL.createObjectURL(response);
+			let a = document.createElement("a");
+			let now = new Date();
+			let monthName = month2Mes(now.getMonth() - 1);
+			if (now.getMonth() === 0) {
+				monthName = month2Mes(11);
+			}
+			let formattedDate = `${monthName}_${now.getDate()}_${now.getFullYear()}__${now.getHours()}_${now.getMinutes()}_${now.getSeconds()}`;
+			a.href = url;
+			a.download = formattedDate + ".xlsx"; // Nombre del archivo de descarga
+			document.body.appendChild(a);
+			a.click();
+			window.URL.revokeObjectURL(url); // Libera la memoria
+			document.body.removeChild(a); // Remueve el enlace d
+		});
+		
 	});
 }

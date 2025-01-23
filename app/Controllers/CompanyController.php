@@ -80,7 +80,7 @@
 			$company = $session->get ( 'user' );
 			$token = $session->get ( 'token' );
 			$res = json_decode ( $this->data->getEmployees ( $this->input, $company[ 'data' ][ 'company_id' ], $token ), TRUE );
-//						var_dump ( $res );die();
+			//						var_dump ( $res );die();
 			$this->responseBody = [
 				'error'       => $this->errCode = $res[ 'error' ],
 				'description' => 'Reporte generado correctamente',
@@ -104,7 +104,7 @@
 				'response'    => $res[ 'response' ] ];
 			return $this->getResponse ( $this->responseBody, $this->errCode );
 		}
-		public function fireEmployee(): ResponseInterface {
+		public function fireEmployee (): ResponseInterface {
 			$this->input = $this->getRequestInput ( $this->request );
 			if ( $this->verifyRules ( 'DELETE', $this->request, NULL ) ) {
 				return $this->getResponse ( $this->responseBody, $this->errCode );
@@ -112,8 +112,23 @@
 			$session = session ();
 			$company = $session->get ( 'user' );
 			$token = $session->get ( 'token' );
-			$res = json_decode ( $this->data->fireEmployee ( $this->input['employee'], $company[ 'data' ][ 'company_id' ], $token ), TRUE );
-//			var_dump ( $res );die();
+			$res = json_decode ( $this->data->fireEmployee ( $this->input[ 'employee' ], $company[ 'data' ][ 'company_id' ], $token ), TRUE );
+			//			var_dump ( $res );die();
+			$this->responseBody = [
+				'error'       => $this->errCode = $res[ 'error' ],
+				'description' => 'Reporte generado correctamente',
+				'response'    => $res[ 'response' ] ];
+			return $this->getResponse ( $this->responseBody, $this->errCode );
+		}
+		public function getPaymentsDetails (): ResponseInterface {
+			$this->input = $this->getRequestInput ( $this->request );
+			if ( $this->verifyRules ( 'POST', $this->request, NULL ) ) {
+				return $this->getResponse ( $this->responseBody, $this->errCode );
+			}
+			$session = session ();
+			$company = $session->get ( 'user' );
+			$token = $session->get ( 'token' );
+			$res = json_decode ( $this->data->reportDetail ( $company[ 'data' ][ 'company_id' ], $this->input[ 'period' ], $token ), TRUE );
 			$this->responseBody = [
 				'error'       => $this->errCode = $res[ 'error' ],
 				'description' => 'Reporte generado correctamente',

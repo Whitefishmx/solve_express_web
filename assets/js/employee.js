@@ -22,6 +22,7 @@ $(document).ready(function () {
 		const value = (rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min) * 100;
 		rangeInput.style.background = `linear-gradient(to right, var(--range-color) ${value}%, #ddd ${value}%)`;
 	});
+	$("#reqPay").on("click", getDisclaimer);
 });
 
 function GetDisposiciones() {
@@ -74,7 +75,7 @@ function GetDisposiciones() {
 						"<td>" + plan + "</td>" +
 						"<td>" + value.period + "</td>" +
 						"<td>$ " + Intl.NumberFormat("en-US").format(Math.round(value["requested_amount"])) + "</td>" +
-						"<td>$ " + Intl.NumberFormat("en-US").format(Math.round(value["remaining_amount"]))  + "</td>" +
+						"<td>$ " + Intl.NumberFormat("en-US").format(Math.round(value["remaining_amount"])) + "</td>" +
 						"<td>" + value["folio"] + "</td>" +
 						"<td>" + value["noReference"] + "</td>" +
 						"<td>" + value["clabe"] + "</td>" +
@@ -126,9 +127,9 @@ function GetDashboard() {
 			const cantidad = $("#requestAmount");
 			const rangeInput = document.querySelector("input[type=\"range\"]");
 			var valorAlto;
-			$('#dXD').html('Día: '+response['response']['req_day']+' / '+response['response']['limit_day']);
-			$('#dXQ').html('Quincena: '+response['response']['req_biweekly']+' / '+response['response']['limit_biweekly']);
-			$('#dXM').html('Mes: '+response['response']['req_month']+' / '+response['response']['limit_month']);
+			$("#dXD").html("Día: " + response["response"]["req_day"] + " / " + response["response"]["limit_day"]);
+			$("#dXQ").html("Quincena: " + response["response"]["req_biweekly"] + " / " + response["response"]["limit_biweekly"]);
+			$("#dXM").html("Mes: " + response["response"]["req_month"] + " / " + response["response"]["limit_month"]);
 			
 			$("#nombreuser").html(response.response.name + " " + response.response.last_name);
 			$(".iniciales").html(response.response.name.charAt(0) + response.response.last_name.charAt(0));
@@ -241,7 +242,8 @@ function RequestPay() {
 	
 	
 }
-function getDisclaimer(){
+
+function getDisclaimer() {
 	$.ajax({
 		url: "/getLaws",
 		data: {
@@ -267,7 +269,8 @@ function getDisclaimer(){
 			}).focus();
 		},
 		success: function (response) {
-			$('#textDisclaimer').html(response['response']);
+			$("#textDisclaimer").append(response["response"]);
+			$("#textDisclaimer").html(response["response"]);
 		},
 		complete: function () {
 			$("#Loader").css({
