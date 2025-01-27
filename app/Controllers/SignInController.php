@@ -9,6 +9,9 @@
 	class SignInController extends BaseController {
 		public function index (): string|RedirectResponse|ResponseInterface {
 			if ( $this->validateSession () ) {
+				$data = [ 'session' => TRUE  ];
+				$this->response->setHeader('Content-Encoding', 'gzip');
+				$this->response->setBody(gzencode(view('signInB', $data )));
 				return redirect ( '/' );
 			}
 			$data = [ 'session' => FALSE ];

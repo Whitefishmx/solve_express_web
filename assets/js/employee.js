@@ -1,6 +1,7 @@
 $(document).ready(function () {
 	GetDashboard();
 	getDisclaimer();
+	getBenefits();
 	const toggleButton = document.getElementById("theme-toggle");
 	const cantidad = $("#requestAmount");
 	const rangeOutput = document.getElementById("outRequestAmount");
@@ -23,6 +24,9 @@ $(document).ready(function () {
 		rangeInput.style.background = `linear-gradient(to right, var(--range-color) ${value}%, #ddd ${value}%)`;
 	});
 	$("#reqPay").on("click", getDisclaimer);
+	$('#aNb').on('click', function(){
+		getBenefits();
+	});
 });
 
 function GetDisposiciones() {
@@ -271,6 +275,56 @@ function getDisclaimer() {
 		success: function (response) {
 			$("#textDisclaimer").append(response["response"]);
 			$("#textDisclaimer").html(response["response"]);
+		},
+		complete: function () {
+			$("#Loader").css({
+				display: "none"
+			});
+		},
+		error: function (status) {
+			// Maneja los errores de la solicitud
+			console.error("Error en la solicitud:", status);
+		}
+	});
+}
+
+function getBenefits() {
+	$.ajax({
+		url: "/getBenefits",
+		dataType: "JSON",
+		method: "POST",
+		beforeSend: function () {
+			const obj = $("#mainContainer");
+			const left = obj.offset().left;
+			const top = obj.offset().top;
+			const width = obj.width();
+			const height = obj.height();
+			$("#Loader").delay(50000).css({
+				display: "block",
+				opacity: 1,
+				visibility: "visible",
+				left: left,
+				top: top,
+				width: width,
+				height: height,
+				zIndex: 999999
+			}).focus();
+		},
+		success: function (response) {
+			let acordeon = $('#accordionPanelsStayOpenExample');
+			let item = "";
+			let counter = 0;
+			acordeon.empty();
+			$.each(response["response"], function (index, value) {
+				item += `<div class="accordion-item">
+<h5 class="accordion-header">
+<button class="accordion-button fw-semibold collapsed text-light text-accordion" type="button" data-bs-toggle="collapse"
+data-bs-target="#panelsStayOpen-collapse${counter}" aria-expanded="false" aria-controls="panelsStayOpen-collapse${counter}" style="font-size: 1rem !important;">
+<img src="https://api-solve.local/benefitsIco/${value['icon_dark']}" alt="Icono" class="icon-img" style="height: 2rem;"/>${value["title"]}</button></h5>
+<div id="panelsStayOpen-collapse${counter}" class="accordion-collapse collapse" style=""><div class="accordion-body">${value["description"]}</div></div></div>`;
+				counter++;
+			});
+			acordeon.append(item);
 		},
 		complete: function () {
 			$("#Loader").css({

@@ -228,4 +228,9 @@
 			];
 			return $this->SendRequest ( $endPoint, $data, 'PATCH', 'JSON' );
 		}
+		public function getBenefits (string $token ): bool|string {
+			$endPoint = 'sExpressGetBenefits';
+			$data = [];
+			return $this->SendRequest ( $endPoint, $data, 'POST', NULL , $token );
+		}
 	}

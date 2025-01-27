@@ -12,7 +12,8 @@
 				return redirect ( 'signIn' );
 			}
 			$session = session ();
-			$permissions = json_decode ( json_encode ( $session->get ( 'user' )[ 'permissions' ][ 0 ] ), TRUE );
+			$permissions = json_decode ( json_encode ( $session->get ( 'user' )[ 'permissions' ] ), TRUE );
+//			var_dump ($permissions);die();
 			$user = $session->get ( 'user' )[ 'data' ];
 			$name = $user[ 'name' ].' '.$user[ 'last_name' ];
 			$initials = substr ( $user[ 'name' ], 0, 1 ).substr ( $user[ 'last_name' ], 0, 1 );
@@ -20,9 +21,12 @@
 			$data[ 'name' ] = $name;
 			$data[ 'company' ] = $user[ 'short_name' ];
 			$data[ 'session' ] = TRUE;
-			if ( $permissions[ 'name' ] === 'main' ) {
+			$found = array_filter($permissions, function($item) {
+				return isset($item['name']) && $item['name'] === 'main';
+			});
+			if (!empty($found)) {
 				$data = [ 'title' => 'SolveExpress | Adelanta Sueldo' ];
-				$data[ 'main' ] = view ( 'main' );
+				$data[ 'main' ] = view ( 'main' , ['permissions' => $permissions]);
 				if ( str_contains ( service ( 'request' )->getHeaderLine ( 'Accept-Encoding' ), 'gzip' ) ) {
 					$this->response->setHeader('Content-Encoding', 'gzip');
 					$this->response->setBody(gzencode(view('plantilla', $data )));

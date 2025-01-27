@@ -43,6 +43,7 @@
 	$routes->add ( 'getPayments', 'CompanyController::getPayments' /**@uses \App\Controllers\CompanyController::getPayments * */ );
 	$routes->add ( 'getPaymentsDetails', 'CompanyController::getPaymentsDetails' /**@uses \App\Controllers\CompanyController::getPaymentsDetails * */ );
 	$routes->add ( 'getLaws', 'EmployeeController::getLaws' /**@uses \App\Controllers\EmployeeController::getLaws * */ );
+	$routes->add ( 'getBenefits', 'EmployeeController::getBenefits' /**@uses \App\Controllers\EmployeeController::getBenefits * */ );
 	//====================================||   PUT   ||====================================
 	//====================================||  PATCH  ||====================================
 	//====================================|| DELETE  ||====================================
