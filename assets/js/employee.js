@@ -1,7 +1,13 @@
+// let url = "https://api-solve.local/";
+let url = "https://sandbox.solvegcm.mx/";
 $(document).ready(function () {
 	GetDashboard();
 	getDisclaimer();
-	getBenefits();
+	if ($("#aNb").length > 0) {
+		$("#tabBen").on("click", function () {
+			getBenefits();
+		});
+	}
 	const toggleButton = document.getElementById("theme-toggle");
 	const cantidad = $("#requestAmount");
 	const rangeOutput = document.getElementById("outRequestAmount");
@@ -24,8 +30,11 @@ $(document).ready(function () {
 		rangeInput.style.background = `linear-gradient(to right, var(--range-color) ${value}%, #ddd ${value}%)`;
 	});
 	$("#reqPay").on("click", getDisclaimer);
-	$('#aNb').on('click', function(){
+	$("#aNb").on("click", function () {
 		getBenefits();
+	});
+	$("#certTab").on("click", function () {
+		getCerts();
 	});
 });
 
@@ -311,7 +320,7 @@ function getBenefits() {
 			}).focus();
 		},
 		success: function (response) {
-			let acordeon = $('#accordionPanelsStayOpenExample');
+			let acordeon = $("#accordionPanelsStayOpenExample");
 			let item = "";
 			let counter = 0;
 			acordeon.empty();
@@ -320,11 +329,55 @@ function getBenefits() {
 <h5 class="accordion-header">
 <button class="accordion-button fw-semibold collapsed text-light text-accordion" type="button" data-bs-toggle="collapse"
 data-bs-target="#panelsStayOpen-collapse${counter}" aria-expanded="false" aria-controls="panelsStayOpen-collapse${counter}" style="font-size: 1rem !important;">
-<img src="https://api-solve.local/benefitsIco/${value['icon_dark']}" alt="Icono" class="icon-img" style="height: 2rem;"/>${value["title"]}</button></h5>
+<img src="${url}/benefitsIco/${value["icon_dark"]}" alt="Icono" class="icon-img" style="height: 2rem;"/>${value["title"]}</button></h5>
 <div id="panelsStayOpen-collapse${counter}" class="accordion-collapse collapse" style=""><div class="accordion-body">${value["description"]}</div></div></div>`;
 				counter++;
 			});
 			acordeon.append(item);
+		},
+		complete: function () {
+			$("#Loader").css({
+				display: "none"
+			});
+		},
+		error: function (status) {
+			// Maneja los errores de la solicitud
+			console.error("Error en la solicitud:", status);
+		}
+	});
+}
+
+function getCerts() {
+	$.ajax({
+		url: "/getCerts",
+		dataType: "JSON",
+		method: "POST",
+		beforeSend: function () {
+			const obj = $("#mainContainer");
+			const left = obj.offset().left;
+			const top = obj.offset().top;
+			const width = obj.width();
+			const height = obj.height();
+			$("#Loader").delay(50000).css({
+				display: "block",
+				opacity: 1,
+				visibility: "visible",
+				left: left,
+				top: top,
+				width: width,
+				height: height,
+				zIndex: 999999
+			}).focus();
+		},
+		success: function (response) {
+			let showImage = `<img src="${url}${response["response"]["show"]}" alt="certificado" class="img-fluid rounded" />`;
+			let downloadImage = `<button
+							type="button" class="btn btn-lg btn-primary text-light" onclick="window.open('${url}${response["response"]["download"]}',
+							'_blank')" style="  display: flex; align-items: center;justify-content: center; gap: 5px;">
+						<i class="material-icons prefix">download</i>Descargar
+					</button>`;
+			$('#certImage').html(showImage);
+			$('#certDownload').html(downloadImage);
 		},
 		complete: function () {
 			$("#Loader").css({

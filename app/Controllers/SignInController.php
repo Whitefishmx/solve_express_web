@@ -9,15 +9,15 @@
 	class SignInController extends BaseController {
 		public function index (): string|RedirectResponse|ResponseInterface {
 			if ( $this->validateSession () ) {
-				$data = [ 'session' => TRUE  ];
-				$this->response->setHeader('Content-Encoding', 'gzip');
-				$this->response->setBody(gzencode(view('signInB', $data )));
+				$data = [ 'session' => TRUE ];
+				$this->response->setHeader ( 'Content-Encoding', 'gzip' );
+				$this->response->setBody ( gzencode ( view ( 'signInB', $data ) ) );
 				return redirect ( '/' );
 			}
 			$data = [ 'session' => FALSE ];
 			if ( str_contains ( service ( 'request' )->getHeaderLine ( 'Accept-Encoding' ), 'gzip' ) ) {
-				$this->response->setHeader('Content-Encoding', 'gzip');
-				$this->response->setBody(gzencode(view('signInB', $data )));
+				$this->response->setHeader ( 'Content-Encoding', 'gzip' );
+				$this->response->setBody ( gzencode ( view ( 'signInB', $data ) ) );
 				return $this->response;
 			}
 			return view ( 'signInB', $data );
@@ -40,7 +40,7 @@
 			$session = session ();
 			$session->set ( 'logged_in', TRUE );
 			$session->set ( 'user', $res[ 'user' ] );
-			$session->set ( 'company', $res[ 'user' ]['data']['companyId'] );
+			$session->set ( 'company', $res[ 'user' ][ 'data' ][ 'companyId' ] );
 			$session->set ( 'token', $res[ 'access_token' ][ 'token' ] );
 			$this->errCode = 200;
 			$this->responseBody = [

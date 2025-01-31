@@ -211,12 +211,12 @@
 			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON' );
 		}
 		public function reportDetail ( $company, $period, $token ): bool|string {
-			$endPoint ='sExpressPaymentDetail';
-            $data = [
-                'company' => $company,
-                'period'  => $period,
-            ];
-            return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
+			$endPoint = 'sExpressPaymentDetail';
+			$data = [
+				'company' => $company,
+				'period'  => $period,
+			];
+			return $this->SendRequest ( $endPoint, $data, 'POST', 'JSON', $token );
 		}
 		public function resetPassword ( mixed $user, string $code, string $password, string $password2 ): bool|string {
 			$endPoint = 'resetPassword';
@@ -228,9 +228,19 @@
 			];
 			return $this->SendRequest ( $endPoint, $data, 'PATCH', 'JSON' );
 		}
-		public function getBenefits (string $token ): bool|string {
+		public function getBenefits ( string $token ): bool|string {
 			$endPoint = 'sExpressGetBenefits';
 			$data = [];
-			return $this->SendRequest ( $endPoint, $data, 'POST', NULL , $token );
+			return $this->SendRequest ( $endPoint, $data, 'POST', NULL, $token );
+		}
+		public function verifyBenefits ( string $token ): bool|string {
+			$endPoint = 'sExpressValidateBenefits';
+			$data = [];
+			return $this->SendRequest ( $endPoint, $data, 'POST', NULL, $token );
+		}
+		public function getCerts ( string $token ): bool|string {
+			$endPoint = 'sExpressGetCerts';
+			$data = [];
+			return $this->SendRequest ( $endPoint, $data, 'POST', NULL, $token );
 		}
 	}

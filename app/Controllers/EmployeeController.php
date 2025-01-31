@@ -152,4 +152,20 @@
 			$this->responseBody = [ 'error' => $this->errCode=$res[ 'error' ], 'description' => $res[ 'description' ], 'response' => $res[ 'response' ] ];
 			return $this->getResponse ( $this->responseBody, $this->errCode );
 		}
+		public function getCerts () {
+			$this->input = $this->getRequestInput ( $this->request );
+			if ( $this->verifyRules ( 'POST', $this->request, NULL ) ) {
+				return $this->getResponse ( $this->responseBody, $this->errCode );
+			}
+			$data = new DataModel();
+			$session = session ();
+			$token = $session->get ( 'token' );
+			$res = json_decode ( $data->getCerts ( $token ), TRUE );
+			if ( $res[ 'error' ] === 500 || $res[ 'error' ] === 404 ) {
+				$this->responseBody = [ 'error' => $this->errCode=$res[ 'error' ], 'description' => $res[ 'description' ], 'reason' => $res[ 'reason' ] ];
+				return $this->getResponse ( $this->responseBody, $this->errCode );
+			}
+			$this->responseBody = [ 'error' => $this->errCode=$res[ 'error' ], 'description' => $res[ 'description' ], 'response' => $res[ 'response' ] ];
+			return $this->getResponse ( $this->responseBody, $this->errCode );
+		}
 	}

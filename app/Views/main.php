@@ -1,12 +1,16 @@
 <?php
 	$tabs = [
-		"<li class='nav-item waves-effect waves-light' role='presentation'><a class='nav-link' data-bs-toggle='tab' href='#test4' role='tab' aria-selected='false' tabindex='-1'>Beneficios</a></li>",
+		"<li class='nav-item waves-effect waves-light' role='presentation'><a class='nav-link' data-bs-toggle='tab' href='#test4' role='tab' aria-selected='false' tabindex='-1' id='tabBen'>Beneficios</a></li>",
 	];
 	$permissions = $permissions ?? '';
 	$found = array_filter ( (array)$permissions, function ( $item ) {
 		return isset( $item[ 'name' ] ) && $item[ 'name' ] === 'benefits';
 	} );
 	$benefits = !empty( $found ) ? $tabs[ 0 ] : '';
+	$bValidated = $bValidated ?? '';
+	if ( !$bValidated){
+		$found = 0;
+	}
 ?>
 <div class="card" style="padding-left: 0; padding-right: 0;">
 	<div class="card-body pt-0">
@@ -26,8 +30,11 @@
 			<?php include ( 'tabs/tabInicio.php' ) ?>
 			<?php include ( 'tabs/tabProvisions.php' ) ?>
 			<?php include ( 'tabs/tabNotifications.php' ) ?>
-			<?php if ( !empty( $found ) ) {
+			<?php
+			if ( !empty( $found ) && $found !== 0 ) {
 				include ( 'tabs/tabBenefits.php' );
+			}else if ($found === 0){
+				include ( 'tabs/tabBenefitsInactive.php' );
 			} ?>
 		</div>
 	</div>
