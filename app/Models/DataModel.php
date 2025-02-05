@@ -12,15 +12,15 @@
 			//} else {
 			//	$this->url = 'https://api-solve.local/';
 			//}
-						if ( ENVIRONMENT === 'development' ) {
-							$this->url = 'https://sandbox.solvegcm.mx/';
-						} else if ( ENVIRONMENT === 'production' ) {
-							$this->url = 'https://sandbox.solvegcm.mx/';
-						} else {
-							$this->url = 'https://sandbox.solvegcm.mx/';
-						}
+			if ( ENVIRONMENT === 'development' ) {
+				$this->url = 'https://sandbox.solvegcm.mx/';
+			} else if ( ENVIRONMENT === 'production' ) {
+				$this->url = 'https://sandbox.solvegcm.mx/';
+			} else {
+				$this->url = 'https://sandbox.solvegcm.mx/';
+			}
 		}
-		public function setUser ( string $nickname, string $email, string $password, string $password2, mixed $user, ?string $phone = NULL ): bool|string {
+		public function setUser ( string $nickname, string $email, string $password, string $password2, mixed $user, ?string $phone = NULL ): bool | string {
 			$endPoint = 'setUser';
 			$data = [
 				'user'        => $user,
