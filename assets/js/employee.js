@@ -235,7 +235,7 @@ function RequestPay() {
 				
 			}
 			console.log(texto);
-			$("#texto_modal").html(texto);
+			$("#textDisclaimer").html(texto);
 		},
 		complete: function () {
 			$("#Loader").css({
@@ -249,7 +249,7 @@ function RequestPay() {
 			
 			texto = "<div class=\"alert alert-danger alert-dismissible fade show shadow-sm border-theme-white-2 mb-0\" role=\"alert\"><div class=\"d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1\"><i class=\"fas fa-xmark align-self-center mb-0 text-white \"></i></div><h4 class=\"alert-heading font-18\">" + status.responseJSON.description + "</h4><p>" + status.responseJSON.reason + "</p></div>";
 			
-			$("#texto_modal").html(texto);
+			$("#textDisclaimer").html(texto);
 		}
 	});
 	

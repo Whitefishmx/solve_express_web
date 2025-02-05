@@ -46,7 +46,8 @@
 				<h6 class="modal-title m-0" id="exampleModalScrollableTitle">Detalles y Contrato</h6>
 				<button
 						type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-						style="background-color: #2b2d3c !important; color: #FFF !important;"></button>
+						style="background-color: #2b2d3c !important; color: #FFF !important;"
+						onclick="location.reload();"></button>
 			</div><!--end modal-header-->
 			<div>
 			</div>
@@ -68,7 +69,8 @@
 			<div class="modal-footer">
 				<button
 						type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
-						style="color: #FFF !important; border-color: #333333 !important; background-color: #333333 !important">Cerrar
+						style="color: #FFF !important; border-color: #333333 !important; background-color: #333333 !important"
+						onclick="location.reload();">Cerrar
 				</button>
 				<button
 						type="button" class="btn btn-primary btn-sm"
