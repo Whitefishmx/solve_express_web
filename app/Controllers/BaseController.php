@@ -38,9 +38,6 @@
 				'description' => 'Sesión invalida',
 				'reason'      => 'la sesión a caducado, vuelve a iniciar sesión' ];
 		}
-		public function logResponse ( int $function, ?array $inputData = NULL, ?array $responseData = NULL ): void {
-			saveLog ( $this->user, $function, $this->errCode, json_encode ( $inputData ?? $this->input, JSON_UNESCAPED_UNICODE ), json_encode ( $responseData ?? $this->responseBody, JSON_UNESCAPED_UNICODE ), $this->env );
-		}
 		/**
 		 * @param RequestInterface  $request
 		 * @param ResponseInterface $response
@@ -121,20 +118,6 @@
 				'description' => 'Datos de petición incorrectos',
 				'reason'      => $reason ];
 			return $this->responseBody;
-		}
-		public function pageNotFound (): ResponseInterface {
-			$this->errCode = 404;
-			return $this->getResponse ( [
-				'error'       => $this->errCode,
-				'description' => 'Recurso no encontrada',
-				'reason'      => 'Verifique que el endpoint sea correcto' ], ResponseInterface::HTTP_NOT_FOUND );
-		}
-		public function dataNotFound (): ResponseInterface {
-			$this->errCode = 404;
-			return $this->getResponse ( [
-				'error'       => $this->errCode,
-				'description' => 'Recurso no encontrada',
-				'reason'      => 'No se encontró información con los datos ingresados' ], ResponseInterface::HTTP_NOT_FOUND );
 		}
 		public function redirectLogIn (): array {
 			$this->errCode = 307;

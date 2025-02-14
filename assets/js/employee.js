@@ -73,6 +73,7 @@ function GetDisposiciones() {
 					let url = "https://sandbox.solvegcm.mx/cepDownloader/";
 					//let url = "https://api-solve.local/cepDownloader/";
 					let cep = "En proceso";
+					console.log(value);
 					if (value["cep"] != null) {
 						cep = "<a href='" + url + value["cep"] + "' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
 					}
@@ -232,7 +233,6 @@ function RequestPay() {
 				texto = "<div class=\"alert alert-info mb-0 border-2\" role=\"alert\"><h4 class=\"alert-heading font-18\">" + response.description + "</h4><p>" + response.response + "</p></div>";
 			} else {
 				texto = "<div class=\"alert alert-danger alert-dismissible fade show shadow-sm border-theme-white-2 mb-0\" role=\"alert\"><div class=\"d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1\"><i class=\"fas fa-xmark align-self-center mb-0 text-white \"></i></div><strong>" + response.description + "</strong> " + response.reason + "</div>";
-				
 			}
 			console.log(texto);
 			$("#textDisclaimer").html(texto);
@@ -244,8 +244,8 @@ function RequestPay() {
 		},
 		error: function (status) {
 			// Maneja los errores de la solicitud
-			console.error("Error en la solicitud:", status);
-			console.log(status.responseJSON.reason);
+			// console.error("Error en la solicitud:", status);
+			// console.log(status.responseJSON.reason);
 			
 			texto = "<div class=\"alert alert-danger alert-dismissible fade show shadow-sm border-theme-white-2 mb-0\" role=\"alert\"><div class=\"d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1\"><i class=\"fas fa-xmark align-self-center mb-0 text-white \"></i></div><h4 class=\"alert-heading font-18\">" + status.responseJSON.description + "</h4><p>" + status.responseJSON.reason + "</p></div>";
 			

@@ -42,17 +42,6 @@
 <body class="" onload="GetDashboard()">
 <script type="text/javascript" src="/./assets/js/jquery-3.7.1.js"></script>
 <script type="text/javascript" src="/./assets/js/jquery-3.7.1.min.js"></script>
-
-<script>
-	if ("serviceWorker" in navigator) {
-		navigator.serviceWorker.register("/assets/js/sw.js").then(function (registration) {
-			console.log("Service Worker registrado con alcance:", registration.scope);
-		}).catch(function (error) {
-			console.log("Registro del Service Worker fallido:", error);
-		});
-	}
-</script>
-
 <div class="topbar d-print-none" style="background-color: white">
 	<div class="container-xxl">
 		<nav class="topbar-custom d-flex justify-content-between" id="topbar-custom">
@@ -260,6 +249,6 @@
 <script src="/assets/libs/simplebar/simplebar.min.js"></script>
 <script src="/assets/js/app.js"></script>
 <script src="/assets/js/datatable.init.js"></script>
-<script type="text/javascript" src="/./assets/js/employee.js?v=1.1.6"></script>
+<script type="text/javascript" src="/./assets/js/employee.js?v=1.2.0"></script>
 </body>
 </html>

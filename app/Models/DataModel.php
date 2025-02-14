@@ -5,13 +5,13 @@
 		private string $url = '';
 		public function __construct () {
 			parent::__construct ();
-			//if ( ENVIRONMENT === 'development' ) {
-			//	$this->url = 'https://api-solve.local/';
-			//} else if ( ENVIRONMENT === 'production' ) {
-			//	$this->url = 'https://api-solve.local/';
-			//} else {
-			//	$this->url = 'https://api-solve.local/';
-			//}
+//			if ( ENVIRONMENT === 'development' ) {
+//				$this->url = 'https://api-solve.local/';
+//			} else if ( ENVIRONMENT === 'production' ) {
+//				$this->url = 'https://api-solve.local/';
+//			} else {
+//				$this->url = 'https://api-solve.local/';
+//			}
 			if ( ENVIRONMENT === 'development' ) {
 				$this->url = 'https://sandbox.solvegcm.mx/';
 			} else if ( ENVIRONMENT === 'production' ) {

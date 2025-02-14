@@ -90,14 +90,12 @@
 		public function getPayments (): ResponseInterface {
 			$this->input = $this->getRequestInput ( $this->request );
 			if ( $this->verifyRules ( 'POST', $this->request, NULL ) ) {
-				//				$this->logResponse ( 1 );
 				return $this->getResponse ( $this->responseBody, $this->errCode );
 			}
 			$session = session ();
 			$company = $session->get ( 'user' );
 			$token = $session->get ( 'token' );
 			$res = json_decode ( $this->data->getPayments ( $company[ 'data' ][ 'company_id' ], $token ), TRUE );
-			//						var_dump ( $res );die();
 			$this->responseBody = [
 				'error'       => $this->errCode = $res[ 'error' ],
 				'description' => 'Reporte generado correctamente',
