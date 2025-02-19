@@ -45,6 +45,9 @@
 	$routes->add ( 'getLaws', 'EmployeeController::getLaws' /**@uses \App\Controllers\EmployeeController::getLaws * */ );
 	$routes->add ( 'getBenefits', 'EmployeeController::getBenefits' /**@uses \App\Controllers\EmployeeController::getBenefits * */ );
 	$routes->add ( 'getCerts', 'EmployeeController::getCerts' /**@uses \App\Controllers\EmployeeController::getCerts * */ );
+	$routes->add ( 'getNotifications', 'NotificationController::getNotifications' /**@uses \App\Controllers\NotificationController::getNotifications * */ );
+	$routes->add ( 'readNotifications', 'NotificationController::readNotifications' /**@uses \App\Controllers\NotificationController::readNotifications * */ );
+	$routes->add ( 'deleteNotifications', 'NotificationController::deleteNotifications' /**@uses \App\Controllers\NotificationController::deleteNotifications * */ );
 	//====================================||   PUT   ||====================================
 	//====================================||  PATCH  ||====================================
 	//====================================|| DELETE  ||====================================

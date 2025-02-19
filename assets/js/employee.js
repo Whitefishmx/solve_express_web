@@ -1,8 +1,11 @@
 // let url = "https://api-solve.local/";
 let url = "https://sandbox.solvegcm.mx/";
+let nRead = [];
+let nTotal = [];
 $(document).ready(function () {
 	GetDashboard();
 	getDisclaimer();
+	getNotifications();
 	if ($("#aNb").length > 0) {
 		$("#tabBen").on("click", function () {
 			getBenefits();
@@ -376,8 +379,8 @@ function getCerts() {
 							'_blank')" style="  display: flex; align-items: center;justify-content: center; gap: 5px;">
 						<i class="material-icons prefix">download</i>Descargar
 					</button>`;
-			$('#certImage').html(showImage);
-			$('#certDownload').html(downloadImage);
+			$("#certImage").html(showImage);
+			$("#certDownload").html(downloadImage);
 		},
 		complete: function () {
 			$("#Loader").css({
@@ -386,6 +389,166 @@ function getCerts() {
 		},
 		error: function (status) {
 			// Maneja los errores de la solicitud
+			console.error("Error en la solicitud:", status);
+		}
+	});
+}
+
+function getNotifications() {
+	$.ajax({
+		url: "/getNotifications",
+		dataType: "JSON",
+		method: "POST",
+		success: function (response) {
+			nRead=[];
+			nTotal=[];
+			let counter = 0;
+			let notifications = "";
+			$.each(response.response, function (index, value) {
+				let markRead = `<i class="fas fa-asterisk text-secondary"></i> `;
+				if (parseInt(value["web"]) === 1) {
+					counter++;
+					nTotal.push(value["id"]);
+					if (parseInt(value["read"]) === 1) {
+						nRead.push(value["id"]);
+						markRead = ``;
+					}
+					let title = JSON.stringify(value["title"]);
+					let body = JSON.stringify(value["body"]);
+					notifications += `
+			            <div class="card cardback bordercard bg-body-tertiary">
+			                <div class="card-body">
+			                    <div class="row">
+			                        <div class="col-md-10">
+			                            <div class="d-flex align-items-center">
+			                                <div class="flex-grow-1 ms-2 text-truncate">
+			                                    <h6 class="my-1 fw-medium text-dark fs-14">
+			                                        ${markRead}${value["title"]}
+			                                        <small class="text-muted ps-2">${value["date"]}</small>
+			                                    </h6>
+			                                    <p class="text-muted mb-0 text-wrap">${value["subtitle"]}</p>
+			                                </div>
+			                            </div>
+			                        </div>
+			                        <div class="col-md-2 text-end align-self-center mt-sm-2 mt-lg-0">
+			                            <button type="button"
+			                                onclick="setNotificationData('${value["title"]}','${value["body"]}','${value["id"]}' )"
+			                                class="btn btn-primary btn-sm px-2 text-light"
+			                                data-bs-toggle="modal"
+			                                data-bs-target="#notificationModal">Ver</button>
+			                            <button type="button" class="btn btn bg-danger-subtle text-secondary btn-sm" onclick="deleteOneNotification('${value["id"]}')">
+			                                <i class="fas fa-trash text-danger"></i>
+			                            </button>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>`;
+				}
+			});
+			counter = counter - (nRead.length);
+			if (counter >= 1) {
+				$("#countNotifications").html(counter);
+				$("#count4Read").html(counter);
+			}else if (counter === 0){
+				$("#countNotifications").html('');
+				$("#count4Read").html('');
+			}
+			if (nTotal.length >= 1) {
+				$("#count4Delete").html(nTotal.length);
+			}else if(nTotal.length === 0){
+				$("#count4Delete").html('');
+			}
+			$("#notificationContent").html(notifications);
+		},
+		error: function (status) {
+			console.error("Error en la solicitud:", status);
+		}
+	});
+}
+
+function setNotificationData(title, body, id) {
+	$("#titleNotificationModal").html(title);
+	$("#bodyNotificationModal").html(body);
+	$.ajax({
+		url: "/readNotifications",
+		dataType: "JSON",
+		data: {
+			id: id
+		},
+		method: "POST",
+		success: function (response) {
+			getNotifications();
+		},
+		error: function (status) {
+			console.error("Error en la solicitud:", status);
+		}
+	});
+}
+
+function deleteOneNotification(id) {
+	$.ajax({
+		url: "/deleteNotifications",
+		dataType: "JSON",
+		data: {
+			id: id
+		},
+		method: "POST",
+		success: function (response) {
+			getNotifications();
+		},
+		error: function (status) {
+			console.error("Error en la solicitud:", status);
+		}
+	});
+}
+function readAllNotifications() {
+	$.ajax({
+		url: "/readNotifications",
+		dataType: "JSON",
+		contentType: "application/json",
+		data: JSON.stringify(nTotal.map(id => ({ id }))),
+		method: "POST",
+		success: function () {
+			getNotifications();
+		},
+		error: function (status) {
+			console.error("Error en la solicitud:", status);
+		}
+	});
+}
+function deleteAllNotifications() {
+	$.ajax({
+		url: "/deleteNotifications",
+		dataType: "JSON",
+		contentType: "application/json",
+		data: JSON.stringify(nTotal.map(id => ({ id }))),
+		method: "POST",
+		beforeSend: function () {
+			const obj = $("#mainContainer");
+			const left = obj.offset().left;
+			const top = obj.offset().top;
+			const width = obj.width();
+			const height = obj.height();
+			$("#Loader").delay(50000).css({
+				display: "block",
+				opacity: 1,
+				visibility: "visible",
+				left: left,
+				top: top,
+				width: width,
+				height: height,
+				zIndex: 999999
+			}).focus();
+		},
+		success: function () {
+			getNotifications();
+		},
+		complete: function () {
+			$("#Loader").css({
+				display: "none"
+			});
+		},
+		error: function (status) {
 			console.error("Error en la solicitud:", status);
 		}
 	});

@@ -16,13 +16,15 @@
 	<div class="card-body pt-0">
 		<ul class="nav nav-pills nav-justified" role="tablist">
 			<li class="nav-item waves-effect waves-light" role="presentation">
-				<a class="nav-link active" data-bs-toggle="tab" href="#test1" role="tab" aria-selected="true" tabindex="-1">Inicio</a>
+				<a class="nav-link active" data-bs-toggle="tab" href="#test1" role="tab" aria-selected="true" tabindex="-1" onclick="GetDashboard()">Inicio</a>
 			</li>
 			<li class="nav-item waves-effect waves-light" role="presentation">
 				<a class="nav-link" data-bs-toggle="tab" href="#test2" role="tab" aria-selected="false" tabindex="-1" onclick="GetDisposiciones()">Disposiciones</a>
 			</li>
 			<li class="nav-item waves-effect waves-light" role="presentation">
-				<a class="nav-link" data-bs-toggle="tab" href="#test3" role="tab" aria-selected="false" tabindex="-1">Notificaciones</a>
+				<a class="nav-link" data-bs-toggle="tab" href="#test3" role="tab" aria-selected="false" tabindex="-1" onclick="getNotifications()">Notificaciones <span class="badge
+				rounded
+				text-blue bg-dark-subtle ms-1" id="countNotifications"></span></a>
 			</li>
 			<?= $benefits ?>
 		</ul>
