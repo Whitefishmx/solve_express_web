@@ -8,7 +8,7 @@
 						<label class="col-form-label">Descargar layout</label>
 						<div class="input-group justify-content-center">
 							<a
-									href="https://api-solve.local/layoutDownloader/express_nomina.xlsx" target="_blank"
+									href="https://api.solvegcm.mx/layoutDownloader/express_nomina.xlsx" target="_blank"
 									style="color: #FF9400"><i class="fas fa-download" style="font-size: 2.1rem"></i></a>
 						</div>
 					</div>
