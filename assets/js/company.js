@@ -5,6 +5,8 @@ let curp = $("#curp");
 let name = $("#name");
 let period = $("#period");
 let dataTable = null;
+let dataEmployeesTable = null;
+let dataPaymentsTable = null;
 // noinspection JSUnresolvedReference
 let selector = new Selectr("#columns", {multiple: true});
 // noinspection JSUnresolvedReference
@@ -69,7 +71,6 @@ $(document).ready(function () {
 		downloadDetailPaymentReport();
 	});
 });
-
 function getPeriods() {
 	$.ajax({
 		url: "/getPeriods",
@@ -97,7 +98,6 @@ function getPeriods() {
 		}
 	});
 }
-
 function getReport() {
 	$.ajax({
 		url: "/reportCompany",
@@ -152,7 +152,6 @@ function getReport() {
 		}
 	});
 }
-
 function downloadReport() {
 	let cols = $("#columns").val();
 	let columns = cols;
@@ -212,7 +211,6 @@ function downloadReport() {
 		
 	});
 }
-
 function month2Mes(month) {
 	const months = [
 		"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
@@ -220,7 +218,6 @@ function month2Mes(month) {
 	];
 	return months[month]; // Devuelve el nombre del mes
 }
-
 function getWInfo() {
 	return $.ajax({
 		url: "/data4req",
@@ -239,7 +236,6 @@ function getWInfo() {
 		}
 	});
 }
-
 function uploadNomina() {
 	getWInfo().then(data => {
 		const formData = new FormData($("#formNomina")[0]);
@@ -279,14 +275,12 @@ function uploadNomina() {
 		});
 	});
 }
-
 function initializePayments() {
 	try {
 		new simpleDatatables.DataTable("#tableInvoice", {searchable: !0, fixedHeight: !1});
 	} catch (e) {
 	}
 }
-
 function getEmployees() {
 	$.ajax({
 		url: "/getEmployees",
@@ -305,8 +299,9 @@ function getEmployees() {
 			displayLoaderCompany();
 		},
 		success: function (response) {
-			let resultArea = $("#fireEmployees tbody");
-			resultArea.empty();
+			if (dataEmployeesTable != null) dataEmployeesTable.destroy();
+			const resArea = $("#fireEmployees tbody");
+			resArea.empty();
 			let rows = "";
 			response["response"].forEach((value) => {
 				let formattedName = capitalizeWords(value["name"]);
@@ -314,13 +309,11 @@ function getEmployees() {
 				let formattedSureName = capitalizeWords(value["sure_name"]);
 				let clabe = value["clabe"] || "No disponible";
 				let fired = value["fireDate"] || "No disponible";
-				
 				let fireIcon = value["fireDate"] === null
 					? `<i class='las la-trash-alt text-secondary font-16 text-danger'
                    style='font-size: 1.5rem; cursor: pointer'
                    onclick="fireEmployee('${value["employeeId"]}', '${formattedLastName}', '${formattedName}')"></i>`
 					: `<i class='las la-trash-alt text-secondary' style='font-size: 1.2rem;' title='No disponible'></i>`;
-				
 				rows += `
             <tr>
                 <td>${value["external_id"]}</td>
@@ -332,13 +325,11 @@ function getEmployees() {
                 <td style='text-align: center'>${fireIcon}</td>
             </tr>`;
 			});
-			
-			resultArea.html(rows); // Inserta todas las filas de una sola vez
-			
-			try {
-				new simpleDatatables.DataTable("#fireEmployees", {searchable: !0, fixedHeight: !1});
-			} catch (e) {
-			}
+			resArea.append(rows);
+			dataEmployeesTable = new simpleDatatables.DataTable("#fireEmployees", {
+				searchable: true,
+				fixedHeight: true,
+			});
 		},
 		complete: function () {
 			$("#Loader").css({
@@ -351,7 +342,6 @@ function getEmployees() {
 		}
 	});
 }
-
 function capitalizeWords(str) {
 	if (!str) return ""; // Verifica si la cadena es nula o vacía
 	return str
@@ -359,7 +349,6 @@ function capitalizeWords(str) {
 		.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitaliza cada palabra
 		.join(" "); // Une las palabras nuevamente con espacios
 }
-
 function fireEmployee(employeeId, lastName, name) {
 	// noinspection JSUnresolvedReference
 	Swal.fire({
@@ -404,7 +393,6 @@ function fireEmployee(employeeId, lastName, name) {
 		}
 	});
 }
-
 function fireEmployees() {
 	// noinspection JSUnresolvedReference
 	Swal.fire({
@@ -459,7 +447,6 @@ function fireEmployees() {
 		}
 	});
 }
-
 function displayLoaderCompany() {
 	// noinspection DuplicatedCode
 	let obj = $("#mainContainer");
@@ -478,7 +465,6 @@ function displayLoaderCompany() {
 		zIndex: 999999
 	}).focus();
 }
-
 function initializeTable() {
 	if (!dataTable) {
 		dataTable = new simpleDatatables.DataTable("#datatable_1", {searchable: true, fixedHeight: false});
@@ -487,7 +473,6 @@ function initializeTable() {
 		dataTable = new simpleDatatables.DataTable("#datatable_1", {searchable: true, fixedHeight: false});
 	}
 }
-
 function getPayments() {
 	$.ajax({
 		url: "/getPayments",
@@ -498,10 +483,9 @@ function getPayments() {
 			displayLoaderCompany();
 		},
 		success: function (response) {
+			if(dataPaymentsTable != null) dataPaymentsTable.destroy();
 			let resAreaI = $("#tableInvoice tbody");
 			resAreaI.empty();
-			
-			// Construir el contenido HTML en una cadena
 			let rows = "";
 			$.each(response["response"], function (index, value) {
 				let status = "<span class='badge rounded-pill bg-danger'><strong>Pendiente</strong></span>";
@@ -527,12 +511,11 @@ function getPayments() {
                 <td><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" onclick="showDetailsPayment" data-bs-target="#paymentsDetails">Ver detalles</button></td>
             </tr>`;
 			});
-			
-			// Insertar el contenido en una sola operación
 			resAreaI.html(rows);
-			
-			// Inicializar la tabla
-			initializePayments();
+			dataEmployeesTable = new simpleDatatables.DataTable("#tableInvoice", {
+				searchable: true,
+				fixedHeight: true,
+			});
 		},
 		complete: function () {
 			$("#Loader").css({
@@ -545,7 +528,6 @@ function getPayments() {
 		}
 	});
 }
-
 function showDetailsPayment(period) {
 	periodDetail = period;
 	$.ajax({
@@ -562,7 +544,6 @@ function showDetailsPayment(period) {
 		success: function (response) {
 			let resArea = $("#detailsPaaymentTbl tbody");
 			resArea.empty();
-			
 			// Construir el contenido HTML en una cadena
 			let rows = "";
 			$.each(response["response"], function (index, value) {
