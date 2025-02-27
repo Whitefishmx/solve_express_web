@@ -5,20 +5,20 @@
 		private string $url;
 		public function __construct () {
 			parent::__construct ();
-						if ( ENVIRONMENT === 'development' ) {
-							$this->url = 'https://api-solve.local/';
-						} else if ( ENVIRONMENT === 'production' ) {
-							$this->url = 'https://api-solve.local/';
-						} else {
-							$this->url = 'https://api-solve.local/';
-						}
-//			if ( ENVIRONMENT === 'development' ) {
-//				$this->url = 'https://sandbox.solvegcm.mx/';
-//			} else if ( ENVIRONMENT === 'production' ) {
-//				$this->url = 'https://sandbox.solvegcm.mx/';
-//			} else {
-//				$this->url = 'https://sandbox.solvegcm.mx/';
-//			}
+			if ( ENVIRONMENT === 'development' ) {
+				$this->url = 'https://api-solve.local/';
+			} else if ( ENVIRONMENT === 'production' ) {
+				$this->url = 'https://api.solvegcm.mx/';
+			} else {
+				$this->url = 'https://sandbox.solvegcm.mx/';
+			}
+			//			if ( ENVIRONMENT === 'development' ) {
+			//				$this->url = 'https://sandbox.solvegcm.mx/';
+			//			} else if ( ENVIRONMENT === 'production' ) {
+			//				$this->url = 'https://sandbox.solvegcm.mx/';
+			//			} else {
+			//				$this->url = 'https://sandbox.solvegcm.mx/';
+			//			}
 		}
 		private function SendRequest ( string $endpoint, array $data, ?string $method, ?string $dataType, ?string $token = NULL ): string|bool {
 			$method = !empty( $method ) ? strtoupper ( $method ) : 'POST';
@@ -66,12 +66,12 @@
 					$response = json_encode ( $resp );
 				}
 				curl_close ( $ch );
-//												var_dump ( $headers);echo PHP_EOL;
-//												var_dump ( "$this->url$endpoint/" );echo PHP_EOL;
-//												var_dump ( curl_getinfo ( $ch, CURLINFO_HEADER_OUT ) );echo PHP_EOL;
-//												var_dump ( json_encode ( $data ) );echo PHP_EOL;
-//												var_dump ( $response );echo PHP_EOL;
-//												die();
+				//												var_dump ( $headers);echo PHP_EOL;
+				//												var_dump ( "$this->url$endpoint/" );echo PHP_EOL;
+				//												var_dump ( curl_getinfo ( $ch, CURLINFO_HEADER_OUT ) );echo PHP_EOL;
+				//												var_dump ( json_encode ( $data ) );echo PHP_EOL;
+				//												var_dump ( $response );echo PHP_EOL;
+				//												die();
 				return $response;
 			} else {
 				$resp[ 'reason' ] = 'No se pudo inicializar cURL';
@@ -165,7 +165,6 @@
 				'company'    => $company,
 				'hiringDate' => $args[ 'hiringDate' ],
 				'fireDate'   => $args[ 'fireDate' ],
-				'rfc'        => $args[ 'rfcFire' ],
 				'curp'       => $args[ 'curpFire' ],
 				'name'       => $args[ 'nameFire' ],
 				'fire'       => $args[ 'fire' ],
@@ -253,13 +252,13 @@
 			$data = [ "id" => $id ];
 			return $this->SendRequest ( $endPoint, $data, 'POST', NULL, $token );
 		}
-		public function readAllNotifications ($ids, string $token ): bool|string {
+		public function readAllNotifications ( $ids, string $token ): bool|string {
 			$endPoint = 'readNotifications';
-			return $this->SendRequest  ( $endPoint, $ids, 'POST', 'JSON' , $token );
+			return $this->SendRequest ( $endPoint, $ids, 'POST', 'JSON', $token );
 		}
-		public function deleteAllNotifications ($ids, string $token ): bool|string {
+		public function deleteAllNotifications ( $ids, string $token ): bool|string {
 			$endPoint = 'deleteNotifications';
-			return $this->SendRequest  ( $endPoint, $ids, 'POST', 'JSON' , $token );
+			return $this->SendRequest ( $endPoint, $ids, 'POST', 'JSON', $token );
 		}
 		public function deleteNotifications ( int $id, string $token ): bool|string {
 			$endPoint = 'deleteNotifications';

@@ -54,15 +54,11 @@
 									min="2024-10-01"
 									max="<?= date ( 'Y-m-d', strtotime ( 'now' ) ) ?>">
 						</div>
-						<div class="col-sm-2">
-							<label for="rfcFire" class="col-form-label">RFC</label>
-							<input type="text" class="form-control bg-light" id="rfcFire" placeholder="MUGH142563R23">
-						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<label for="curpFire" class="col-form-label">CURP</label>
 							<input type="text" class="form-control bg-light" id="curpFire" placeholder="MUGH142563HFYRHD84">
 						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<label for="nameFire" class="col-form-label">Nombre</label>
 							<input type="text" class="form-control bg-light" id="nameFire" placeholder="Juan Perez">
 						</div>
@@ -74,7 +70,6 @@
 						</div>
 					</div>
 			</div>
-		
 		</div>
 	</div>
 	<div class="row justify-content-center">
