@@ -19,20 +19,20 @@ class App extends BaseConfig
     public string $baseURL = '';
 	public function __construct () {
 		parent::__construct ();
-//		if ( ENVIRONMENT === 'development' ) {
-//			$this->baseURL = 'https://app.solve-express.mx';
-//		} else if ( ENVIRONMENT === 'production' ) {
-//			$this->baseURL = 'https://app.solve-express.mx/';
-//		} else {
-//			$this->baseURL = 'https://app.solve-express.mx/';
-//		}
 		if ( ENVIRONMENT === 'development' ) {
 			$this->baseURL = 'https://solveexpress.local/';
 		} else if ( ENVIRONMENT === 'production' ) {
-			$this->baseURL = 'https://solveexpress.local/';
+			$this->baseURL = 'https://app.solve-express.mx/';
 		} else {
-			$this->baseURL = 'https://solveexpress.local/';
+			$this->baseURL = 'https://express.solvegcm.mx/';
 		}
+//		if ( ENVIRONMENT === 'development' ) {
+//			$this->baseURL = 'https://solveexpress.local/';
+//		} else if ( ENVIRONMENT === 'production' ) {
+//			$this->baseURL = 'https://solveexpress.local/';
+//		} else {
+//			$this->baseURL = 'https://solveexpress.local/';
+//		}
 	}
 
     /**

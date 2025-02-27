@@ -1,60 +1,58 @@
 <div class="tab-pane p-3" id="employeeTable" role="tabpanel">
 	<div class="tab-content">
 		<div class="card-body pt-0">
-			<div class="row align-items-center" style="margin-top: 10px">
+			<div class="row align-items-center" style="margin-top: 10px; border: dashed var(--bs-border-color);border-radius: 10px; padding-bottom: 12px; border-width:
+			 1px">
 				<div class="row align-items-center flex-wrap c-flex">
-					<div class="col-md-2 text-end">
-						<label class="col-form-label">
-							Descargar layout de nomina
-							<a href="https://sandbox.solvegcm.mx/layoutDownloader/express_nomina.xlsx" target="_blank"
-							   style="color: #FF9400"><i class="fas fa-download" style="font-size: 1.5rem"></i></a>
-						</label>
+					<div class="col-md-2 text-center">
+						<label class="col-form-label">Descargar layout</label>
+						<div class="input-group justify-content-center">
+							<a
+									href="https://api-solve.local/layoutDownloader/express_nomina.xlsx" target="_blank"
+									style="color: #FF9400"><i class="fas fa-download" style="font-size: 2.1rem"></i></a>
+						</div>
 					</div>
 					<div class="col-sm-5 text-center">
-						<label for="download" class="col-form-label">
-							Cargar archivo excel de nomina
-						</label>
+						<label for="download" class="col-form-label">Cargar archivo excel de nomina</label>
 						<form id="formNomina" class="input-group">
 							<div class="input-group">
 								<input
-									type="file" class="form-control bg-light" id="nominaFile" aria-describedby="nominaFile"
-									aria-label="Cargar"
-									accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+										type="file" class="form-control " id="nominaFile" aria-describedby="nominaFile"
+										aria-label="Cargar"
+										accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 								<button class="btn btn-outline-secondary" type="button" id="uploadNomina">Cargar Nomina</button>
 							</div>
 						</form>
 					</div>
 					<div class="col-sm-5 text-center">
-						<label for="fireFile" class="col-form-label">
-							Cargar baja de empleados
-						</label>
-						<form id="formFires" class="input-group" enctype="multipart/form-data">
+						<label for="fireFile" class="col-form-label">Cargar baja de empleados</label>
+						<form id="formFires" class="input-group">
 							<div class="input-group">
 								<input
-									type="file" class="form-control bg-light" id="fireFile" aria-describedby="fireFile"
-									aria-label="Cargar"
-									accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+										type="file" class="form-control" id="fireFile" aria-describedby="fireFile"
+										aria-label="Cargar"
+										accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 								<button class="btn btn-outline-secondary" type="button" id="upLoadFires">Cargar Bajas</button>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-			<div class="text-center">
-				<form class="align-items-center" style="margin-top: 5px">
+			<div class="row text-center" style="border: dashed var(--bs-border-color); border-radius: 10px; margin-top: 10px; padding-bottom: 12px; border-width: 1px">
+				<form class="align-items-center" style="margin-top: 5px;">
 					<div class="row align-items-center flex-wrap c-flex">
 						<div class="col-sm-2">
 							<label for="hiringDate" class="col-form-label">Fecha de Alta</label>
 							<input
-								type="date" class="form-control bg-light" id="hiringDate" value=""
-								max="<?= date ( 'Y-m-d', strtotime ( 'now' ) ) ?>">
+									type="date" class="form-control bg-light" id="hiringDate" value=""
+									max="<?= date ( 'Y-m-d', strtotime ( 'now' ) ) ?>">
 						</div>
 						<div class="col-sm-2">
 							<label for="fireDate" class="col-form-label">Fecha de baja</label>
 							<input
-								type="date" class="form-control bg-light" id="fireDate" value=""
-								min="2024-10-01"
-								max="<?= date ( 'Y-m-d', strtotime ( 'now' ) ) ?>">
+									type="date" class="form-control bg-light" id="fireDate" value=""
+									min="2024-10-01"
+									max="<?= date ( 'Y-m-d', strtotime ( 'now' ) ) ?>">
 						</div>
 						<div class="col-sm-2">
 							<label for="rfcFire" class="col-form-label">RFC</label>
@@ -71,7 +69,7 @@
 						<div class="col-sm-2 align-items-center">
 							<label for="showFires" class="col-form-label">Mostrar bajas</label>
 							<div class="form-check form-switch form-switch-danger col-sm-2" style="margin: auto">
-								<input class="form-check-input text-center" type="checkbox" id="showFires" >
+								<input class="form-check-input text-center" type="checkbox" id="showFires">
 							</div>
 						</div>
 					</div>

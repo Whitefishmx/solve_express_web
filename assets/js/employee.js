@@ -1,5 +1,5 @@
-// let url = "https://api-solve.local/";
-let url = "https://sandbox.solvegcm.mx/";
+let url = "https://api.solvegcm.mx/";
+// let url = "https://sandbox.solvegcm.mx/";
 let nRead = [];
 let nTotal = [];
 $(document).ready(function () {
@@ -73,7 +73,7 @@ function GetDisposiciones() {
 				let tableRes = "";
 				
 				$.each(response.response, function (index, value) {
-					let url = "https://sandbox.solvegcm.mx/cepDownloader/";
+					let url = "https://api.solvegcm.mx/cepDownloader/";
 					//let url = "https://api-solve.local/cepDownloader/";
 					let cep = "En proceso";
 					console.log(value);

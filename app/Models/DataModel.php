@@ -100,7 +100,6 @@
 				'initDate' => $args[ 'date1' ],
 				'endDate'  => $args[ 'date2' ],
 				'period'   => $args[ 'period' ],
-				'rfc'      => $args[ 'rfc' ],
 				'curp'     => $args[ 'curp' ],
 				'name'     => $args[ 'name' ],
 			];

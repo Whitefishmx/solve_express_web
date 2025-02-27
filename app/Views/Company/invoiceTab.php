@@ -31,10 +31,14 @@
 				<h6 class="modal-title m-0" id="myExtraLargeModalLabel">Detalle de pago</h6>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-title">
-				<button type="button" class="btn btn-lg btn-primary" onclick="downloadDetailPaymentReport()">
-					<i class="material-icons prefix" id="downloadPaymentDetail">download</i>Descargar
-				</button>
+			<div class="modal-title ">
+				<div class="col-sm-2 ms-auto text-end">
+					<button type="button" class="btn btn-lg btn-primary text-center" style="display: inline-block; vertical-align: middle; margin: 10px 10px 0 0"
+					        onclick="downloadDetailPaymentReport()">
+						<i class="material-icons prefix" id="downloadPaymentDetail" style="vertical-align: middle;">download</i>
+						<span style="vertical-align: middle;">Exportar</span>
+					</button>
+				</div>
 			</div>
 			<div class="modal-body" style="overflow-x: auto; max-width: 100%; overflow-y: auto; max-height: 100%">
 				<table class="table datatable" id="detailsPaaymentTbl" style="table-layout: auto">

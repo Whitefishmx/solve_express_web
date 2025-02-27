@@ -16,12 +16,12 @@ let curpFire = $("#curpFire");
 let nameFire = $("#nameFire");
 let showFires = $("#showFires");
 let periodDetail = null;
-let url = "https://sandbox.solvegcm.mx/";
+let url = "https://api.solvegcm.mx/";
 // let url = "https://api-solve.local/";
 $(document).ready(function () {
-	initDate.add(endDate).add(rfc).add(curp).add(name).on("input", function () {
-		getReport();
-	});
+	// initDate.add(endDate).add(rfc).add(curp).add(name).on("input", function () {
+	// 	getReport();
+	// });
 	hiringDate.add(fireDate).add(rfcFire).add(curpFire).add(nameFire).add(showFires).on("input", function () {
 		getEmployees();
 	});
@@ -567,7 +567,7 @@ function showDetailsPayment(period) {
 			// Construir el contenido HTML en una cadena
 			let rows = "";
 			$.each(response["response"], function (index, value) {
-				let url = "https://sandbox.solvegcm.mx/cepDownloader/";
+				let url = "https://api.solvegcm.mx/cepDownloader/";
 				//let url = "https://api-solve.local/cepDownloader/";
 				let cep = "En proceso";
 				if (value["cep"] != null) {

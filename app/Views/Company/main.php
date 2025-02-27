@@ -45,14 +45,38 @@
         transition: opacity 5s ease, visibility 5s ease;
     }
 
-    #uploadNomina {
+    #uploadNomina, #upLoadFires {
         background-color: var(--bs-primary) !important;
         color: var(--bs-btn-hover-color) !important;
     }
 
-    #uploadNomina:hover, button:hover {
+    #uploadNomina:hover, button:hover, #upLoadFires:hover {
         background-color: var(--bs-tertiarybg) !important;
         color: var(--bs-btn-hover-color) !important;
+    }
+
+    .selectr-selected {
+        border-color: var(--bs-primary)
+    }
+
+    .form-control[type="file"]::file-selector-button {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+    .form-control[type="file"]::-webkit-file-upload-button {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+    .form-control:hover:not(:disabled):not([readonly])::file-selector-button {
+        background-color: #2271B891 !important;
+        color: white;
+    }
+
+    .form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button:hover {
+        background-color: #2271B891 !important;
+        color: white;
     }
 </style>
 <div id="Loader"></div>
@@ -133,11 +157,11 @@
 						</ul><!-- End Tabs -->
 						<div class="tab-content">
 							<!--Tabla de empleados-->
-							<?php include('employeeTab.php')?>
+							<?php include ( 'employeeTab.php' ) ?>
 							<!--Tabla de disposiciones-->
-							<?php include('provisionsTab.php')?>
+							<?php include ( 'provisionsTab.php' ) ?>
 							<!--Tabla de facturas-->
-							<?php include('invoiceTab.php')?>
+							<?php include ( 'invoiceTab.php' ) ?>
 						</div>
 					</div><!-- End Panes -->
 				</div>
