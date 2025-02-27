@@ -184,7 +184,6 @@ function downloadReport() {
 					"initDate": "" + initDate.val(),
 					"endDate": "" + endDate.val(),
 					"period": "" + period.val(),
-					"rfc": "" + rfc.val(),
 					"name": "" + name.val(),
 				},
 				"columns": columns,
