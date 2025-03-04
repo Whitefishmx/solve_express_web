@@ -3,6 +3,7 @@ let url = "https://api.solvegcm.mx/";
 let nRead = [];
 let nTotal = [];
 $(document).ready(function () {
+	verificarToken();
 	GetDashboard();
 	getDisclaimer();
 	getNotifications();
@@ -42,6 +43,7 @@ $(document).ready(function () {
 });
 
 function GetDisposiciones() {
+	verificarToken();
 	$.ajax({
 		url: "/disposiciones",
 		type: "POST",
@@ -118,6 +120,7 @@ function GetDisposiciones() {
 }
 
 function GetDashboard() {
+	verificarToken();
 	$.ajax({
 		url: "/dashboardEmployee",
 		type: "POST",
@@ -201,10 +204,10 @@ function GetDashboard() {
 }
 
 function RequestPay() {
+	verificarToken();
 	let amount = $("#MontoReal").val();
 	let resContainer = $("#mainContainer");
 	var texto;
-	console.log(amount);
 	$.ajax({
 		url: "/requestPay",
 		data: {
@@ -260,6 +263,7 @@ function RequestPay() {
 }
 
 function getDisclaimer() {
+	verificarToken();
 	$.ajax({
 		url: "/getLaws",
 		data: {
@@ -301,6 +305,7 @@ function getDisclaimer() {
 }
 
 function getBenefits() {
+	verificarToken();
 	$.ajax({
 		url: "/getBenefits",
 		dataType: "JSON",
@@ -351,6 +356,7 @@ data-bs-target="#panelsStayOpen-collapse${counter}" aria-expanded="false" aria-c
 }
 
 function getCerts() {
+	verificarToken();
 	$.ajax({
 		url: "/getCerts",
 		dataType: "JSON",
@@ -395,13 +401,14 @@ function getCerts() {
 }
 
 function getNotifications() {
+	verificarToken();
 	$.ajax({
 		url: "/getNotifications",
 		dataType: "JSON",
 		method: "POST",
 		success: function (response) {
-			nRead=[];
-			nTotal=[];
+			nRead = [];
+			nTotal = [];
 			let counter = 0;
 			let notifications = "";
 			$.each(response.response, function (index, value) {
@@ -449,14 +456,14 @@ function getNotifications() {
 			if (counter >= 1) {
 				$("#countNotifications").html(counter);
 				$("#count4Read").html(counter);
-			}else if (counter === 0){
-				$("#countNotifications").html('');
-				$("#count4Read").html('');
+			} else if (counter === 0) {
+				$("#countNotifications").html("");
+				$("#count4Read").html("");
 			}
 			if (nTotal.length >= 1) {
 				$("#count4Delete").html(nTotal.length);
-			}else if(nTotal.length === 0){
-				$("#count4Delete").html('');
+			} else if (nTotal.length === 0) {
+				$("#count4Delete").html("");
 			}
 			$("#notificationContent").html(notifications);
 		},
@@ -469,6 +476,7 @@ function getNotifications() {
 function setNotificationData(title, body, id) {
 	$("#titleNotificationModal").html(title);
 	$("#bodyNotificationModal").html(body);
+	verificarToken();
 	$.ajax({
 		url: "/readNotifications",
 		dataType: "JSON",
@@ -486,6 +494,7 @@ function setNotificationData(title, body, id) {
 }
 
 function deleteOneNotification(id) {
+	verificarToken();
 	$.ajax({
 		url: "/deleteNotifications",
 		dataType: "JSON",
@@ -501,12 +510,14 @@ function deleteOneNotification(id) {
 		}
 	});
 }
+
 function readAllNotifications() {
+	verificarToken();
 	$.ajax({
 		url: "/readNotifications",
 		dataType: "JSON",
 		contentType: "application/json",
-		data: JSON.stringify(nTotal.map(id => ({ id }))),
+		data: JSON.stringify(nTotal.map(id => ({id}))),
 		method: "POST",
 		success: function () {
 			getNotifications();
@@ -516,12 +527,14 @@ function readAllNotifications() {
 		}
 	});
 }
+
 function deleteAllNotifications() {
+	verificarToken();
 	$.ajax({
 		url: "/deleteNotifications",
 		dataType: "JSON",
 		contentType: "application/json",
-		data: JSON.stringify(nTotal.map(id => ({ id }))),
+		data: JSON.stringify(nTotal.map(id => ({id}))),
 		method: "POST",
 		beforeSend: function () {
 			const obj = $("#mainContainer");
@@ -552,4 +565,18 @@ function deleteAllNotifications() {
 			console.error("Error en la solicitud:", status);
 		}
 	});
+}
+
+
+function verificarToken() {
+	const expiraEn = localStorage.getItem("tokenExpira");
+	const now = Math.floor(Date.now() / 1000);
+	if (now >= expiraEn) {
+		cerrarSesion();
+	}
+}
+
+function cerrarSesion() {
+	localStorage.removeItem("tokenExpira");
+	window.location.href = "/signout";
 }

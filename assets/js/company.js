@@ -24,6 +24,7 @@ $(document).ready(function () {
 	// initDate.add(endDate).add(rfc).add(curp).add(name).on("input", function () {
 	// 	getReport();
 	// });
+	verificarToken
 	hiringDate.add(fireDate).add(rfcFire).add(curpFire).add(nameFire).add(showFires).on("input", function () {
 		getEmployees();
 	});
@@ -72,6 +73,7 @@ $(document).ready(function () {
 	});
 });
 function getPeriods() {
+	verificarToken();
 	$.ajax({
 		url: "/getPeriods",
 		type: "POST",
@@ -99,6 +101,7 @@ function getPeriods() {
 	});
 }
 function getReport() {
+	verificarToken();
 	$.ajax({
 		url: "/reportCompany",
 		data: JSON.stringify({
@@ -153,6 +156,7 @@ function getReport() {
 	});
 }
 function downloadReport() {
+	verificarToken();
 	let cols = $("#columns").val();
 	let columns = cols;
 	if (cols.includes("")) {
@@ -219,6 +223,7 @@ function month2Mes(month) {
 	return months[month]; // Devuelve el nombre del mes
 }
 function getWInfo() {
+	verificarToken();
 	return $.ajax({
 		url: "/data4req",
 		method: "POST",
@@ -237,6 +242,7 @@ function getWInfo() {
 	});
 }
 function uploadNomina() {
+	verificarToken();
 	getWInfo().then(data => {
 		const formData = new FormData($("#formNomina")[0]);
 		formData.append("nomina", $("#nominaFile")[0].files[0]);
@@ -275,13 +281,8 @@ function uploadNomina() {
 		});
 	});
 }
-function initializePayments() {
-	try {
-		new simpleDatatables.DataTable("#tableInvoice", {searchable: !0, fixedHeight: !1});
-	} catch (e) {
-	}
-}
 function getEmployees() {
+	verificarToken();
 	$.ajax({
 		url: "/getEmployees",
 		data: JSON.stringify({
@@ -362,6 +363,7 @@ function fireEmployee(employeeId, lastName, name) {
 	}).then((e) => {
 		// noinspection JSUnresolvedReference
 		if (e.isConfirmed) {
+			verificarToken();
 			$.ajax({
 				url: "/fireEmployee",
 				data: JSON.stringify({
@@ -406,6 +408,7 @@ function fireEmployees() {
 	}).then((e) => {
 		// noinspection JSUnresolvedReference
 		if (e.isConfirmed) {
+			verificarToken();
 			getWInfo().then(data => {
 				const formElement = $("#formNomina")[0];
 				if (!formElement || formElement.tagName !== "FORM") {
@@ -474,6 +477,7 @@ function initializeTable() {
 	}
 }
 function getPayments() {
+	verificarToken();
 	$.ajax({
 		url: "/getPayments",
 		dataType: "JSON",
@@ -529,6 +533,7 @@ function getPayments() {
 	});
 }
 function showDetailsPayment(period) {
+	verificarToken();
 	periodDetail = period;
 	$.ajax({
 		url: "/getPaymentsDetails",
@@ -637,4 +642,15 @@ function downloadDetailPaymentReport(){
 		});
 		
 	});
+}
+function verificarToken() {
+	const expiraEn = localStorage.getItem("tokenExpira");
+	const now = Math.floor(Date.now() / 1000);
+	if (now >= expiraEn) {
+		cerrarSesion();
+	}
+}
+function cerrarSesion() {
+	localStorage.removeItem("tokenExpira");
+	window.location.href = "/signout";
 }

@@ -259,6 +259,6 @@
 <script src="/assets/libs/simplebar/simplebar.min.js"></script>
 <script src="/assets/js/app.js"></script>
 <script src="/assets/js/datatable.init.js"></script>
-<script type="text/javascript" src="/./assets/js/employee.js?v=1.2.0"></script>
+<script type="text/javascript" src="/./assets/js/employee.js?v=1.3.1"></script>
 </body>
 </html>

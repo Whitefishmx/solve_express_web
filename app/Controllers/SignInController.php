@@ -39,12 +39,12 @@
 			$session->set ( 'user', $res[ 'user' ] );
 			$session->set ( 'company', $res[ 'user' ][ 'data' ][ 'companyId' ] );
 			$session->set ( 'token', $res[ 'access_token' ][ 'token' ] );
-			$session->set ( 'tokenExpires', $res[ 'access_token' ][ 'expires' ]);
+			$session->set ( 'tokenExpires', $res[ 'access_token' ][ 'expires' ] );
 			$this->errCode = 200;
 			$this->responseBody = [
 				'error'       => 0,
 				'description' => 'Datos de petición correcto',
-				'reason'      => 'Inicio de sesión exitoso' ];
+				'reason'      => 'Inicio de sesión exitoso.'];
 			return $this->getResponse ( $this->responseBody );
 		}
 		public function validarCurp (): string {

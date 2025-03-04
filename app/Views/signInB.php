@@ -15,8 +15,39 @@
 	};
 </script>
 <script>
-	// Completamos previamente el ID de tu aplicación en la URL del widget: 'https://widget.intercom.io/widget/fjsyzg5w'
-	(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/fjsyzg5w';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+	(function () {
+		var w = window;
+		var ic = w.Intercom;
+		if (typeof ic === "function") {
+			ic("reattach_activator");
+			ic("update", w.intercomSettings);
+		} else {
+			var d = document;
+			var i = function () {
+				i.c(arguments);
+			};
+			i.q = [];
+			i.c = function (args) {
+				i.q.push(args);
+			};
+			w.Intercom = i;
+			var l = function () {
+				var s = d.createElement("script");
+				s.type = "text/javascript";
+				s.async = true;
+				s.src = "https://widget.intercom.io/widget/fjsyzg5w";
+				var x = d.getElementsByTagName("script")[0];
+				x.parentNode.insertBefore(s, x);
+			};
+			if (document.readyState === "complete") {
+				l();
+			} else if (w.attachEvent) {
+				w.attachEvent("onload", l);
+			} else {
+				w.addEventListener("load", l, false);
+			}
+		}
+	})();
 </script>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -191,7 +222,12 @@
 						zIndex: 999999
 					}).focus();
 				},
-				success: function () {
+				success: function (data) {
+					const now = Math.floor(Date.now() / 1000);
+					const expiraEn = now + 1700;
+					console.log(now);
+					console.log(expiraEn);
+					localStorage.setItem("tokenExpira", expiraEn);
 					window.location.href = "<?=base_url ();?>";
 				},
 				error: function (data) {
@@ -218,8 +254,6 @@
 			});
 		});
 	});
-
-
 </script>
 </body>
 </html>
