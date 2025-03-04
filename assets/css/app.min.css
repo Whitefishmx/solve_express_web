@@ -17099,8 +17099,9 @@ html[data-bs-theme=dark] .datatable-container thead, html[data-bs-theme=dark] .t
 }
 
 .custom-tooltip {
-    --bs-tooltip-bg: var(--bs-purple);
-    --bs-tooltip-color: var(--bs-white)
+    --bs-tooltip-bg: #156dbb;
+    --bs-tooltip-color: var(--bs-white);
+    font-weight: bold;
 }
 
 .custom-popover {

@@ -31,9 +31,10 @@
 								<option value="">Todos</option>
 							</select>
 						</div>
-						<div class="col-sm-2 text-center">
-							<label for="searchReport" class="col-form-label"></label>
-							<button type="button" class="btn btn-lg btn-primary" id="searchReport"> Buscar <i class="fas fa-search "></i></button>
+						<div class="col-sm-2">
+							<button type="button" class="form-control btn btn-lg btn-primary" id="searchReport" style="margin-top: 38px">
+								Buscar <i class="fas fa-search"></i>
+							</button>
 						</div>
 					</div>
 			</div>

@@ -25,7 +25,7 @@
 	<link href="/assets/libs/simplebar/simplebar.min.css?v=1.1.1" rel="stylesheet" type="text/css">
 	<link href="/assets/css/bootstrap.min.css?v=1.1.1" rel="stylesheet" type="text/css" />
 	<link href="/assets/css/icons.min.css?v=1.1.1" rel="stylesheet" type="text/css" />
-	<link href="/assets/css/app.min.css?v=1.1.2" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/app.min.css?v=1.2.1" rel="stylesheet" type="text/css" />
 	
 	<link href="/assets/css/CompanyExpress.css?v=1.1.1" rel="stylesheet" type="text/css" />
 
