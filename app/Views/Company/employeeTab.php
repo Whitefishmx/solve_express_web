@@ -33,7 +33,7 @@
 										aria-label="Cargar"
 										accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
 										data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
-										data-bs-title='Una sola columna con el encabezado CURP, todo debe estar en mayúsculas'>
+										data-bs-title='Sube un archivo de Excel con el título "CURP" (en mayúsculas) en la celda A1 y las CURPs de los colaboradores que deseas dar de baja en el sistema en las filas siguientes de la misma columna A'>
 								<button class="btn btn-outline-secondary" type="button" id="upLoadFires">Cargar Bajas</button>
 							</div>
 						</form>
