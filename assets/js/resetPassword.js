@@ -4,11 +4,10 @@ $(document).ready(function () {
 		e.preventDefault();
 		e.stopPropagation();
 		if (formUserValidate()) {
-			console.log("El formulario es valido");
+			setNewPassword();
 		}
 	});
 	$("#password, #password2").on("input", validatePassword);
-	
 	$("#validateCurp").on("click", function () {
 		initRecovery();
 	});
@@ -17,7 +16,6 @@ $(document).ready(function () {
 		e.stopPropagation();
 		initRecovery();
 	});
-	
 	$("#validateCodeMail").on("click", function () {
 		verifyCode();
 	});
@@ -26,15 +24,14 @@ $(document).ready(function () {
 		e.stopPropagation();
 		verifyCode();
 	});
-	
-	$("#savePassword").on("click", function () {
-		setNewPassword();
-	});
-	formPassword.on("submit", function (e) {
-		e.preventDefault();
-		e.stopPropagation();
-		setNewPassword();
-	});
+	// $("#savePassword").on("click", function () {
+	// 	setNewPassword();
+	// });
+	// formPassword.on("submit", function (e) {
+	// 	e.preventDefault();
+	// 	e.stopPropagation();
+	// 	setNewPassword();
+	// });
 });
 
 function formUserValidate() {

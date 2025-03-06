@@ -207,7 +207,7 @@
 <script src="/assets/libs/sweetalert2/sweetalert2.min.js?v=1.1.2"></script>
 <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js?v=1.1.3"></script>
 <script src="/assets/js/app.js?v=1.1.2"></script>
-<script src="/assets/js/resetPassword.js?v=1.1.3"></script>
+<script src="/assets/js/resetPassword.js?v=1.2.1"></script>
 </body>
 <!--end body-->
 </html>
