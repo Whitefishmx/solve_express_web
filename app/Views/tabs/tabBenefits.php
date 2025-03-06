@@ -48,25 +48,22 @@
 			<!--<div class="row justify-content-center">
 				<iframe src="https://app.desclub.com.mx/masservicios/?num_membresia=MASS412" style="width: 100%; max-width: 500px; height: 100%; min-height: 800px; margin: auto"></iframe>
 			</div>-->
-			<div class="row justify-content-center" style="margin: 15px 0 45px 0">
+			<div class="row justify-content-center" style="margin: 15px 0 25px 0">
 				<div class="col-md-5">
 					<p class="mb-0" style="text-align: center; font-size: 1rem; line-height: 1.3rem">
-						Para acceder a tu club de descuentos, haz clic en el botón que aparece a continuación e ingresa tu número de membresía.
+						Descarga la app para acceder a tu club de descuentos
 					</p>
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-md-5">
-					<h3 style="text-align: center">No. de Membresía</h3>
-					<h2 style="text-align: center; text-decoration: underline; text-decoration-thickness: 3px;">1281230</h2>
+				<div class="row justify-content-center">
+					<img src="/assets/img/QR_solve_playStore.png" alt="qr" style="max-width: 250px">
+				</div>
+				<div class="row justify-content-center">
+					<img src="/assets/img/PlayStore.svg" alt="googlePlay" style="max-width: 250px">
 				</div>
 			</div>
-			<div class="row justify-content-center" style="margin: 20px 0 0 0 ">
-				<div class="col-md-5 justify-content-center" style="text-align: center">
-					<button class="btn btn-lg btn-primary text-light" type="button">Acceder</button>
-				</div>
-			</div>
-			<div class="row justify-content-center" style="margin: 20px 0 0 0 ">
+			<div class="row justify-content-center" style="margin: 45px 0 0 0 ">
 				<div class="col-md-5 justify-content-center" style="text-align: center">
 					<a href="" class="text-black" style="text-decoration: underline">Términos y condiciones de beneficios</a>
 				</div>

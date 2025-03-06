@@ -180,11 +180,9 @@
 					<div class="form-group row">
 						<div class="input-group col-lg-5">
 							<a href="/validarCURP" target="_self">Registrarse</a>
-							</button>
 						</div>
-						<div class="input-group col-lg-7">
-							<a href="/resetPassword" target="_self">Recuperar contraseña</a>
-							</button>
+						<div class="input-group col-lg-7 d-flex justify-content-end">
+							<a href="/resetPassword" target="_self" class="ms-auto">Recuperar contraseña</a>
 						</div>
 					</div>
 				</form>
