@@ -104,10 +104,9 @@
 			}
 			$data = new DataModel();
 			$phone = isset( $this->input[ 'phone' ] ) && $this->input[ 'phone' ] !== '' ? $this->input[ 'phone' ] : NULL;
-			$res = json_decode ( $data->setUser ( $this->input[ 'nickName' ], $this->input[ 'email' ], $this->input[ 'password' ], $this->input[ 'password2' ], $this->input[ 'user' ], $phone ), TRUE );
-			//			var_dump ( $res );
-			//			die();
-			if ( $res[ 'error' ] === 500 || $res[ 'error' ] === 404 || $res[ 'error' ] === 400 ) {
+			$res = json_decode ( $data->setUser ( $this->input[ 'nickName' ], $this->input[ 'email' ], $this->input[ 'password' ], $this->input[ 'password2' ],
+				$this->input[ 'user' ], $phone ), TRUE );
+			if ( intval ( $res[ 'error' ] ) !== 200 ) {
 				$this->responseBody = [
 					"error"       => $this->errCode = $res[ 'error' ],
 					"description" => $res[ 'description' ],
@@ -127,13 +126,13 @@
 			}
 			$data = new DataModel();
 			$res = json_decode ( $data->getLaws ( $this->input[ 'type' ] ), TRUE );
-//			var_dump ($res);die();
+			//			var_dump ($res);die();
 			if ( $res[ 'error' ] === 500 || $res[ 'error' ] === 404 ) {
-				$this->responseBody = [ 'error' => $this->errCode=$res[ 'error' ], 'description' => $res[ 'description' ], 'reason' => $res[ 'reason' ] ];
+				$this->responseBody = [ 'error' => $this->errCode = $res[ 'error' ], 'description' => $res[ 'description' ], 'reason' => $res[ 'reason' ] ];
 				return $this->getResponse ( $this->responseBody, $this->errCode );
 			}
-//			var_dump ($res);die ( );
-			$this->responseBody = [ 'error' => $this->errCode=$res[ 'error' ], 'description' => $res[ 'description' ], 'response' => $res[ 'response' ] ];
+			//			var_dump ($res);die ( );
+			$this->responseBody = [ 'error' => $this->errCode = $res[ 'error' ], 'description' => $res[ 'description' ], 'response' => $res[ 'response' ] ];
 			return $this->getResponse ( $this->responseBody, $this->errCode );
 		}
 		public function getBenefits () {
@@ -146,10 +145,10 @@
 			$token = $session->get ( 'token' );
 			$res = json_decode ( $data->getBenefits ( $token ), TRUE );
 			if ( $res[ 'error' ] === 500 || $res[ 'error' ] === 404 ) {
-				$this->responseBody = [ 'error' => $this->errCode=$res[ 'error' ], 'description' => $res[ 'description' ], 'reason' => $res[ 'reason' ] ];
+				$this->responseBody = [ 'error' => $this->errCode = $res[ 'error' ], 'description' => $res[ 'description' ], 'reason' => $res[ 'reason' ] ];
 				return $this->getResponse ( $this->responseBody, $this->errCode );
 			}
-			$this->responseBody = [ 'error' => $this->errCode=$res[ 'error' ], 'description' => $res[ 'description' ], 'response' => $res[ 'response' ] ];
+			$this->responseBody = [ 'error' => $this->errCode = $res[ 'error' ], 'description' => $res[ 'description' ], 'response' => $res[ 'response' ] ];
 			return $this->getResponse ( $this->responseBody, $this->errCode );
 		}
 		public function getCerts () {
@@ -162,10 +161,10 @@
 			$token = $session->get ( 'token' );
 			$res = json_decode ( $data->getCerts ( $token ), TRUE );
 			if ( $res[ 'error' ] === 500 || $res[ 'error' ] === 404 ) {
-				$this->responseBody = [ 'error' => $this->errCode=$res[ 'error' ], 'description' => $res[ 'description' ], 'reason' => $res[ 'reason' ] ];
+				$this->responseBody = [ 'error' => $this->errCode = $res[ 'error' ], 'description' => $res[ 'description' ], 'reason' => $res[ 'reason' ] ];
 				return $this->getResponse ( $this->responseBody, $this->errCode );
 			}
-			$this->responseBody = [ 'error' => $this->errCode=$res[ 'error' ], 'description' => $res[ 'description' ], 'response' => $res[ 'response' ] ];
+			$this->responseBody = [ 'error' => $this->errCode = $res[ 'error' ], 'description' => $res[ 'description' ], 'response' => $res[ 'response' ] ];
 			return $this->getResponse ( $this->responseBody, $this->errCode );
 		}
 	}

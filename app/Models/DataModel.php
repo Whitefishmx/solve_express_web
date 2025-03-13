@@ -66,12 +66,12 @@
 					$response = json_encode ( $resp );
 				}
 				curl_close ( $ch );
-				//												var_dump ( $headers);echo PHP_EOL;
-				//												var_dump ( "$this->url$endpoint/" );echo PHP_EOL;
-				//												var_dump ( curl_getinfo ( $ch, CURLINFO_HEADER_OUT ) );echo PHP_EOL;
-				//												var_dump ( json_encode ( $data ) );echo PHP_EOL;
-				//												var_dump ( $response );echo PHP_EOL;
-				//												die();
+//																var_dump ( $headers);echo PHP_EOL;
+//																var_dump ( "$this->url$endpoint/" );echo PHP_EOL;
+//																var_dump ( curl_getinfo ( $ch, CURLINFO_HEADER_OUT ) );echo PHP_EOL;
+//																var_dump ( json_encode ( $data ) );echo PHP_EOL;
+//																var_dump ( $response );echo PHP_EOL;
+//																die();
 				return $response;
 			} else {
 				$resp[ 'reason' ] = 'No se pudo inicializar cURL';
