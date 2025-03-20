@@ -13,19 +13,6 @@
     --range-color: #FF9400;
 }
 
-/*@media (prefers-color-scheme: dark) {
-    :root {
-        --main-color: #5c65d1;
-        --main-color-transparent: rgba(92, 101, 209, 0.15);
-        --title-color: #e8e6e3;
-        --text-color: #e8e6e3;
-        --lighting-text-color: #FFFFFF;
-        --body-color: #212425;
-        --background-color: #181a1b;
-        --shadow-box: rgba(88, 95, 99, 0.53);
-    }
-}*/
-
 @font-face {
     font-family: 'Poppins-Regular';
     src: url('/./assets/font/Poppins-Regular.ttf') format('truetype');

@@ -48,6 +48,7 @@
 	$routes->add ( 'getNotifications', 'NotificationController::getNotifications' /**@uses \App\Controllers\NotificationController::getNotifications * */ );
 	$routes->add ( 'readNotifications', 'NotificationController::readNotifications' /**@uses \App\Controllers\NotificationController::readNotifications * */ );
 	$routes->add ( 'deleteNotifications', 'NotificationController::deleteNotifications' /**@uses \App\Controllers\NotificationController::deleteNotifications * */ );
+	$routes->add ( 'tutorials', 'faqs::index' /**@uses \App\Controllers\faqs::index * */ );
 	//====================================||   PUT   ||====================================
 	//====================================||  PATCH  ||====================================
 	//====================================|| DELETE  ||====================================

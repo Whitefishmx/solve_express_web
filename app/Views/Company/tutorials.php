@@ -18,16 +18,14 @@
 	
 	<link rel="shortcut icon" href="/favicon.ico">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="/assets/libs/sweetalert2/sweetalert2.min.css?v=1.1.1" rel="stylesheet" type="text/css">
-	<link href="/assets/libs/animate.css/animate.min.css?v=1.1.1" rel="stylesheet" type="text/css">
-	<link href="/assets/libs/mobius1-selectr/selectr.min.css?v=1.1.1" rel="stylesheet" type="text/css" />
-	<link href="/assets/libs/simple-datatables/style.css?v=1.1.1" rel="stylesheet" type="text/css" />
-	<link href="/assets/libs/simplebar/simplebar.min.css?v=1.1.1" rel="stylesheet" type="text/css">
-	<link href="/assets/css/bootstrap.min.css?v=1.1.1" rel="stylesheet" type="text/css" />
-	<link href="/assets/css/icons.min.css?v=1.1.1" rel="stylesheet" type="text/css" />
-	<link href="/assets/css/app.min.css?v=1.2.1" rel="stylesheet" type="text/css" />
-	
-	<link href="/assets/css/CompanyExpress.css?v=1.1.1" rel="stylesheet" type="text/css" />
+	<link href="/assets/libs/mobius1-selectr/selectr.min.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/libs/simple-datatables/style.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/libs/simplebar/simplebar.min.css" rel="stylesheet" type="text/css">
+	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/sExpress.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/CompanyExpress.css" rel="stylesheet" type="text/css" />
 
 </head>
 <script>
@@ -55,38 +53,18 @@
         transition: opacity 5s ease, visibility 5s ease;
     }
 
-    #uploadNomina, #upLoadFires {
+    #uploadNomina {
         background-color: var(--bs-primary) !important;
         color: var(--bs-btn-hover-color) !important;
     }
 
-    #uploadNomina:hover, button:hover, #upLoadFires:hover {
+    #uploadNomina:hover, button:hover {
         background-color: var(--bs-tertiarybg) !important;
         color: var(--bs-btn-hover-color) !important;
     }
 
-    .selectr-selected {
-        border-color: var(--bs-primary)
-    }
-
-    .form-control[type="file"]::file-selector-button {
-        background-color: var(--bs-primary);
-        color: white;
-    }
-
-    .form-control[type="file"]::-webkit-file-upload-button {
-        background-color: var(--bs-primary);
-        color: white;
-    }
-
-    .form-control:hover:not(:disabled):not([readonly])::file-selector-button {
-        background-color: #2271B891 !important;
-        color: white;
-    }
-
-    .form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button:hover {
-        background-color: #2271B891 !important;
-        color: white;
+    .form-control {
+        background-color: rgba(140, 143, 156, 0.18);
     }
 </style>
 <div id="Loader"></div>
@@ -112,8 +90,8 @@
 				</li>
 				<li class="dropdown topbar-item">
 					<a
-							class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
-							aria-haspopup="false" aria-expanded="false">
+						class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
+						aria-haspopup="false" aria-expanded="false">
 						<span class="thumb-lg justify-content-center d-flex align-items-center bg-<?= $color ?>-subtle text-<?= $color ?> rounded-circle me-2">
 							<?= $iniciales; ?></span>
 					</a>
@@ -121,74 +99,90 @@
 						<div class="d-flex align-items-center dropdown-item py-2 bg-secondary-subtle">
 							<div class="flex-shrink-0">
 								<span
-										class="thumb-lg justify-content-center d-flex align-items-center bg-<?= $color ?>-subtle text-<?= $color ?> rounded-circle me-2">
+									class="thumb-lg justify-content-center d-flex align-items-center bg-<?= $color ?>-subtle text-<?= $color ?> rounded-circle me-2">
 									<?= $iniciales; ?></span>
 							</div>
 							<div class="flex-grow-1 ms-2 text-truncate align-self-center">
 								<h6 class="my-0 fw-medium text-dark fs-13"><?= $name; ?></h6>
 								<small class="text-muted mb-0"><?= $company; ?></small>
-							</div><!--end media-body-->
+							</div>
 						</div>
 						<div class="dropdown-divider mt-0"></div>
 						<small class="text-muted px-2 pb-1 d-block">Cuenta</small>
-						<a class="dropdown-item" href="/profile"><i class="las la-user fs-18 me-1 align-text-bottom"></i> Cuenta</a>
-						<div class="dropdown-divider mb-0"></div>
-						<a class="dropdown-item" href="/tutorials"><i class="far fa-question-circle fs-18 me-1 align-text-bottom"></i> Tutoriales</a>
+						<a class="dropdown-item" href="/"><i class="fas fa-home  fs-18 me-1 align-text-bottom"></i> Inicio</a>
 						<div class="dropdown-divider mb-0"></div>
 						<a class="dropdown-item text-danger" href="/signout"><i class="las la-power-off fs-18 me-1 align-text-bottom"></i> Logout</a>
 					</div>
 				</li>
-			</ul><!--end topbar-nav-->
+			</ul>
 		</nav>
-		<!-- end navbar-->
 	</div>
 </div>
 <div class="page-wrapper" id="mainContainer">
 	<div class="page-content" style="width: 100%; margin-left: 0">
-		<div class="container-xxl" style="margin-top: 15px;">
-			<div class="col-md-12 col-lg-126">
-				<div class="card">
-					<div class="card-body pt-0" style="margin-top: 15px">
-						<!-- Init Tabs -->
-						<ul class="nav nav-pills nav-justified" role="tablist">
-							<li class="nav-item waves-effect waves-light">
-								<a
-										class="nav-link" data-bs-toggle="tab" href="#employeeTable" role="tab" aria-selected="true"
-										id="tabFireEmployee">Empleados</a>
-							</li>
-							<li class="nav-item waves-effect waves-light">
-								<a
-										class="nav-link active" data-bs-toggle="tab" href="#provisionsTable" role="tab" aria-selected="false"
-										id="tabEmployee">Disposiciones</a>
-							</li>
-							<li class="nav-item waves-effect waves-light">
-								<a
-										class="nav-link" data-bs-toggle="tab" href="#invoiceTable" role="tab" aria-selected="false"
-										id="tabInvoices">Pagos</a>
-							</li>
-						</ul><!-- End Tabs -->
-						<div class="tab-content">
-							<!--Tabla de empleados-->
-							<?php include ( 'employeeTab.php' ) ?>
-							<!--Tabla de disposiciones-->
-							<?php include ( 'provisionsTab.php' ) ?>
-							<!--Tabla de facturas-->
-							<?php include ( 'invoiceTab.php' ) ?>
+		<div class="container-xxl">
+			<div class="row vh-100 d-flex justify-content-center">
+				<div class="col-12 align-self-center">
+					<div class="row align-items-center justify-content-center text-center">
+						<h1>Tutoriales</h1>
+					</div>
+					<div class="accordion" id="accordionPanelsStayOpenExample">
+						<div class="accordion-item">
+							<h5 class="accordion-header">
+								<button class="accordion-button fw-semibold collapsed text-light text-accordion" type="button" data-bs-toggle="collapse"
+								        data-bs-target="#panelsStayOpen-collapse-1" aria-expanded="false" aria-controls="panelsStayOpen-collapse-1"
+								        style="font-size: 1rem !important;">Disposiciones Solve Express</button></h5>
+							<div id="panelsStayOpen-collapse-1" class="accordion-collapse collapse" style="">
+								<div class="accordion-body">
+									<div class="ratio ratio-16x9">
+										<video controls>
+											<source src="https://api.solvegcm.mx/public/assets/videos/Video%20Tutorial%20Disposiciones%20Solve%20Express.mp4" type="video/mp4">
+										</video>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div><!-- End Panes -->
+						<div class="accordion-item">
+							<h5 class="accordion-header">
+								<button class="accordion-button fw-semibold collapsed text-light text-accordion" type="button" data-bs-toggle="collapse"
+								        data-bs-target="#panelsStayOpen-collapse-2" aria-expanded="false" aria-controls="panelsStayOpen-collapse-2"
+								        style="font-size: 1rem !important;">Baja de empleados</button></h5>
+							<div id="panelsStayOpen-collapse-2" class="accordion-collapse collapse" style="">
+								<div class="accordion-body">
+									<div class="ratio ratio-16x9">
+										<video controls>
+											<source src="https://api.solvegcm.mx/public/assets/videos/Video%20tutorial%20baja%20de%20empleados.mp4" type="video/mp4">
+										</video>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<h5 class="accordion-header">
+								<button class="accordion-button fw-semibold collapsed text-light text-accordion" type="button" data-bs-toggle="collapse"
+								        data-bs-target="#panelsStayOpen-collapse-3" aria-expanded="false" aria-controls="panelsStayOpen-collapse-3"
+								        style="font-size: 1rem !important;">Carga de empleados</button></h5>
+							<div id="panelsStayOpen-collapse-3" class="accordion-collapse collapse" style="">
+								<div class="accordion-body">
+									<div class="ratio ratio-16x9">
+										<video controls>
+											<source src="https://api.solvegcm.mx/public/assets/videos/Video%20tutorial%20carga%20empleados.mp4" type="video/mp4">
+										</video>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<script src="/assets/js/jquery-3.7.1.min.js?v=1.1.1"></script>
-<script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js?v=1.1.1"></script>
-<script src="/assets/libs/simplebar/simplebar.min.js?v=1.1.1"></script>
-<script src="/assets/libs/simple-datatables/umd/simple-datatables.js?v=1.1.1"></script>
-<script src="/assets/libs/mobius1-selectr/selectr.min.js?v=1.1.1"></script>
-<script src="/assets/js/app.js?v=1.1.1"></script>
-<script src="/assets/libs/sweetalert2/sweetalert2.min.js?v=1.1.1"></script>
-<script src="/assets/js/company.js?v=2.1.1"></script>
+<script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="/assets/js/app.js"></script>
+<script src="/assets/js/jquery-3.7.1.min.js"></script>
+<script src="/assets/js/profile.js"></script>
 </body>
 <!--end body-->
 </html>
