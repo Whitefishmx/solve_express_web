@@ -12,9 +12,9 @@
 			}
 			if ( str_contains ( service ( 'request' )->getHeaderLine ( 'Accept-Encoding' ), 'gzip' ) ) {
 				$this->response->setHeader('Content-Encoding', 'gzip');
-				$this->response->setBody(gzencode(view('company/tutorials' )));
+				$this->response->setBody(gzencode(view('Company/tutorials' )));
 				return $this->response;
 			}
-			return view ( 'company/tutorials' );
+			return view ( 'Company/tutorials' );
 		}
 	}
