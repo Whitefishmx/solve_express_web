@@ -5,7 +5,7 @@
 	use CodeIgniter\HTTP\RedirectResponse;
 	use CodeIgniter\HTTP\ResponseInterface;
 	
-	class faqs extends BaseController {
+	class FaqsController extends BaseController {
 		public function index (): string|RedirectResponse|ResponseInterface {
 			if ( !$this->validateSession () ) {
 				return redirect ( 'signIn' );
