@@ -66,6 +66,10 @@
     .form-control {
         background-color: rgba(140, 143, 156, 0.18);
     }
+    .accordion-button.fw-semibold.text-light.text-accordion:hover {
+        background-color: #5c65d1 !important;
+	    color: #FFFFFF !important;
+    }
 </style>
 <div id="Loader"></div>
 <div class="topbar d-print-none">
