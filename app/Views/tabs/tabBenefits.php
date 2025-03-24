@@ -86,8 +86,9 @@
 			</div>
 			<div class="row justify-content-center" style="margin: 45px 0 0 0 ">
 				<div class="col-md-5 justify-content-center" style="text-align: center">
-					<a href="https://api.solvegcm.mx/terminosMass" target="_blank" class="text-black" style="text-decoration: underline">Términos y condiciones de
-					                                                                                                                     beneficios</a>
+					<a href="https://api.solvegcm.mx/terminosMass" target="_blank" class="text-black" style="text-decoration: underline">
+						Términos y condiciones de beneficios
+					</a>
 				</div>
 			</div>
 		</div>
