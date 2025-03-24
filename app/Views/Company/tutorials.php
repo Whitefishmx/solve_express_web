@@ -15,7 +15,6 @@
 	<meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
 	<meta content="" name="Drakoz" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	
 	<link rel="shortcut icon" href="/favicon.ico">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="/assets/libs/mobius1-selectr/selectr.min.css" rel="stylesheet" type="text/css" />
@@ -26,7 +25,6 @@
 	<link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/css/sExpress.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/css/CompanyExpress.css" rel="stylesheet" type="text/css" />
-
 </head>
 <script>
 	window.intercomSettings = {
@@ -35,8 +33,39 @@
 	};
 </script>
 <script>
-	// Completamos previamente el ID de tu aplicación en la URL del widget: 'https://widget.intercom.io/widget/fjsyzg5w'
-	(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/fjsyzg5w';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+	(function () {
+		const w = window;
+		const ic = w.Intercom;
+		if (typeof ic === "function") {
+			ic("reattach_activator");
+			ic("update", w.intercomSettings);
+		} else {
+			const d = document;
+			const i = function () {
+				i.c(arguments);
+			};
+			i.q = [];
+			i.c = function (args) {
+				i.q.push(args);
+			};
+			w.Intercom = i;
+			const l = function () {
+				const s = d.createElement("script");
+				s.type = "text/javascript";
+				s.async = true;
+				s.src = "https://widget.intercom.io/widget/fjsyzg5w";
+				const x = d.getElementsByTagName("script")[0];
+				x.parentNode.insertBefore(s, x);
+			};
+			if (document.readyState === "complete") {
+				l();
+			} else if (w.attachEvent) {
+				w.attachEvent("onload", l);
+			} else {
+				w.addEventListener("load", l, false);
+			}
+		}
+	})();
 </script>
 <body>
 <style>
@@ -53,22 +82,9 @@
         transition: opacity 5s ease, visibility 5s ease;
     }
 
-    #uploadNomina {
-        background-color: var(--bs-primary) !important;
-        color: var(--bs-btn-hover-color) !important;
-    }
-
-    #uploadNomina:hover, button:hover {
-        background-color: var(--bs-tertiarybg) !important;
-        color: var(--bs-btn-hover-color) !important;
-    }
-
-    .form-control {
-        background-color: rgba(140, 143, 156, 0.18);
-    }
     .accordion-button.fw-semibold.text-light.text-accordion:hover {
         background-color: #5c65d1 !important;
-	    color: #FFFFFF !important;
+        color: #FFFFFF !important;
     }
 </style>
 <div id="Loader"></div>
@@ -94,8 +110,8 @@
 				</li>
 				<li class="dropdown topbar-item">
 					<a
-						class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
-						aria-haspopup="false" aria-expanded="false">
+							class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
+							aria-haspopup="false" aria-expanded="false">
 						<span class="thumb-lg justify-content-center d-flex align-items-center bg-<?= $color ?>-subtle text-<?= $color ?> rounded-circle me-2">
 							<?= $iniciales; ?></span>
 					</a>
@@ -103,7 +119,7 @@
 						<div class="d-flex align-items-center dropdown-item py-2 bg-secondary-subtle">
 							<div class="flex-shrink-0">
 								<span
-									class="thumb-lg justify-content-center d-flex align-items-center bg-<?= $color ?>-subtle text-<?= $color ?> rounded-circle me-2">
+										class="thumb-lg justify-content-center d-flex align-items-center bg-<?= $color ?>-subtle text-<?= $color ?> rounded-circle me-2">
 									<?= $iniciales; ?></span>
 							</div>
 							<div class="flex-grow-1 ms-2 text-truncate align-self-center">
@@ -133,14 +149,19 @@
 					<div class="accordion" id="accordionPanelsStayOpenExample">
 						<div class="accordion-item">
 							<h5 class="accordion-header">
-								<button class="accordion-button fw-semibold collapsed text-light text-accordion" type="button" data-bs-toggle="collapse"
-								        data-bs-target="#panelsStayOpen-collapse-1" aria-expanded="false" aria-controls="panelsStayOpen-collapse-1"
-								        style="font-size: 1rem !important;">Disposiciones Solve Express</button></h5>
+								<button
+										class="accordion-button fw-semibold collapsed text-light text-accordion" type="button" data-bs-toggle="collapse"
+										data-bs-target="#panelsStayOpen-collapse-1" aria-expanded="false" aria-controls="panelsStayOpen-collapse-1"
+										style="font-size: 1rem !important;">Disposiciones Solve Express
+								</button>
+							</h5>
 							<div id="panelsStayOpen-collapse-1" class="accordion-collapse collapse" style="">
 								<div class="accordion-body">
 									<div class="ratio ratio-16x9">
 										<video controls>
-											<source src="https://api.solvegcm.mx/public/assets/videos/Video%20Tutorial%20Disposiciones%20Solve%20Express.mp4" type="video/mp4">
+											<source
+													src="https://api.solvegcm.mx/public/assets/videos/Video%20Tutorial%20Disposiciones%20Solve%20Express.mp4"
+													type="video/mp4">
 										</video>
 									</div>
 								</div>
@@ -148,9 +169,12 @@
 						</div>
 						<div class="accordion-item">
 							<h5 class="accordion-header">
-								<button class="accordion-button fw-semibold collapsed text-light text-accordion" type="button" data-bs-toggle="collapse"
-								        data-bs-target="#panelsStayOpen-collapse-2" aria-expanded="false" aria-controls="panelsStayOpen-collapse-2"
-								        style="font-size: 1rem !important;">Baja de empleados</button></h5>
+								<button
+										class="accordion-button fw-semibold collapsed text-light text-accordion" type="button" data-bs-toggle="collapse"
+										data-bs-target="#panelsStayOpen-collapse-2" aria-expanded="false" aria-controls="panelsStayOpen-collapse-2"
+										style="font-size: 1rem !important;">Baja de empleados
+								</button>
+							</h5>
 							<div id="panelsStayOpen-collapse-2" class="accordion-collapse collapse" style="">
 								<div class="accordion-body">
 									<div class="ratio ratio-16x9">
@@ -163,9 +187,12 @@
 						</div>
 						<div class="accordion-item">
 							<h5 class="accordion-header">
-								<button class="accordion-button fw-semibold collapsed text-light text-accordion" type="button" data-bs-toggle="collapse"
-								        data-bs-target="#panelsStayOpen-collapse-3" aria-expanded="false" aria-controls="panelsStayOpen-collapse-3"
-								        style="font-size: 1rem !important;">Carga de empleados</button></h5>
+								<button
+										class="accordion-button fw-semibold collapsed text-light text-accordion" type="button" data-bs-toggle="collapse"
+										data-bs-target="#panelsStayOpen-collapse-3" aria-expanded="false" aria-controls="panelsStayOpen-collapse-3"
+										style="font-size: 1rem !important;">Carga de empleados
+								</button>
+							</h5>
 							<div id="panelsStayOpen-collapse-3" class="accordion-collapse collapse" style="">
 								<div class="accordion-body">
 									<div class="ratio ratio-16x9">
@@ -188,5 +215,4 @@
 <script src="/assets/js/jquery-3.7.1.min.js"></script>
 <script src="/assets/js/profile.js"></script>
 </body>
-<!--end body-->
 </html>

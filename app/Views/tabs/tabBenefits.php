@@ -22,9 +22,10 @@
 				</div>
 			</div>
 			<div class="row justify-content-center" style="margin: 15px 0 0 0">
-				<div class="col-xs-1 col-md-3 justify-content-center" style="text-align: center; display: flex; justify-content: center; align-items: center;"
-				     id="certDownload">
-					
+				<div
+						class="col-xs-1 col-md-3 justify-content-center" style="text-align: center; display: flex; justify-content: center; align-items: center;"
+						id="certDownload">
+				
 				</div>
 			</div>
 		</div>
@@ -56,16 +57,37 @@
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="row justify-content-center">
-					<img src="/assets/img/QR_solve_playStore.png" alt="qr" style="max-width: 250px">
+				<div class="col-sm-6 d-flex flex-column align-items-center">
+					<div class="row justify-content-center">
+						<a
+								href="https://play.google.com/store/apps/details?id=app.solve_express.mx" target="_blank">
+							<img src="/assets/img/QR_solve_playStore.png" alt="qr" style="width: 250px">
+						</a>
+					</div>
+					<div class="row justify-content-center">
+						<a
+								href="https://play.google.com/store/apps/details?id=app.solve_express.mx" target="_blank">
+							<img src="/assets/img/PlayStore.svg" alt="googlePlay" style="width: 250px">
+						</a>
+					</div>
 				</div>
-				<div class="row justify-content-center">
-					<img src="/assets/img/PlayStore.svg" alt="googlePlay" style="max-width: 250px">
+				<div class="col-sm-6 d-flex flex-column align-items-center">
+					<div class="row justify-content-center">
+						<a href="https://apps.apple.com/mx/app/solve-express/id6743006696?l=en-GB" target="_blank">
+							<img src="/assets/img/QR_solve_appStore.jpeg" alt="qr" style="width: 250px">
+						</a>
+					</div>
+					<div class="row justify-content-center">
+						<a href="https://apps.apple.com/mx/app/solve-express/id6743006696?l=en-GB" target="_blank">
+							<img src="/assets/img/AppStore.svg" alt="googlePlay" style="width: 250px">
+						</a>
+					</div>
 				</div>
 			</div>
 			<div class="row justify-content-center" style="margin: 45px 0 0 0 ">
 				<div class="col-md-5 justify-content-center" style="text-align: center">
-					<a href="" class="text-black" style="text-decoration: underline">Términos y condiciones de beneficios</a>
+					<a href="https://api.solvegcm.mx/terminosMass" target="_blank" class="text-black" style="text-decoration: underline">Términos y condiciones de
+					                                                                                                                     beneficios</a>
 				</div>
 			</div>
 		</div>
