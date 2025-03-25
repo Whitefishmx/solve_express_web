@@ -142,6 +142,25 @@ function getReport() {
 			dataTable = new simpleDatatables.DataTable("#datatable_1", {
 				searchable: true,
 				fixedHeight: true,
+				columns: [
+					{
+						select: 7, // Índice de la columna de los periodos
+						sort: function(a, b) {
+							const extractDate = (text) => {
+								const match = text.match(/(\d)ª quincena de (\w+) (\d{4})/);
+								if (!match) return 0;
+								const [_, quincena, mes, anio] = match;
+								const meses = {
+									"Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6,
+									"Julio": 7, "Agosto": 8, "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12
+								};
+								return new Date(`${anio}-${meses[mes].toString().padStart(2, '0')}-${quincena === "1" ? "01" : "16"}`).getTime();
+							};
+							
+							return extractDate(a) - extractDate(b);
+						}
+					}
+				]
 			});
 		},
 		complete: function () {

@@ -13,7 +13,7 @@
 					<th>Periodo</th>
 					<th>Estatus</th>
 					<th>CEP</th>
-					<th>Fecha limite de pago</th>
+					<th data-type="date" data-format="YYYY-MM-DD">Fecha limite de pago</th>
 					<th>Detalles</th>
 				</tr>
 				</thead>

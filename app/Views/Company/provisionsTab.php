@@ -82,7 +82,7 @@
 					<th>Monto adelantado</th>
 					<th>Monto restante</th>
 					<th>Periodo</th>
-					<th>Fecha</th>
+					<th data-type="date" data-format="DD-MM-YYYY HH:mm:ss" >Fecha</th>
 				</tr>
 				</thead>
 				<tbody id="companyResults">
