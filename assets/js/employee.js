@@ -570,7 +570,10 @@ function deleteAllNotifications() {
 
 function verificarToken() {
 	const expiraEn = localStorage.getItem("tokenExpira");
-	const now = Math.floor(Date.now() / 1000);
+	if (!expiraEn) {
+		cerrarSesion();
+	}
+	const now = Date.now();
 	if (now >= expiraEn) {
 		cerrarSesion();
 	}

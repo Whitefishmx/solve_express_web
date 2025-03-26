@@ -221,10 +221,7 @@
 					}).focus();
 				},
 				success: function (data) {
-					const now = Math.floor(Date.now() / 1000);
-					const expiraEn = now + 1700;
-					console.log(now);
-					console.log(expiraEn);
+					const expiraEn = new Date(data['reason']).getTime();
 					localStorage.setItem("tokenExpira", expiraEn);
 					window.location.href = "<?=base_url ();?>";
 				},

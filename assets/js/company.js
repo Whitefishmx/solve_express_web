@@ -144,7 +144,7 @@ function getReport() {
 				fixedHeight: true,
 				columns: [
 					{
-						select: 7, // Índice de la columna de los periodos
+						select: 7,
 						sort: function(a, b) {
 							const extractDate = (text) => {
 								const match = text.match(/(\d)ª quincena de (\w+) (\d{4})/);
@@ -538,6 +538,25 @@ function getPayments() {
 			dataEmployeesTable = new simpleDatatables.DataTable("#tableInvoice", {
 				searchable: true,
 				fixedHeight: true,
+				columns: [
+					{
+						select: 9,
+						sort: function(a, b) {
+							const extractDate = (text) => {
+								const match = text.match(/(\d)ª quincena de (\w+) (\d{4})/);
+								if (!match) return 0;
+								const [_, quincena, mes, anio] = match;
+								const meses = {
+									"Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6,
+									"Julio": 7, "Agosto": 8, "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12
+								};
+								return new Date(`${anio}-${meses[mes].toString().padStart(2, '0')}-${quincena === "1" ? "01" : "16"}`).getTime();
+							};
+							
+							return extractDate(a) - extractDate(b);
+						}
+					}
+				]
 			});
 		},
 		complete: function () {
@@ -664,7 +683,10 @@ function downloadDetailPaymentReport(){
 }
 function verificarToken() {
 	const expiraEn = localStorage.getItem("tokenExpira");
-	const now = Math.floor(Date.now() / 1000);
+	if (!expiraEn) {
+		cerrarSesion();
+	}
+	const now = Date.now();
 	if (now >= expiraEn) {
 		cerrarSesion();
 	}

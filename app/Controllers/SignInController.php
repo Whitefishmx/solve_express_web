@@ -44,7 +44,7 @@
 			$this->responseBody = [
 				'error'       => 0,
 				'description' => 'Datos de petición correcto',
-				'reason'      => 'Inicio de sesión exitoso.'];
+				'reason'      => $res[ 'access_token' ][ 'expires' ] ];
 			return $this->getResponse ( $this->responseBody );
 		}
 		public function validarCurp (): string {
