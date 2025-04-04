@@ -1,8 +1,10 @@
 <?php
 	
 	namespace CodeIgniter\Commands\Utilities\Routes;
-	
-	use CodeIgniter\Router\RouteCollection;
+
+use App\Controllers\SessionController;
+use App\Controllers\ProfileController;
+use CodeIgniter\Router\RouteCollection;
 	
 	/**
 	 * @var RouteCollection $routes

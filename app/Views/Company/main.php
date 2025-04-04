@@ -88,6 +88,15 @@
         background-color: #2271B891 !important;
         color: white;
     }
+	.alerta {
+        position: absolute;
+        display: block;
+        left: 30%;
+        top: 15%;
+		background-color: #156dbb !important;
+		color: #ffffff;
+		font-size: 1rem;
+    }
 </style>
 <div id="Loader"></div>
 <div class="topbar d-print-none">
@@ -189,6 +198,25 @@
 <script src="/assets/js/app.js?v=1.1.1"></script>
 <script src="/assets/libs/sweetalert2/sweetalert2.min.js?v=1.1.1"></script>
 <script src="/assets/js/company.js?v=2.1.3"></script>
+<script>
+	$(document).ready(function () {
+		let toastHTML = 
+		"<div class='alert alert-purple shadow-sm border-theme-white-2 mb-0 alerta' role='alert'>"+
+			"<div class='d-inline-flex justify-content-center align-items-center thumb-xs bg-purple rounded-circle mx-auto me-1'>"+
+				"<i class='fas fa-info align-self-center mb-0 text-white '></i>"+
+			"</div>"+
+			"Recuerda que debes tener actualizada tu nómina, para actualizar ve a la sección de <a href='#employeeTable' data-bs-toggle='tab' class='alert-link' id='linkToEmployees'>empleados</a>."+
+		"</div>";
+		$("#topbar-custom").append(toastHTML);
+		$("#linkToEmployees").on("click", function () {
+        	let tab = new bootstrap.Tab($("#tabFireEmployee")[0]);
+        	tab.show();
+    	});
+		setTimeout(function () {
+			$(".alerta").fadeOut("fast");
+		}, 8000);
+	});
+</script>
 </body>
 <!--end body-->
 </html>
