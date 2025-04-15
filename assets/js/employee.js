@@ -73,14 +73,12 @@ function GetDisposiciones() {
 				resContainer.append("<tr><td  colspan=\"10\" style=\"text-align: center\">No hay peticiones aun<tr></tr></tr>");
 			} else {
 				let tableRes = "";
-				
 				$.each(response.response, function (index, value) {
-					let url = "https://api.solvegcm.mx/cepDownloader/";
-					//let url = "https://api-solve.local/cepDownloader/";
+					let dCEP = url + "cepDownloader/";
 					let cep = "En proceso";
-					console.log(value);
+					// console.log(value);
 					if (value["cep"] != null) {
-						cep = "<a href='" + url + value["cep"] + "' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
+						cep = "<a href='" + dCEP + value["cep"] + "' target='_blank' style=\"color: #FF9400\"><i class=\"material-icons prefix\">download</i>Descargar</a>";
 					}
 					let plan = "Quincenal";
 					if (value.plan === "q") {
@@ -94,8 +92,8 @@ function GetDisposiciones() {
 						"<td>" + plan + "</td>" +
 						"<td>" + value.period + "</td>" +
 						"<td>$ " + Intl.NumberFormat("en-US").format(Math.round(value["requested_amount"])) + "</td>" +
-						"<td>$ " + Intl.NumberFormat("en-US").format(Math.round(value["remaining_amount"])) + "</td>" +
-						"<td>" + value["folio"] + "</td>" +
+						"<td style='white-space: nowrap !important;'>$ " + value["remaining_amount"] + "</td>" +
+						"<td>SOLVE" + value["folio"] + "</td>" +
 						"<td>" + value["noReference"] + "</td>" +
 						"<td>" + value["clabe"] + "</td>" +
 						"<td>" + value["bnk_alias"] + "</td>" +
@@ -114,7 +112,7 @@ function GetDisposiciones() {
 		},
 		error: function (status) {
 			// Maneja los errores de la solicitud
-			console.error("Error en la solicitud:", status);
+			// console.error("Error en la solicitud:", status);
 		}
 	});
 }
@@ -146,7 +144,7 @@ function GetDashboard() {
 		success: function (response) {
 			const cantidad = $("#requestAmount");
 			const rangeInput = document.querySelector("input[type=\"range\"]");
-			var valorAlto;
+			let valorAlto;
 			$("#dXD").html("Día: " + response["response"]["req_day"] + " / " + response["response"]["limit_day"]);
 			$("#dXQ").html("Quincena: " + response["response"]["req_biweekly"] + " / " + response["response"]["limit_biweekly"]);
 			$("#dXM").html("Mes: " + response["response"]["req_month"] + " / " + response["response"]["limit_month"]);
@@ -155,7 +153,7 @@ function GetDashboard() {
 			$(".iniciales").html(response.response.name.charAt(0) + response.response.last_name.charAt(0));
 			$("#company").html(response.response.short_name);
 			
-			$("#DashDays").html("<h2 class=\"text-center\" style=\"font-weight: bold\"><img src=\"assets/img/calendar.png\" style=\"height: 1.7rem\"> " + response.response.worked_days + "</h2>");
+			$("#DashDays").html("<h2 class=\"text-center\" style=\"font-weight: bold\"><img src=\"assets/img/calendar.png\" style=\"height: 1.7rem\" alt='calendar'> " + response.response.worked_days + "</h2>");
 			$("#DashAvailable").html("<h2 class=\"text-center\" style=\"font-weight: bold\">$ " + Intl.NumberFormat("en-US").format(parseInt(response.response.amount_available)) + "</h2>");
 			
 			cantidad.attr("min", response.response.min_amount);
@@ -198,7 +196,7 @@ function GetDashboard() {
 		},
 		error: function (status) {
 			// Maneja los errores de la solicitud
-			console.error("Error en la solicitud:", status);
+			// console.error("Error en la solicitud:", status);
 		}
 	});
 }
@@ -233,14 +231,12 @@ function RequestPay() {
 			}).focus();
 		},
 		success: function (response) {
-			console.log(response);
-			
 			if (response.error == 200) {
 				texto = "<div class=\"alert alert-info mb-0 border-2\" role=\"alert\"><h4 class=\"alert-heading font-18\">" + response.description + "</h4><p>" + response.response + "</p></div>";
 			} else {
 				texto = "<div class=\"alert alert-danger alert-dismissible fade show shadow-sm border-theme-white-2 mb-0\" role=\"alert\"><div class=\"d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1\"><i class=\"fas fa-xmark align-self-center mb-0 text-white \"></i></div><strong>" + response.description + "</strong> " + response.reason + "</div>";
 			}
-			console.log(texto);
+			// console.log(texto);
 			$("#textDisclaimer").html(texto);
 		},
 		complete: function () {
@@ -258,8 +254,6 @@ function RequestPay() {
 			$("#textDisclaimer").html(texto);
 		}
 	});
-	
-	
 }
 
 function getDisclaimer() {
@@ -299,7 +293,7 @@ function getDisclaimer() {
 		},
 		error: function (status) {
 			// Maneja los errores de la solicitud
-			console.error("Error en la solicitud:", status);
+			// console.error("Error en la solicitud:", status);
 		}
 	});
 }
@@ -350,7 +344,7 @@ data-bs-target="#panelsStayOpen-collapse${counter}" aria-expanded="false" aria-c
 		},
 		error: function (status) {
 			// Maneja los errores de la solicitud
-			console.error("Error en la solicitud:", status);
+			// console.error("Error en la solicitud:", status);
 		}
 	});
 }
@@ -395,7 +389,7 @@ function getCerts() {
 		},
 		error: function (status) {
 			// Maneja los errores de la solicitud
-			console.error("Error en la solicitud:", status);
+			// console.error("Error en la solicitud:", status);
 		}
 	});
 }
@@ -468,7 +462,7 @@ function getNotifications() {
 			$("#notificationContent").html(notifications);
 		},
 		error: function (status) {
-			console.error("Error en la solicitud:", status);
+			// console.error("Error en la solicitud:", status);
 		}
 	});
 }
@@ -488,7 +482,7 @@ function setNotificationData(title, body, id) {
 			getNotifications();
 		},
 		error: function (status) {
-			console.error("Error en la solicitud:", status);
+			// console.error("Error en la solicitud:", status);
 		}
 	});
 }
@@ -506,7 +500,7 @@ function deleteOneNotification(id) {
 			getNotifications();
 		},
 		error: function (status) {
-			console.error("Error en la solicitud:", status);
+			// console.error("Error en la solicitud:", status);
 		}
 	});
 }
@@ -523,7 +517,7 @@ function readAllNotifications() {
 			getNotifications();
 		},
 		error: function (status) {
-			console.error("Error en la solicitud:", status);
+			// console.error("Error en la solicitud:", status);
 		}
 	});
 }
@@ -562,7 +556,7 @@ function deleteAllNotifications() {
 			});
 		},
 		error: function (status) {
-			console.error("Error en la solicitud:", status);
+			// console.error("Error en la solicitud:", status);
 		}
 	});
 }

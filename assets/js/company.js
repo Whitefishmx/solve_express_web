@@ -256,7 +256,7 @@ function getWInfo() {
 		},
 		error: function (status) {
 			// Maneja los errores de la solicitud
-			console.error("Error en la solicitud:", status);
+			// console.error("Error en la solicitud:", status);
 		}
 	});
 }
@@ -280,7 +280,7 @@ function uploadNomina() {
 				displayLoaderCompany();
 			},
 			success: function (response) {
-				console.log("Respuesta del servidor:", response);
+				// console.log("Respuesta del servidor:", response);
 				void Swal.fire({icon: "success", title: "Se actualizó la nomina de forma exitosa. ", timer: 1500});
 				getEmployees();
 			},
@@ -431,7 +431,7 @@ function fireEmployees() {
 			getWInfo().then(data => {
 				const formElement = $("#formNomina")[0];
 				if (!formElement || formElement.tagName !== "FORM") {
-					console.error("El elemento no es un formulario válido.");
+					// console.error("El elemento no es un formulario válido.");
 					return;
 				}
 				const formData = new FormData(formElement);
@@ -652,7 +652,6 @@ function downloadDetailPaymentReport(){
 			},
 			"data": JSON.stringify({
 				"filters": {
-					"company": data["c"],
 					"period": "" + periodDetail,
 				},
 				"columns": columns,
